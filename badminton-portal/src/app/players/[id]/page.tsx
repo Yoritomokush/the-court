@@ -104,7 +104,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                             強靭なフィジカルと卓越した戦術眼の相関を示す。
                                         </p>
                                         <div className="grid grid-cols-2 gap-4">
-                                            {Object.entries(player.stats).map(([label, value]) => (
+                                            {(Object.entries(player.stats) as [string, number][]).map(([label, value]) => (
                                                 <div key={label} className="bg-zinc-900/40 p-4 border border-white/5 rounded-2xl">
                                                     <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">{label}</p>
                                                     <p className="text-2xl font-black italic">{value}</p>

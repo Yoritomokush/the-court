@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import { Player } from "@/app/master-data";
 
 // Use precise keys from master-data to ensure type consistency
 const STAT_KEYS = ["power", "speed", "technique", "stamina", "mentality", "defense"] as const;
 type StatKey = typeof STAT_KEYS[number];
 
 interface RadarChartProps {
-    stats: Record<StatKey, number>;
+    stats: Player["stats"];
     size?: number;
 }
 
