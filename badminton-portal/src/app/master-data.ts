@@ -36,6 +36,14 @@ export interface Player {
   bio: string;
 }
 
+export interface News {
+  id: string;
+  date: string;
+  title: string;
+  category: "TOURNAMENT" | "GEAR" | "TOPIC";
+  content: string;
+}
+
 const AFFILIATE_ID = "your-id-22";
 
 /**
@@ -668,5 +676,29 @@ export const players: Player[] = [
       },
     },
     bio: "型にハマらない自由な発想と、高い身体能力を併せ持つユース世代の期待. 劣勢からの一発で流れを変える勝負強さを持ち、日本のバドミントン界に新しい風を吹き込む若武者。",
+  },
+];
+
+export const news: News[] = [
+  {
+    id: "news-1",
+    date: "2024.03.12",
+    title: "【速報】全英オープン2024開幕！日本勢の初戦組み合わせが決定",
+    category: "TOURNAMENT",
+    content: "世界最古の伝統を誇る全英オープンがついに開幕。日本代表からは渡辺・東野ペア、奈良岡選手らが出場予定。",
+  },
+  {
+    id: "news-2",
+    date: "2024.03.05",
+    title: "YONEX最新モデル「NANOFLARE 800 PRO」先行予約受付開始",
+    category: "GEAR",
+    content: "極限の低空気抵抗を追求した最新ラケットが登場。志田千陽選手も使用する注目の高速モデル。",
+  },
+  {
+    id: "news-3",
+    date: "2024.02.28",
+    title: "渡辺・東野ペアがフランスオープンで劇的勝利、今季初優勝を飾る",
+    category: "TOURNAMENT",
+    content: "決勝で中国ペアを相手にフルゲームの激戦を制し、見事表彰台の頂点に立った。",
   },
 ];

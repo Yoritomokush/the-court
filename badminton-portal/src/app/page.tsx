@@ -6,12 +6,25 @@ import Link from "next/link";
 import { players } from "@/app/master-data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StatisticsRanking from "@/components/StatisticsRanking";
+import LatestNews from "@/components/LatestNews";
+import PlayerComparison from "@/components/PlayerComparison";
+import { Player } from "@/app/master-data";
 
 const CATEGORIES = ["すべて", "男子シングルス", "女子シングルス", "男子ダブルス", "女子ダブルス", "混合ダブルス"] as const;
 type Category = (typeof CATEGORIES)[number];
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<Category>("すべて");
+  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
+
+  const togglePlayerSelection = (player: Player) => {
+    if (selectedPlayers.find(p => p.id === player.id)) {
+      setSelectedPlayers(selectedPlayers.filter(p => p.id !== player.id));
+    } else if (selectedPlayers.length < 2) {
+      setSelectedPlayers([...selectedPlayers, player]);
+    }
+  };
 
   const filteredPlayers = activeCategory === "すべて"
     ? players
@@ -70,6 +83,12 @@ export default function Home() {
       </section>
 
       <main className="max-w-7xl mx-auto px-6 py-24 space-y-40">
+        {/* Statistics Section */}
+        <StatisticsRanking />
+
+        {/* News Section */}
+        <LatestNews />
+
         {/* Player Directory Section */}
         <section id="players">
           <div className="flex flex-col xl:flex-row xl:items-end justify-between mb-12 gap-8">
@@ -140,10 +159,25 @@ export default function Home() {
                     )}
                   </div>
 
-                  <div className="flex items-center gap-3 text-[#d4ff00] opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0">
-                    <span className="text-[10px] font-black tracking-[0.2em] uppercase">Enter Profile</span>
-                    <div className="w-8 h-[1px] bg-[#d4ff00]" />
-                    <span>&rarr;</span>
+                  <div className="flex items-center justify-between text-[#d4ff00]">
+                    <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0">
+                      <span className="text-[10px] font-black tracking-[0.2em] uppercase">Enter Profile</span>
+                      <div className="w-8 h-[1px] bg-[#d4ff00]" />
+                      <span>&rarr;</span>
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        togglePlayerSelection(player);
+                      }}
+                      className={`relative z-30 px-4 py-1.5 rounded-full text-[9px] font-black tracking-widest uppercase transition-all duration-300 ${selectedPlayers.find(p => p.id === player.id)
+                        ? "bg-[#d4ff00] text-black scale-110"
+                        : "bg-white/10 text-white hover:bg-white/20"
+                        }`}
+                    >
+                      {selectedPlayers.find(p => p.id === player.id) ? "Selected" : "Add to Compare"}
+                    </button>
                   </div>
                 </div>
               </Link>
@@ -186,6 +220,53 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      {/* Comparison Overlay Trigger */}
+      {selectedPlayers.length > 0 && (
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-40 bg-zinc-900/80 backdrop-blur-2xl border border-white/10 rounded-full px-8 py-4 flex items-center gap-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in slide-in-from-bottom-10 fade-in duration-500">
+          <div className="flex -space-x-4">
+            {selectedPlayers.map(p => (
+              <div key={p.id} className="w-12 h-12 rounded-full border-2 border-black overflow-hidden relative">
+                <Image src={p.image} alt={p.name} fill className="object-cover" />
+              </div>
+            ))}
+            {selectedPlayers.length === 1 && (
+              <div className="w-12 h-12 rounded-full border-2 border-dashed border-white/20 flex items-center justify-center text-white/20 text-xs font-black italic">
+                VS
+              </div>
+            )}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400">
+              {selectedPlayers.length === 1 ? "Select another player" : "Ready to Compare"}
+            </span>
+            {selectedPlayers.length === 2 ? (
+              <button
+                onClick={() => { }} // Initial interaction point, actual Modal handled below
+                className="bg-[#d4ff00] text-black px-6 py-2 rounded-full text-xs font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-[0_5px_15px_rgba(212,255,0,0.3)]"
+              >
+                Compare Now
+              </button>
+            ) : null}
+            <button
+              onClick={() => setSelectedPlayers([])}
+              className="text-white/40 hover:text-white transition-colors text-xs font-black"
+            >
+              CLEAR
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Comparison Modal */}
+      {selectedPlayers.length === 2 && (
+        <PlayerComparison
+          player1={selectedPlayers[0]}
+          player2={selectedPlayers[1]}
+          onClose={() => setSelectedPlayers([])}
+        />
+      )}
     </div>
   );
 }
