@@ -18,10 +18,10 @@ export default function Footer() {
                     <div className="space-y-6">
                         <h4 className="text-xs font-black text-badminton-yellow uppercase tracking-[0.3em]">Contents</h4>
                         <div className="flex flex-col gap-4 text-xs font-black italic tracking-widest text-zinc-400">
-                            <Link href="/column" className="hover:text-badminton-yellow transition-colors uppercase">COLUMN</Link>
+                            <Link href="/columns" className="hover:text-badminton-yellow transition-colors uppercase">COLUMNS</Link>
                             <Link href="/circles" className="hover:text-badminton-yellow transition-colors uppercase">CIRCLES</Link>
                             <Link href="/guide" className="hover:text-badminton-yellow transition-colors uppercase">BEGINNERS GUIDE</Link>
-                            <Link href="/#players" className="hover:text-badminton-yellow transition-colors uppercase">PLAYERS</Link>
+                            <Link href="/players" className="hover:text-badminton-yellow transition-colors uppercase">PLAYERS</Link>
                             <Link href="/#gear" className="hover:text-badminton-yellow transition-colors uppercase">GEAR HIGHLIGHT</Link>
                         </div>
                     </div>

@@ -3,10 +3,11 @@
 import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { players } from "@/app/master-data";
+import { players, Player } from "@/app/master-data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import RadarChart from "@/components/RadarChart";
+import JerseyFallback from "@/components/JerseyFallback";
 import { notFound } from "next/navigation";
 
 export default function PlayerPage({ params }: { params: Promise<{ id: string }> }) {
@@ -29,13 +30,17 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                     </div>
 
                     <div className="absolute inset-0 z-0">
-                        <Image
-                            src={player.image}
-                            alt={player.name}
-                            fill
-                            className="object-cover opacity-70 scale-105"
-                            priority
-                        />
+                        {player.image && !player.image.includes("placeholder") ? (
+                            <Image
+                                src={player.image}
+                                alt={player.name}
+                                fill
+                                className="object-cover opacity-70 scale-105"
+                                priority
+                            />
+                        ) : (
+                            <JerseyFallback name={player.name} nationality={player.country} />
+                        )}
                         {/* Dynamic Gradients for Premium Look */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
                         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-transparent z-10" />
@@ -45,7 +50,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                     <div className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-16">
                         <div className="mb-8">
                             <Link
-                                href="/"
+                                href="/players"
                                 className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-zinc-400 hover:text-[#d4ff00] hover:border-[#d4ff00]/50 transition-all group"
                             >
                                 <span className="group-hover:-translate-x-1 transition-transform text-lg">&larr;</span>
@@ -70,16 +75,23 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                             </h1>
                             <div className="flex flex-wrap items-center gap-8 pt-4">
                                 <div>
-                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Current Ranking</p>
+                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Affiliation</p>
                                     <p className="text-2xl md:text-3xl text-white font-black italic tracking-tight">
-                                        {player.rank}
+                                        {player.team}
                                     </p>
                                 </div>
                                 <div className="w-px h-12 bg-white/10 hidden md:block" />
                                 <div>
-                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Play Style</p>
+                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">World Rank</p>
                                     <p className="text-2xl md:text-3xl text-[#d4ff00] font-black italic tracking-tight">
-                                        {player.style}
+                                        {player.worldRank === "Legacy" ? player.rank.match(/\d+/)?.[0] || '1' : player.worldRank}
+                                    </p>
+                                </div>
+                                <div className="w-px h-12 bg-white/10 hidden md:block" />
+                                <div>
+                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Gender</p>
+                                    <p className="text-2xl md:text-3xl text-white font-black italic tracking-tight">
+                                        {player.gender}
                                     </p>
                                 </div>
                             </div>
@@ -118,8 +130,28 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                 </div>
                             </div>
 
+                            {/* Awards Section - New Professional Requirement */}
+                            <div className="space-y-10">
+                                <h2 className="text-4xl font-black italic tracking-tighter uppercase border-[#d4ff00]">
+                                    Recent <span className="text-[#d4ff00]">Awards</span>
+                                </h2>
+                                <div className="grid gap-4">
+                                    {player.awards.map((award, idx) => (
+                                        <div key={idx} className="flex items-center justify-between p-6 bg-zinc-900/40 border border-white/5 rounded-2xl hover:bg-zinc-900/60 transition-colors">
+                                            <div className="flex items-center gap-6">
+                                                <span className="text-[#d4ff00] font-black italic text-xl w-16">{award.year}</span>
+                                                <span className="text-white font-bold text-lg">{award.event}</span>
+                                            </div>
+                                            <span className="px-4 py-1.5 bg-white/5 text-[#d4ff00] text-[10px] font-black tracking-widest uppercase rounded-full border border-[#d4ff00]/20">
+                                                {award.result}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
                             {/* Gallery / Media Section */}
-                            {(player.youtubeId || player.instagramPostId) && (
+                            {(player.youtubeId || player.instagramPostId || player.sns) && (
                                 <div className="space-y-10">
                                     <h2 className="text-4xl font-black italic tracking-tighter uppercase border-[#d4ff00]">
                                         Gallery / <span className="text-[#d4ff00]">Media</span>
@@ -139,31 +171,36 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                                 </div>
                                             </div>
                                         )}
-                                        {player.instagramPostId && (
+
+                                        {/* Professional SNS Section - Conditional Visibility */}
+                                        {player.sns && (Object.values(player.sns).some(v => v)) && (
                                             <div className="space-y-4">
-                                                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest pl-1">Candid Moments</p>
-                                                <div className="relative aspect-square md:aspect-video w-full overflow-hidden rounded-[32px] border border-white/5 bg-zinc-900 shadow-2xl group/insta cursor-pointer flex items-center justify-center">
-                                                    <div className="absolute inset-0 z-0 opacity-20 group-hover/insta:opacity-40 transition-opacity duration-700">
-                                                        <Image
-                                                            src={player.image}
-                                                            alt="Instagram Fallback"
-                                                            fill
-                                                            className="object-cover"
-                                                        />
-                                                    </div>
-                                                    <Link
-                                                        href={`https://www.instagram.com/p/${player.instagramPostId}/`}
-                                                        target="_blank"
-                                                        className="relative z-10 flex flex-col items-center gap-4 group/btn"
-                                                    >
-                                                        <div className="w-16 h-16 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-2xl flex items-center justify-center shadow-lg group-hover/btn:scale-110 transition-transform">
-                                                            <svg className="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.247 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.061 1.365-.333 2.632-1.308 3.607-.975.975-2.242 1.246-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.247-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.061-1.365.333-2.632 1.308-3.607.975-.975 2.242-1.246 3.607-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.724.079-3.092.443-4.277 1.628-1.185 1.184-1.549 2.552-1.628 4.277-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.079 1.724.443 3.092 1.628 4.277 1.184 1.185 2.552 1.549 4.277 1.628 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.724-.079 3.092-.443 4.277-1.628 1.185-1.184 1.549-2.552 1.628-4.277.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.079-1.724-.443-3.092-1.628-4.277-1.184-1.185-2.552-1.549-4.277-1.628-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-                                                        </div>
-                                                        <div className="text-center">
-                                                            <p className="text-white font-black italic tracking-tighter uppercase text-lg">View Post</p>
-                                                            <p className="text-zinc-500 text-[9px] font-black uppercase tracking-widest">@instagram</p>
-                                                        </div>
-                                                    </Link>
+                                                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest pl-1">Official Links</p>
+                                                <div className="grid grid-cols-2 gap-4 h-[calc(100%-24px)]">
+                                                    {player.sns.instagram && (
+                                                        <Link
+                                                            href={`https://instagram.com/${player.sns.instagram}`}
+                                                            target="_blank"
+                                                            className="flex flex-col items-center justify-center gap-3 bg-zinc-900/60 border border-white/5 rounded-[32px] hover:border-[#d4ff00]/50 transition-all group/sns"
+                                                        >
+                                                            <div className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-2xl group-hover/sns:scale-110 transition-transform">
+                                                                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.247 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.061 1.365-.333 2.632-1.308 3.607-.975.975-2.242 1.246-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.247-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.061-1.365.333-2.632 1.308-3.607.975-.975 2.242-1.246 3.607-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.724.079-3.092.443-4.277 1.628-1.185 1.184-1.549 2.552-1.628 4.277-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.079 1.724.443 3.092 1.628 4.277 1.184 1.185 2.552 1.549 4.277 1.628 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.724-.079 3.092-.443 4.277-1.628 1.185-1.184 1.549-2.552 1.628-4.277.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.079-1.724-.443-3.092-1.628-4.277-1.184-1.185-2.552-1.549-4.277-1.628-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+                                                            </div>
+                                                            <span className="text-[10px] font-black uppercase tracking-widest">Instagram</span>
+                                                        </Link>
+                                                    )}
+                                                    {player.sns.x && (
+                                                        <Link
+                                                            href={`https://x.com/${player.sns.x}`}
+                                                            target="_blank"
+                                                            className="flex flex-col items-center justify-center gap-3 bg-zinc-900/60 border border-white/5 rounded-[32px] hover:border-[#d4ff00]/50 transition-all group/sns"
+                                                        >
+                                                            <div className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-2xl group-hover/sns:scale-110 transition-transform">
+                                                                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                                                            </div>
+                                                            <span className="text-[10px] font-black uppercase tracking-widest">X (Twitter)</span>
+                                                        </Link>
+                                                    )}
                                                 </div>
                                             </div>
                                         )}
@@ -178,8 +215,8 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                 </h2>
                                 <div className="prose prose-invert prose-2xl max-w-none">
                                     <p className="text-zinc-300 leading-[1.6] font-medium italic">
-                                        {player.name}選手は、日本が世界に誇る{player.category}のエース。
-                                        「{player.style}」と称される独自のプレースタイルで、数々の国際大会を制覇してきた。
+                                        {player.name}選手は、日本が世界に誇る{player.category.split(' / ').pop()}のエース。
+                                        「{player.style}」と称される独自のプレースタイルで、{player.team}に所属し数々の国際大会を制覇してきた。
                                     </p>
                                     <p className="text-zinc-400 text-lg leading-relaxed mt-8">
                                         {player.bio}
@@ -191,7 +228,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                         {/* Sidebar */}
                         <div className="lg:col-span-4 space-y-8">
                             {/* Gear Section */}
-                            <div className="bg-zinc-900/60 border border-white/10 rounded-[40px] p-10 sticky top-8 backdrop-blur-xl">
+                            <div className="bg-zinc-900/60 border border-white/10 rounded-[40px] p-10 sticky top-8 backdrop-blur-xl shadow-2xl">
                                 <h3 className="text-2xl font-black italic tracking-tighter uppercase mb-8 flex items-center gap-3">
                                     <span className="w-2 h-8 bg-[#d4ff00]" />
                                     Exclusive Gear
