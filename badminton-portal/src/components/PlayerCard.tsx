@@ -20,12 +20,23 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
     onCompareToggle,
 }) => {
     const isFallback = !player.image || player.image.includes("placeholder");
+    const isTop5 = !isNaN(parseInt(player.worldRank)) && parseInt(player.worldRank) <= 5;
 
     const CardContent = (
-        <div className={`group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-zinc-900 shadow-2xl transition-all duration-700 ${isSelected ? "border-2 border-[#d4ff00]" : "border border-white/5 hover:border-[#d4ff00]/50"}`}>
+        <div className={`group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 ${isSelected ? "border-2 border-[#d4ff00] shadow-[0_0_30px_rgba(212,255,0,0.5)]"
+                : isTop5 ? "border border-[#d4ff00]/30 shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:border-[#d4ff00]/70 hover:shadow-[0_0_40px_rgba(212,255,0,0.3)]"
+                    : "border border-white/10 shadow-2xl hover:border-white/30"
+            }`}>
+            {/* Inner Glow (Edge Light) */}
+            <div className="absolute inset-0 rounded-[32px] ring-1 ring-inset ring-white/10 group-hover:ring-white/20 transition-all duration-700 z-30 pointer-events-none mix-blend-overlay" />
+            <div className="absolute inset-0 rounded-[32px] shadow-[inset_0_0_40px_rgba(255,255,255,0.05)] z-30 pointer-events-none" />
 
-            {/* Background/Image */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10 z-10 opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
+            {/* Layer 1 & 2: Base Gradient and Angled Accent Stripe */}
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-950 z-0" />
+            <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,rgba(255,255,255,0.03)_20px,rgba(255,255,255,0.03)_40px)] z-0 mix-blend-overlay" />
+
+            {/* Background/Image Overlay Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10 opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
 
             {!isFallback ? (
                 <Image

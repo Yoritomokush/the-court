@@ -13,6 +13,7 @@ import { notFound } from "next/navigation";
 export default function PlayerPage({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = use(params);
     const player = players.find((p) => p.id === resolvedParams.id);
+    const isTop5 = player && !isNaN(parseInt(player.worldRank)) && parseInt(player.worldRank) <= 5;
 
     if (!player) {
         notFound();
@@ -30,12 +31,16 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                     </div>
 
                     <div className="absolute inset-0 z-0 bg-zinc-950 overflow-hidden">
+                        {/* Layer 1 & 2: Base Gradient and Angled Accent Stripe */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-950 z-0" />
+                        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_40px,rgba(255,255,255,0.03)_40px,rgba(255,255,255,0.03)_80px)] z-0 mix-blend-overlay" />
+
                         {player.image && !player.image.includes("placeholder") ? (
                             <Image
                                 src={player.image}
                                 alt={player.name}
                                 fill
-                                className="object-cover opacity-70 scale-105"
+                                className="object-cover opacity-70 scale-105 mix-blend-screen"
                                 priority
                             />
                         ) : (
@@ -57,6 +62,13 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
                         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-transparent z-10" />
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] z-10" />
+
+                        {/* Premium Inner Glows & Rarity Glow */}
+                        <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(255,255,255,0.03)] z-20 pointer-events-none" />
+                        <div className="absolute inset-0 ring-1 ring-inset ring-white/10 z-20 pointer-events-none mix-blend-overlay" />
+                        {isTop5 && (
+                            <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(212,255,0,0.15)] z-20 pointer-events-none mix-blend-screen" />
+                        )}
                     </div>
 
                     <div className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-16">
