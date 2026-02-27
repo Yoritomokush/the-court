@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StatisticsRanking from "@/components/StatisticsRanking";
 import LatestNews from "@/components/LatestNews";
+import RankinsSection from "@/components/RankingsSection";
 import PlayerComparison from "@/components/PlayerComparison";
 
 const CATEGORIES = ["すべて", "男子シングルス", "女子シングルス", "男子ダブルス", "女子ダブルス", "混合ダブルス"] as const;
@@ -90,6 +91,9 @@ export default function Home() {
 
         {/* 1. LATEST NEWS */}
         <LatestNews />
+
+        {/* 1.5 RANKINGS */}
+        <RankinsSection />
 
         {/* 2. FEATURED PLAYERS */}
         <section id="players">

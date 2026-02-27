@@ -24,6 +24,7 @@ export interface Player {
   partnerName?: string;
   youtubeId?: string;
   instagramPostId?: string;
+  instagramPostUrl?: string; // New: Full Instagram URL for embedding
   stats: {
     power: number;
     speed: number;
@@ -55,6 +56,32 @@ export interface News {
   title: string;
   category: "TOURNAMENT" | "GEAR" | "TOPIC";
   content: string;
+  results?: MatchResult[];
+  relatedPlayerIds?: string[];
+}
+
+export interface MatchResult {
+  round: string;
+  opponent: string;
+  score: string;
+  isWin: boolean;
+}
+
+export interface RankingEntry {
+  rank: number;
+  name: string;
+  team: string;
+  points?: string;
+  change?: "up" | "down" | "none";
+  flag?: string;
+}
+
+export interface CategoryRankings {
+  ms: RankingEntry[];
+  ws: RankingEntry[];
+  md: RankingEntry[];
+  wd: RankingEntry[];
+  xd: RankingEntry[];
 }
 
 export interface Column {
@@ -97,7 +124,7 @@ export const players: Player[] = [
       x: "bwf_watanabe",
       youtube: "UC6u-vF_Iswc"
     },
-    partnerName: "東野 有紗",
+    partnerName: "田口 真彩",
     youtubeId: "o6u-vF_Iswc",
     instagramPostId: "C8P9z9RS9M9",
     style: "Deceptive & Creative",
@@ -127,7 +154,217 @@ export const players: Player[] = [
         link: getAmazonLink("LI-NING BLADED"),
       },
     },
-    bio: "混合ダブルスで世界を席巻する日本の天才。その独創的なラケットワークと、相手の虚を突く配球は「魔法」と称される。",
+    bio: "「ミニオンズ」として世界を席巻した、インドネシアが生んだ史上最高の天才。前衛での予測能力と反射速度は他の追随を許さず、相手を翻弄するプレースタイルで一時代を築いた。",
+  },
+  {
+    id: "viktor-axelsen",
+    name: "ビクター・アクセルセン",
+    image: "/images/players/placeholder.png",
+    rank: "Men's Singles World No.1",
+    gender: "Male",
+    team: "Denmark National",
+    worldRank: "1",
+    awards: [
+      { year: "2024", event: "パリオリンピック", result: "金メダル" },
+      { year: "2021", event: "東京オリンピック", result: "金メダル" },
+      { year: "2022", event: "世界選手権", result: "優勝" }
+    ],
+    sns: { instagram: "viktoraxelsen" },
+    instagramPostUrl: "https://www.instagram.com/p/DBY_mIBy_5y/",
+    style: "Dominant & Precise",
+    country: "Denmark",
+    flag: "🇩🇰",
+    category: "プロ / 男子シングルス",
+    tier: "S",
+    stats: { power: 100, speed: 88, technique: 95, stamina: 92, mentality: 96, defense: 90 },
+    gear: {
+      racket: { name: "YONEX ASTROX 100 ZZ", image: "/images/gear/astrox-100-zz.png", description: "世界王者のパワーを支える、極細シャフトの最高峰。", link: getAmazonLink("YONEX ASTROX 100 ZZ") },
+      shoes: { name: "YONEX POWER CUSHION 65 Z", image: "/images/gear/shb65z3.png", description: "王者のフットワークを支える究極の安定性。", link: getAmazonLink("YONEX POWER CUSHION 65 Z") }
+    },
+    bio: "現代バドミントン界の絶対王者。194cmの長身から繰り出される角度のある強打は、他を寄せ付けない破壊力を持つ。デンマークが誇る、史上最強のシングルスプレーヤーの一人。"
+  },
+  {
+    id: "an-se-young",
+    name: "アン・セヨン",
+    image: "/images/players/placeholder.png",
+    rank: "Women's Singles World No.1",
+    gender: "Female",
+    team: "Samsung Life Insurance",
+    worldRank: "1",
+    awards: [
+      { year: "2024", event: "パリオリンピック", result: "金メダル" },
+      { year: "2023", event: "世界選手権", result: "優勝" },
+      { year: "2023", event: "全英オープン", result: "優勝" }
+    ],
+    sns: { instagram: "a_sy_2225" },
+    instagramPostUrl: "https://www.instagram.com/p/C-P9pPyS9Y9/",
+    style: "Wall-like Defense",
+    country: "Korea",
+    flag: "🇰🇷",
+    category: "プロ / 女子シングルス",
+    tier: "S",
+    stats: { power: 85, speed: 92, technique: 94, stamina: 100, mentality: 98, defense: 100 },
+    gear: {
+      racket: { name: "YONEX ASTROX 77 PRO", image: "/images/gear/astrox-77-pro.png", description: "しなりでシャトルを捉える、新世代のコントロールモデル。", link: getAmazonLink("YONEX ASTROX 77 PRO") },
+      shoes: { name: "YONEX POWER CUSHION AERUS Z", image: "/images/gear/shoes-yuta.png", description: "鉄壁の守備を支える、究極の軽さとフットワーク。", link: getAmazonLink("YONEX AERUS Z") }
+    },
+    bio: "「셔틀콕 천재（シャトルコックの天才）」と称される、韓国の絶対的女王。異次元の守備範囲と、相手を疲れさせる驚異的な粘り強いプレーは、女子シングルスの歴史に新たな時代を告げた。"
+  },
+  {
+    id: "chen-yu-fei",
+    name: "陳雨菲",
+    image: "/images/players/placeholder.png",
+    rank: "Women's Singles World No.2",
+    gender: "Female",
+    team: "China National",
+    worldRank: "2",
+    awards: [
+      { year: "2021", event: "東京オリンピック", result: "金メダル" },
+      { year: "2023", event: "全英オープン", result: "準優勝" }
+    ],
+    sns: { instagram: "chenyufeiii" },
+    instagramPostUrl: "https://www.instagram.com/p/C8P9z9RS9M9/",
+    style: "Stable & Tactical",
+    country: "China",
+    flag: "🇨🇳",
+    category: "プロ / 女子シングルス",
+    tier: "S",
+    stats: { power: 82, speed: 88, technique: 96, stamina: 92, mentality: 94, defense: 95 },
+    gear: {
+      racket: { name: "YONEX ASTROX 77 PRO", image: "/images/gear/astrox-77-pro.png", description: "安定したショット精度を生み出す攻撃型モデル。", link: getAmazonLink("YONEX ASTROX 77 PRO") },
+      shoes: { name: "YONEX POWER CUSHION 65 Z", image: "/images/gear/shb65z3.png", description: "長時間の激闘に耐えうる、信頼のオールラウンドモデル。", link: getAmazonLink("YONEX POWER CUSHION 65 Z") }
+    },
+    bio: "中国の司令塔。堅実なプレーと、一瞬の隙も見逃さない高い戦術理解度は、世界中のトップランカーたちにとって最も攻略困難な壁の一つ。"
+  },
+  {
+    id: "liang-wang",
+    name: "リャン・ウェイカン / ワン・チャン",
+    image: "/images/players/placeholder.png",
+    rank: "Men's Doubles World No.1",
+    gender: "Male",
+    team: "China National",
+    worldRank: "1",
+    awards: [
+      { year: "2024", event: "パリオリンピック", result: "銀メダル" },
+      { year: "2024", event: "全英オープン", result: "準優勝" }
+    ],
+    sns: { instagram: "liangwekang" },
+    instagramPostUrl: "https://www.instagram.com/p/C-P9pPyS9X8/",
+    style: "Ultra Power Rush",
+    country: "China",
+    flag: "🇨🇳",
+    category: "プロ / 男子ダブルス",
+    tier: "S",
+    stats: { power: 100, speed: 96, technique: 90, stamina: 88, mentality: 92, defense: 88 },
+    gear: {
+      racket: { name: "YONEX ASTROX 88 D PRO", image: "/images/gear/astrox-88d-pro.png", description: "後衛からの破壊的な連打を可能にする、ダブルス専用パワーモデル。", link: getAmazonLink("YONEX ASTROX 88 D PRO") },
+      shoes: { name: "YONEX POWER CUSHION 65 Z", image: "/images/gear/shb65z3.png", description: "激しい攻防を足元から力強く支える一足。", link: getAmazonLink("YONEX POWER CUSHION 65 Z") }
+    },
+    bio: "中国の若き新星ペア。リャンの破壊的なスマッシュと、ワンの鉄壁の配球が噛み合った攻撃スタイルは、現在の男子ダブルス界において最も恐れられるコンビネーションの一つ。"
+  },
+  {
+    id: "jeong-kim",
+    name: "チョン・ナウン / キム・ヘジョン",
+    image: "/images/players/placeholder.png",
+    rank: "Women's Doubles World No.5",
+    gender: "Female",
+    team: "Korea National",
+    worldRank: "5",
+    awards: [
+      { year: "2024", event: "パリオリンピック", result: "混合銀 (鄭)" },
+      { year: "2023", event: "世界選手権", result: "銅メダル" }
+    ],
+    sns: { instagram: "jeong_na_eun" },
+    instagramPostUrl: "https://www.instagram.com/p/C-A9Rtyy9X8/",
+    style: "Persistent Rally",
+    country: "Korea",
+    flag: "🇰🇷",
+    category: "プロ / 女子ダブルス",
+    tier: "S",
+    stats: { power: 84, speed: 86, technique: 92, stamina: 96, mentality: 94, defense: 98 },
+    gear: {
+      racket: { name: "YONEX NANOFLARE 700", image: "/images/gear/nanoflare-700.png", description: "高次元の操作性で、繊細なラケットワークを支援。", link: getAmazonLink("YONEX NANOFLARE 700") },
+      shoes: { name: "YONEX POWER CUSHION 65 Z", image: "/images/gear/shb65z3.png", description: "安定した足取りで、長いラリーを制する一足。", link: getAmazonLink("YONEX POWER CUSHION 65 Z") }
+    },
+    bio: "韓国女子ダブルスの伝統を継承する、粘り強いプレースタイル。緻密なディフェンスと、相手の虚を突くカウンターは一級品。"
+  },
+  {
+    id: "dechapol-sapsiree",
+    name: "デチャポル / サプシリー",
+    image: "/images/players/placeholder.png",
+    rank: "Mixed Doubles World No.6",
+    gender: "Female",
+    team: "Thailand National",
+    worldRank: "6",
+    awards: [
+      { year: "2021", event: "世界選手権", result: "優勝" },
+      { year: "2022", event: "全英オープン", result: "準優勝" }
+    ],
+    sns: { instagram: "popor_sapsiree" },
+    instagramPostUrl: "https://www.instagram.com/p/C_W4WzYS8z-/",
+    style: "Speed & Fluidity",
+    country: "Thailand",
+    flag: "🇹🇭",
+    category: "プロ / 混合ダブルス",
+    tier: "S",
+    stats: { power: 88, speed: 96, technique: 94, stamina: 90, mentality: 92, defense: 88 },
+    gear: {
+      racket: { name: "YONEX NANOFLARE 700", image: "/images/gear/nanoflare-700.png", description: "スピードと操作性を兼ね備えた、混合ダブルスのスペシャリスト向けモデル。", link: getAmazonLink("YONEX NANOFLARE 700") },
+      shoes: { name: "YONEX POWER CUSHION 65 Z", image: "/images/gear/shb65z3.png", description: "タイの灼熱のコートを縦横無尽に駆け抜ける俊敏性を生む一足。", link: getAmazonLink("YONEX POWER CUSHION 65 Z") }
+    },
+    bio: "タイが誇る、世界最高峰の混合ダブルス。サプシリーの変幻自在なネットプレーと、デチャポルの強烈なスマッシュは、見る者を魅了し続けている。"
+  },
+  {
+    id: "anthony-ginting",
+    name: "アンソニー・ギンティン",
+    image: "/images/players/placeholder.png",
+    rank: "Men's Singles World No.4",
+    gender: "Male",
+    team: "SGS PLN Bandung",
+    worldRank: "4",
+    awards: [
+      { year: "2021", event: "東京オリンピック", result: "銅メダル" },
+      { year: "2024", event: "全英オープン", result: "準優勝" }
+    ],
+    sns: { instagram: "sinisukanthony" },
+    instagramPostUrl: "https://www.instagram.com/p/C-P9pPyS8Y9/",
+    style: "God-speed & Aggressive",
+    country: "Indonesia",
+    flag: "🇮🇩",
+    category: "プロ / 男子シングルス",
+    tier: "S",
+    stats: { power: 94, speed: 100, technique: 98, stamina: 85, mentality: 90, defense: 88 },
+    gear: {
+      racket: { name: "LI-NING AERONAUT 9000C", image: "/images/gear/racket-yuta.png", description: "爆発的なスピードを生む、ギンティン選手の武器。", link: getAmazonLink("LI-NING AERONAUT 9000C") },
+      shoes: { name: "LI-NING BLADED 2.0", image: "/images/gear/shoes-yuta.png", description: "異次元の瞬発力を支える、超軽量モデル。", link: getAmazonLink("LI-NING BLADED") }
+    },
+    bio: "インドネシアの至宝。世界最高峰のスプリットステップと、圧倒的な初速を誇る。その攻撃的なプレースタイルは、タウフィク・ヒダヤットの後継者として世界中のファンを熱狂させる。"
+  },
+  {
+    id: "tai-tzu-ying",
+    name: "タイ・ツーイン",
+    image: "/images/players/placeholder.png",
+    rank: "Women's Singles World No.3",
+    gender: "Female",
+    team: "Cooperative Bank",
+    worldRank: "3",
+    awards: [
+      { year: "2021", event: "東京オリンピック", result: "銀メダル" },
+      { year: "2023", event: "BWFワールドツアーファイナルズ", result: "優勝" }
+    ],
+    sns: { instagram: "taitzuying" },
+    instagramPostUrl: "https://www.instagram.com/p/C7X9z9RS9S9/",
+    style: "Deceptive & Artistic",
+    country: "Taiwan",
+    flag: "🇹🇼",
+    category: "プロ / 女子シングルス",
+    tier: "S",
+    stats: { power: 80, speed: 88, technique: 100, stamina: 88, mentality: 92, defense: 94 },
+    gear: {
+      racket: { name: "VICTOR THRUSTER F CLAW", image: "/images/gear/ryuga2.png", description: "彼女の「魔法」を支える、独自の弾き性能を持つモデル。", link: getAmazonLink("VICTOR THRUSTER") },
+      shoes: { name: "VICTOR P9200CC", image: "/images/gear/shb65z3.png", description: "唯一無二のフットワークを支える究極のクッション性。", link: getAmazonLink("VICTOR SHOES") }
+    },
+    bio: "女子シングルス界の「マジシャン」。教科書を無視した変幻自在なショットと、常人には真似できない手首の使い方は、バドミントンを芸術の域へと高めた。台湾が世界に誇る史上最高のテクニシャン。"
   },
   {
     id: "kodai-naraoka",
@@ -1012,10 +1249,16 @@ export const columns: Column[] = [
 export const news: News[] = [
   {
     id: "news-8",
-    date: "2026.02.26",
-    title: "【速報】全英オープン2026開幕直前！日本勢のドローが発表",
+    date: "2026.03.22",
+    title: "【速報】全英オープン2026：渡辺・田口ペアが激闘の末、準優勝！",
     category: "TOURNAMENT",
-    content: "バドミントンの聖地で開催される全英オープン。連覇を狙う渡辺・東野ペア、そして復活を期す奈良岡選手の初戦の相手が決定した。",
+    content: "バドミントンの聖地で開催される全英オープン。混合ダブルスの渡辺勇大・田口真彩ペアは中国の最強ペアと対戦。ファイナルゲームまでもつれ込む大接戦の末、惜しくも準優勝となりました。しかし、本戦初出場でこの快挙は世界を驚かせました。",
+    results: [
+      { round: "Final", opponent: "Zheng / Huang (CHN)", score: "21-18, 19-21, 18-21", isWin: false },
+      { round: "Semi-Final", opponent: "Dechapol / Sapsiree (THA)", score: "21-15, 21-19", isWin: true },
+      { round: "Quarter-Final", opponent: "Seo / Chae (KOR)", score: "21-17, 21-14", isWin: true }
+    ],
+    relatedPlayerIds: ["yuta-watanabe", "maya-taguchi", "dechapol-sapsiree"]
   },
   {
     id: "news-7",
@@ -1023,6 +1266,7 @@ export const news: News[] = [
     title: "YONEX 待望の新作「ASTROX 88S/D PRO 3rd Gen」発売決定",
     category: "GEAR",
     content: "前衛・後衛それぞれの役割に特化した名器が第3世代へ進化。ケビン選手、ギデオン選手らも開発に携わった究極のダブルスモデル。",
+    relatedPlayerIds: ["kevin-sanjaya"]
   },
   {
     id: "news-6",
@@ -1030,6 +1274,11 @@ export const news: News[] = [
     title: "マレーシアオープン2026、山口茜選手が準優勝の好発進",
     category: "TOURNAMENT",
     content: "シーズン開幕戦となったマレーシアオープン。山口選手は決勝で惜しくもアン・セヨン選手に敗れたものの、盤石の強さを見せた。",
+    results: [
+      { round: "Final", opponent: "An Se-young (KOR)", score: "18-21, 21-19, 15-21", isWin: false },
+      { round: "Semi-Final", opponent: "Tai Tzu-ying (TPE)", score: "21-14, 21-16", isWin: true }
+    ],
+    relatedPlayerIds: ["akane-yamaguchi", "an-se-young", "tai-tzu-ying"]
   },
   {
     id: "news-5",
@@ -1037,6 +1286,7 @@ export const news: News[] = [
     title: "2025年 年間最終世界ランキング発表：日本勢3種目でTOP3を維持",
     category: "TOPIC",
     content: "BWFが発表した2025年最終ランキング。女子ダブルス「シダマツ」ペア、混合ダブルス「ワタガシ」ペアらが上位を独占。",
+    relatedPlayerIds: ["chiharu-shida", "nami-matsuyama", "yuta-watanabe"]
   },
   {
     id: "news-4",
@@ -1044,6 +1294,11 @@ export const news: News[] = [
     title: "熊本マスターズジャパン2025、志田・松山ペアが地元で金メダル",
     category: "TOURNAMENT",
     content: "超満員の観衆の中、再春館製薬所の地元・熊本で開催。シダマツペアが気迫のプレーで中国ペアを破り、見事優勝を飾った。",
+    results: [
+      { round: "Final", opponent: "Liu / Tan (CHN)", score: "21-18, 21-15", isWin: true },
+      { round: "Semi-Final", opponent: "Baek / Lee (KOR)", score: "15-21, 21-18, 23-21", isWin: true }
+    ],
+    relatedPlayerIds: ["chiharu-shida", "nami-matsuyama"]
   },
   {
     id: "news-3",
@@ -1051,19 +1306,86 @@ export const news: News[] = [
     title: "世界選手権2025閉幕：奈良岡功大が男子シングルスで初の銀メダル",
     category: "TOURNAMENT",
     content: "パリ五輪を経てさらに進化した奈良岡選手。決勝でビクター・アクセルセン選手と歴史に残る100分超えの死闘を繰り広げた。",
-  },
-  {
-    id: "news-2",
-    date: "2025.07.12",
-    title: "【戦術解説】最新トレンド「超低空ドライブ」の攻略法を公開",
-    category: "TOPIC",
-    content: "現代バドミントンの要となるドライブ合戦。インドネシア勢が得意とする低空戦をいかに制するか、専門家が詳しく分析。",
-  },
-  {
-    id: "news-1",
-    date: "2025.05.18",
-    title: "スディルマン杯2025、日本代表は惜しくも準々決勝で敗退",
-    category: "TOURNAMENT",
-    content: "男女混合団体戦の最高峰。強豪・韓国を相手に最後まで食らいつくも、2-3で惜敗。次戦への課題が明確となった。",
-  },
+    results: [
+      { round: "Final", opponent: "Viktor Axelsen (DEN)", score: "21-19, 18-21, 15-21", isWin: false },
+      { round: "Semi-Final", opponent: "Kunlavut Vitidsarn (THA)", score: "21-14, 21-12", isWin: true }
+    ],
+    relatedPlayerIds: ["kodai-naraoka", "viktor-axelsen"]
+  }
 ];
+
+export const worldRankings: CategoryRankings = {
+  ms: [
+    { rank: 1, name: "Viktor Axelsen", team: "DEN", points: "115,400", change: "none", flag: "🇩🇰" },
+    { rank: 2, name: "Shi Yu Qi", team: "CHN", points: "102,400", change: "none", flag: "🇨🇳" },
+    { rank: 3, name: "Jonatan Christie", team: "INA", points: "98,200", change: "up", flag: "🇮🇩" },
+    { rank: 4, name: "奈良岡 功大", team: "JPN", points: "96,500", change: "down", flag: "🇯🇵" },
+    { rank: 5, name: "Anthony Ginting", team: "INA", points: "92,100", change: "none", flag: "🇮🇩" },
+  ],
+  ws: [
+    { rank: 1, name: "An Se-young", team: "KOR", points: "118,500", change: "none", flag: "🇰🇷" },
+    { rank: 2, name: "Chen Yu Fei", team: "CHN", points: "105,200", change: "none", flag: "🇨🇳" },
+    { rank: 3, name: "Tai Tzu-ying", team: "TPE", points: "97,800", change: "up", flag: "🇹🇼" },
+    { rank: 4, name: "山口 茜", team: "JPN", points: "94,200", change: "down", flag: "🇯🇵" },
+    { rank: 5, name: "Carolina Marin", team: "ESP", points: "91,500", change: "none", flag: "🇪🇸" },
+  ],
+  md: [
+    { rank: 1, name: "Liang W.K. / Wang C.", team: "CHN", points: "101,200", change: "none", flag: "🇨🇳" },
+    { rank: 2, name: "Kang M.H. / Seo S.J.", team: "KOR", points: "98,500", change: "up", flag: "🇰🇷" },
+    { rank: 3, name: "Satwiksairaj / Chirag", team: "IND", points: "97,100", change: "down", flag: "🇮🇳" },
+    { rank: 4, name: "保木 卓朗 / 小林 優吾", team: "JPN", points: "92,400", change: "none", flag: "🇯🇵" },
+    { rank: 5, name: "Chia / Soh", team: "MAS", points: "90,100", change: "none", flag: "🇲🇾" },
+  ],
+  wd: [
+    { rank: 1, name: "Chen Q.C. / Jia Y.F.", team: "CHN", points: "116,400", change: "none", flag: "🇨🇳" },
+    { rank: 2, name: "Baek H.N. / Lee S.H.", team: "KOR", points: "102,100", change: "none", flag: "🇰🇷" },
+    { rank: 3, name: "Liu S.S. / Tan N.", team: "CHN", points: "98,700", change: "up", flag: "🇨🇳" },
+    { rank: 4, name: "志田 千陽 / 松山 奈未", team: "JPN", points: "96,200", change: "down", flag: "🇯🇵" },
+    { rank: 5, name: "Jeong N.E. / Kim H.J.", team: "KOR", points: "94,100", change: "none", flag: "🇰🇷" },
+  ],
+  xd: [
+    { rank: 1, name: "Zheng S.W. / Huang Y.Q.", team: "CHN", points: "120,400", change: "none", flag: "🇨🇳" },
+    { rank: 2, name: "Feng Y.Z. / Huang D.P.", team: "CHN", points: "108,200", change: "none", flag: "🇨🇳" },
+    { rank: 3, name: "Seo S.J. / Chae Y.J.", team: "KOR", points: "101,500", change: "none", flag: "🇰🇷" },
+    { rank: 4, name: "渡辺 勇大 / 田口 真彩", team: "JPN", points: "98,700", change: "up", flag: "🇯🇵" },
+    { rank: 5, name: "Dechapol / Sapsiree", team: "THA", points: "95,400", change: "down", flag: "🇹🇭" },
+  ],
+};
+
+export const domesticRankings: CategoryRankings = {
+  ms: [
+    { rank: 1, name: "奈良岡 功大", team: "FWDグループ", points: "JPN 1", change: "none", flag: "🇯🇵" },
+    { rank: 2, name: "西本 拳太", team: "JTEKT", points: "JPN 2", change: "none", flag: "🇯🇵" },
+    { rank: 3, name: "渡邉 航貴", team: "BIPROGY", points: "JPN 3", change: "up", flag: "🇯🇵" },
+    { rank: 4, name: "常山 明良", team: "JTEKT", points: "JPN 4", change: "none", flag: "🇯🇵" },
+    { rank: 5, name: "桃田 賢斗", team: "NTT東日本", points: "Legacy", change: "none", flag: "🇯🇵" },
+  ],
+  ws: [
+    { rank: 1, name: "山口 茜", team: "再春館製薬所", points: "JPN 1", change: "none", flag: "🇯🇵" },
+    { rank: 2, name: "大堀 彩", team: "トナミ運輸", points: "JPN 2", change: "none", flag: "🇯🇵" },
+    { rank: 3, name: "奥原 希望", team: "太陽ホールディングス", points: "JPN 3", change: "up", flag: "🇯🇵" },
+    { rank: 4, name: "仁平 菜月", team: "ヨネックス", points: "JPN 4", change: "none", flag: "🇯🇵" },
+    { rank: 5, name: "宮崎 友花", team: "柳井商工高校", points: "Rising", change: "up", flag: "🇯🇵" },
+  ],
+  md: [
+    { rank: 1, name: "保木 / 小林", team: "トナミ運輸", points: "JPN 1", change: "none", flag: "🇯🇵" },
+    { rank: 2, name: "古賀 / 齋藤", team: "NTT東日本", points: "JPN 2", change: "up", flag: "🇯🇵" },
+    { rank: 3, name: "岡村 / 三橋", team: "BIPROGY", points: "JPN 3", change: "down", flag: "🇯🇵" },
+    { rank: 4, name: "竹内 / 松居", team: "日立情報通信エンジニアリング", points: "JPN 4", change: "none", flag: "🇯🇵" },
+    { rank: 5, name: "西本 / 高野", team: "Various", points: "JPN 5", change: "none", flag: "🇯🇵" },
+  ],
+  wd: [
+    { rank: 1, name: "志田 / 松山", team: "再春館製薬所", points: "JPN 1", change: "none", flag: "🇯🇵" },
+    { rank: 2, name: "松本 / 永原", team: "北都銀行", points: "JPN 2", change: "none", flag: "🇯🇵" },
+    { rank: 3, name: "櫻本 / 宮浦", team: "ヨネックス", points: "JPN 3", change: "up", flag: "🇯🇵" },
+    { rank: 4, name: "中西 / 岩永", team: "BIPROGY", points: "JPN 4", change: "down", flag: "🇯🇵" },
+    { rank: 5, name: "福島 / 廣田", team: "丸杉", points: "JPN 5", change: "none", flag: "🇯🇵" },
+  ],
+  xd: [
+    { rank: 1, name: "渡辺 / 田口", team: "BIPROGY/ACT SAIKYO", points: "JPN 1", change: "none", flag: "🇯🇵" },
+    { rank: 2, name: "金子 / 松友", team: "BIPROGY", points: "JPN 2", change: "none", flag: "🇯🇵" },
+    { rank: 3, name: "緑川 / 齋藤", team: "NTT東日本", points: "JPN 3", change: "up", flag: "🇯🇵" },
+    { rank: 4, name: "山下 / 篠谷", team: "NTT東日本", points: "JPN 4", change: "none", flag: "🇯🇵" },
+    { rank: 5, name: "江藤 / 霜上", team: "Various", points: "JPN 5", change: "none", flag: "🇯🇵" },
+  ],
+};

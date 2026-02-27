@@ -12,6 +12,19 @@ const JerseyFallback: React.FC<JerseyFallbackProps> = ({ name, nationality, clas
     // Extract last name for the jersey
     const lastName = name.split(" ").pop()?.toUpperCase() || name.toUpperCase();
 
+    // Mapping for nationality-based colors
+    const colorMap: Record<string, { primary: string; secondary: string; accent: string }> = {
+        "Japan": { primary: "#111", secondary: "#000", accent: "#d4ff00" },
+        "China": { primary: "#c8102e", secondary: "#a00d25", accent: "#ffcd00" },
+        "Korea": { primary: "#0047a0", secondary: "#003375", accent: "#cd2e3a" },
+        "Denmark": { primary: "#c8102e", secondary: "#a00d25", accent: "#ffffff" },
+        "Indonesia": { primary: "#ff0000", secondary: "#cc0000", accent: "#ffffff" },
+        "Thailand": { primary: "#2d2a4a", secondary: "#1a182b", accent: "#ffffff" },
+        "Taiwan": { primary: "#0000ff", secondary: "#0000cc", accent: "#ffffff" },
+    };
+
+    const colors = colorMap[nationality] || colorMap["Japan"];
+
     // Simple hash for "numbers" based on name
     const jerseyNumber = (name.length * 7) % 99 + 1;
 
@@ -37,17 +50,17 @@ const JerseyFallback: React.FC<JerseyFallbackProps> = ({ name, nationality, clas
                 />
 
                 {/* Neckline */}
-                <path d="M80 20 C80 35 120 35 120 20" stroke="#d4ff00" strokeWidth="4" />
+                <path d="M80 20 C80 35 120 35 120 20" stroke={colors.accent} strokeWidth="4" />
 
                 {/* Sleeves details */}
-                <path d="M40 50 L20 60" stroke="rgba(212,255,0,0.3)" strokeWidth="2" />
-                <path d="M160 50 L180 60" stroke="rgba(212,255,0,0.3)" strokeWidth="2" />
+                <path d="M40 50 L20 60" stroke={colors.accent} strokeWidth="2" style={{ opacity: 0.3 }} />
+                <path d="M160 50 L180 60" stroke={colors.accent} strokeWidth="2" style={{ opacity: 0.3 }} />
 
                 {/* Gradients */}
                 <defs>
                     <linearGradient id="jerseyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#1a1a1a" />
-                        <stop offset="100%" stopColor="#0a0a0a" />
+                        <stop offset="0%" stopColor={colors.primary} />
+                        <stop offset="100%" stopColor={colors.secondary} />
                     </linearGradient>
                 </defs>
 
@@ -56,9 +69,9 @@ const JerseyFallback: React.FC<JerseyFallbackProps> = ({ name, nationality, clas
                     x="100"
                     y="70"
                     textAnchor="middle"
-                    fill="#555"
+                    fill={colors.accent}
                     className="font-black italic uppercase"
-                    style={{ fontSize: '10px', letterSpacing: '2px' }}
+                    style={{ fontSize: '10px', letterSpacing: '2px', opacity: 0.6 }}
                 >
                     {nationality}
                 </text>
@@ -67,7 +80,7 @@ const JerseyFallback: React.FC<JerseyFallbackProps> = ({ name, nationality, clas
                     x="100"
                     y="110"
                     textAnchor="middle"
-                    fill="#d4ff00"
+                    fill={colors.accent}
                     className="font-black italic uppercase"
                     style={{ fontSize: '16px', letterSpacing: '1px' }}
                 >

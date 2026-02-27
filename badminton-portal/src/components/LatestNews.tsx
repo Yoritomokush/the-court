@@ -5,7 +5,9 @@ import Link from "next/link";
 
 export default function LatestNews() {
     // Take last 3 items and reverse to show most recent first
-    const latestNews = [...news].reverse().slice(0, 3);
+    const latestNews = [...news]
+        .sort((a, b) => new Date(b.date.replace(/\./g, "-")).getTime() - new Date(a.date.replace(/\./g, "-")).getTime())
+        .slice(0, 3);
 
     const getCategoryColor = (category: string) => {
         switch (category) {

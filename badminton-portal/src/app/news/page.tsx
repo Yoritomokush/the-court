@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function NewsListPage() {
-    const allNews = [...news].reverse();
+    const allNews = [...news].sort((a, b) => new Date(b.date.replace(/\./g, "-")).getTime() - new Date(a.date.replace(/\./g, "-")).getTime());
 
     const getCategoryColor = (category: string) => {
         switch (category) {

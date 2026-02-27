@@ -151,7 +151,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                             </div>
 
                             {/* Gallery / Media Section */}
-                            {(player.youtubeId || player.instagramPostId || player.sns) && (
+                            {(player.youtubeId || player.instagramPostId || player.instagramPostUrl || player.sns) && (
                                 <div className="space-y-10">
                                     <h2 className="text-4xl font-black italic tracking-tighter uppercase border-[#d4ff00]">
                                         Gallery / <span className="text-[#d4ff00]">Media</span>
@@ -172,8 +172,23 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                             </div>
                                         )}
 
+                                        {player.instagramPostUrl && (
+                                            <div className="space-y-4">
+                                                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest pl-1">Athlete Insight</p>
+                                                <div className="relative aspect-square w-full overflow-hidden rounded-[32px] border border-white/5 bg-zinc-900 group/insta shadow-2xl">
+                                                    <iframe
+                                                        src={`${player.instagramPostUrl.endsWith('/') ? player.instagramPostUrl : player.instagramPostUrl + '/'}embed`}
+                                                        className="absolute inset-0 w-full h-full"
+                                                        allowTransparency
+                                                        frameBorder="0"
+                                                        scrolling="no"
+                                                    ></iframe>
+                                                </div>
+                                            </div>
+                                        )}
+
                                         {/* Professional SNS Section - Conditional Visibility */}
-                                        {player.sns && (Object.values(player.sns).some(v => v)) && (
+                                        {player.sns && (Object.values(player.sns).some(v => v)) && !player.instagramPostUrl && (
                                             <div className="space-y-4">
                                                 <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest pl-1">Official Links</p>
                                                 <div className="grid grid-cols-2 gap-4 h-[calc(100%-24px)]">
