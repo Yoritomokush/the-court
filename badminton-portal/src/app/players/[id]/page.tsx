@@ -7,7 +7,7 @@ import { players, Player } from "@/app/master-data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import RadarChart from "@/components/RadarChart";
-import JerseyFallback from "@/components/JerseyFallback";
+import PlayerSilhouette from "@/components/PlayerSilhouette";
 import { notFound } from "next/navigation";
 
 export default function PlayerPage({ params }: { params: Promise<{ id: string }> }) {
@@ -29,7 +29,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                         {player.name.split(' ')[0]}
                     </div>
 
-                    <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 z-0 bg-zinc-950 overflow-hidden">
                         {player.image && !player.image.includes("placeholder") ? (
                             <Image
                                 src={player.image}
@@ -39,7 +39,19 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                 priority
                             />
                         ) : (
-                            <JerseyFallback name={player.name} nationality={player.country} />
+                            <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                {/* Fallback Graphic */}
+                                <div className="absolute inset-0 opacity-20">
+                                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,#d4ff00_0%,transparent_70%)] opacity-30" />
+                                </div>
+                                <div className="absolute inset-0 flex items-center justify-center scale-150 md:scale-[2.5] opacity-50">
+                                    <PlayerSilhouette />
+                                </div>
+                                {/* Huge watermark text for fallback */}
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-[10rem] md:text-[20rem] font-black italic text-white/[0.03] whitespace-nowrap pointer-events-none tracking-tighter mix-blend-overlay">
+                                    {player.country.toUpperCase()}
+                                </div>
+                            </div>
                         )}
                         {/* Dynamic Gradients for Premium Look */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />

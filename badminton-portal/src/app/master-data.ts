@@ -1249,16 +1249,11 @@ export const columns: Column[] = [
 export const news: News[] = [
   {
     id: "news-8",
-    date: "2026.03.22",
-    title: "【速報】全英オープン2026：渡辺・田口ペアが激闘の末、準優勝！",
+    date: "2026.02.27",
+    title: "【注目】全英オープン2026：渡辺・田口の新ペアが最高峰の舞台へ挑戦！",
     category: "TOURNAMENT",
-    content: "バドミントンの聖地で開催される全英オープン。混合ダブルスの渡辺勇大・田口真彩ペアは中国の最強ペアと対戦。ファイナルゲームまでもつれ込む大接戦の末、惜しくも準優勝となりました。しかし、本戦初出場でこの快挙は世界を驚かせました。",
-    results: [
-      { round: "Final", opponent: "Zheng / Huang (CHN)", score: "21-18, 19-21, 18-21", isWin: false },
-      { round: "Semi-Final", opponent: "Dechapol / Sapsiree (THA)", score: "21-15, 21-19", isWin: true },
-      { round: "Quarter-Final", opponent: "Seo / Chae (KOR)", score: "21-17, 21-14", isWin: true }
-    ],
-    relatedPlayerIds: ["yuta-watanabe", "maya-taguchi", "dechapol-sapsiree"]
+    content: "3月3日から開催されるバドミントンの聖地・全英オープン。混合ダブルスで新たにペアを結成した渡辺勇大・田口真彩ペアが出場予定です。強豪ひしめく最高峰の舞台で、どのようなプレーを見せてくれるのか世界中から熱い視線が注がれています。",
+    relatedPlayerIds: ["yuta-watanabe", "maya-taguchi"]
   },
   {
     id: "news-7",

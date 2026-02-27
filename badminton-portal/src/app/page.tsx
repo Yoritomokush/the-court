@@ -10,6 +10,7 @@ import StatisticsRanking from "@/components/StatisticsRanking";
 import LatestNews from "@/components/LatestNews";
 import RankinsSection from "@/components/RankingsSection";
 import PlayerComparison from "@/components/PlayerComparison";
+import PlayerCard from "@/components/PlayerCard";
 
 const CATEGORIES = ["すべて", "男子シングルス", "女子シングルス", "男子ダブルス", "女子ダブルス", "混合ダブルス"] as const;
 type Category = (typeof CATEGORIES)[number];
@@ -110,43 +111,13 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {featuredPlayers.map((player) => (
-              <Link
+              <PlayerCard
                 key={player.id}
-                href={`/players/${player.id}`}
-                className="group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-zinc-900 border border-white/5 hover:border-[#d4ff00]/50 transition-all duration-700 shadow-xl"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 opacity-90 group-hover:opacity-70 transition-opacity" />
-                <Image
-                  src={player.image}
-                  alt={player.name}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
-                />
-                <div className="absolute bottom-6 left-6 right-6 z-20">
-                  <span className="px-2 py-0.5 bg-[#d4ff00] text-black text-[8px] font-black tracking-widest uppercase rounded-sm mb-2 inline-block">
-                    {player.category.split(" / ").pop()}
-                  </span>
-                  <h3 className="text-2xl font-black italic tracking-tighter leading-none mb-2 group-hover:text-[#d4ff00] transition-colors uppercase">
-                    {player.name}
-                  </h3>
-                  <p className="text-zinc-400 text-[10px] font-bold italic mb-4">
-                    {player.rank}
-                  </p>
-
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      togglePlayerSelection(player);
-                    }}
-                    className={`px-3 py-1 rounded-full text-[8px] font-black tracking-widest uppercase transition-all duration-300 ${selectedPlayers.find(p => p.id === player.id)
-                      ? "bg-[#d4ff00] text-black"
-                      : "bg-white/10 text-white hover:bg-white/20"
-                      }`}
-                  >
-                    {selectedPlayers.find(p => p.id === player.id) ? "Selected" : "Compare"}
-                  </button>
-                </div>
-              </Link>
+                player={player}
+                isSelected={!!selectedPlayers.find(p => p.id === player.id)}
+                showCompareButton={true}
+                onCompareToggle={togglePlayerSelection}
+              />
             ))}
           </div>
         </section>

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import JerseyFallback from "@/components/JerseyFallback";
+import PlayerCard from "@/components/PlayerCard";
 
 export default function PlayersListPage() {
     const [filters, setFilters] = useState({
@@ -51,8 +51,8 @@ export default function PlayersListPage() {
         <button
             onClick={() => onClick(value)}
             className={`px-3 py-1.5 rounded-lg text-[9px] font-black tracking-widest uppercase transition-all shrink-0 ${current === value
-                    ? "bg-[#d4ff00] text-black shadow-[0_5px_10px_rgba(212,255,0,0.2)]"
-                    : "text-zinc-500 hover:text-white hover:bg-white/5 border border-white/5"
+                ? "bg-[#d4ff00] text-black shadow-[0_5px_10px_rgba(212,255,0,0.2)]"
+                : "text-zinc-500 hover:text-white hover:bg-white/5 border border-white/5"
                 }`}
         >
             {label}
@@ -111,34 +111,10 @@ export default function PlayersListPage() {
                 {/* Dense Grid Layout */}
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
                     {filteredPlayers.map((player) => (
-                        <Link
+                        <PlayerCard
                             key={player.id}
-                            href={`/players/${player.id}`}
-                            className="group relative aspect-[3/4] overflow-hidden rounded-2xl bg-zinc-900 border border-white/5 hover:border-[#d4ff00]/50 transition-all duration-500 shadow-2xl"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10 opacity-90" />
-
-                            {player.image && !player.image.includes("placeholder") ? (
-                                <Image
-                                    src={player.image}
-                                    alt={player.name}
-                                    fill
-                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                                />
-                            ) : (
-                                <JerseyFallback name={player.name} nationality={player.country} />
-                            )}
-
-                            <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 z-20">
-                                <p className="text-[#d4ff00] text-[8px] font-black tracking-widest uppercase mb-1 flex items-center gap-2">
-                                    <span className="text-sm">{player.flag}</span>
-                                    {player.country}
-                                </p>
-                                <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase leading-tight group-hover:text-[#d4ff00] transition-colors">
-                                    {player.name}
-                                </h3>
-                            </div>
-                        </Link>
+                            player={player}
+                        />
                     ))}
                 </div>
 

@@ -3,6 +3,7 @@
 import { Player } from "@/app/master-data";
 import Image from "next/image";
 import RadarChart from "./RadarChart";
+import PlayerCard from "./PlayerCard";
 
 interface PlayerComparisonProps {
     player1: Player;
@@ -36,16 +37,8 @@ export default function PlayerComparison({ player1, player2, onClose }: PlayerCo
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px_1fr] gap-12 items-start px-4">
-                    {/* Player 1 Details */}
-                    <div className="space-y-8 animate-in fade-in slide-in-from-left duration-700">
-                        <div className="relative aspect-[3/4] rounded-[40px] overflow-hidden border border-[#d4ff00]/30 shadow-[0_0_50px_rgba(212,255,0,0.1)]">
-                            <Image src={player1.image} alt={player1.name} fill className="object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                            <div className="absolute bottom-6 left-8">
-                                <span className="px-3 py-1 bg-[#d4ff00] text-black text-[9px] font-black uppercase rounded-full mb-2 block w-fit">{player1.category}</span>
-                                <h3 className="text-4xl font-black italic leading-none">{player1.name}</h3>
-                            </div>
-                        </div>
+                    <div className="space-y-8 animate-in fade-in slide-in-from-left duration-700 w-full max-w-sm mx-auto">
+                        <PlayerCard player={player1} />
                     </div>
 
                     {/* Central Comparison (Chart & Stats) */}
@@ -110,16 +103,8 @@ export default function PlayerComparison({ player1, player2, onClose }: PlayerCo
                         </div>
                     </div>
 
-                    {/* Player 2 Details */}
-                    <div className="space-y-8 animate-in fade-in slide-in-from-right duration-700">
-                        <div className="relative aspect-[3/4] rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
-                            <Image src={player2.image} alt={player2.name} fill className="object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                            <div className="absolute bottom-6 right-8 text-right">
-                                <span className="px-3 py-1 bg-white/10 text-white text-[9px] font-black uppercase rounded-full mb-2 ml-auto block w-fit">{player2.category}</span>
-                                <h3 className="text-4xl font-black italic leading-none">{player2.name}</h3>
-                            </div>
-                        </div>
+                    <div className="space-y-8 animate-in fade-in slide-in-from-right duration-700 w-full max-w-sm mx-auto">
+                        <PlayerCard player={player2} />
                     </div>
                 </div>
 
