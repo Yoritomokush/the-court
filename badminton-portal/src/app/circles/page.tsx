@@ -1,138 +1,98 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { circles, Circle } from "@/app/players/[id]/data/circles";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { circles } from "@/app/master-data";
+import CircleCard from "@/components/CircleCard";
+
+const REGIONS = [
+    { label: "ALL", filter: "ALL" },
+    { label: "KANTO", filter: ["Tokyo", "Kanagawa"] },
+    { label: "KANSAI", filter: ["Osaka"] },
+    { label: "OTHERS", filter: ["Fukuoka", "Aichi", "Hokkaido", "Miyagi"] }
+];
 
 export default function CirclesPage() {
-    const [prefecture, setPrefecture] = useState("All");
-    const [level, setLevel] = useState("All");
+    const [selectedRegion, setSelectedRegion] = useState<string>("ALL");
 
-    const filteredCircles = circles.filter(circle => {
-        return (prefecture === "All" || circle.prefecture === prefecture) &&
-            (level === "All" || circle.level === level);
+    const filteredCircles = circles.filter((circle) => {
+        if (selectedRegion === "ALL") return true;
+
+        const regionObj = REGIONS.find(r => r.label === selectedRegion);
+        if (!regionObj) return true;
+
+        // Strict filtering against the 'filter' array values
+        return (regionObj.filter as string[]).includes(circle.location);
     });
 
     return (
-        <div className="min-h-screen bg-badminton-green text-white font-sans selection:bg-badminton-yellow selection:text-badminton-green pb-20">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-[#d4ff00] selection:text-black">
             <Header />
 
-            <main className="max-w-7xl mx-auto px-6 pt-32 space-y-16">
-                <header className="space-y-4">
-                    <span className="text-badminton-yellow text-xs font-black tracking-[0.3em] uppercase">Community Directory</span>
-                    <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter leading-none uppercase">
-                        FIND YOUR<br />
-                        <span className="text-badminton-yellow">CIRCLE</span>
-                    </h1>
-                    <p className="max-w-2xl text-zinc-400 text-lg font-medium leading-relaxed">
-                        一緒にバドミントンを楽しむ仲間を見つけよう。地域を絞って、自分のレベルに合ったサークルを検索できます。
-                    </p>
-                </header>
+            <main className="pt-20">
+                {/* Hero Layout Sync with Premium v2 */}
+                <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center overflow-hidden bg-zinc-950">
+                    {/* Background Visuals */}
+                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1626225967045-9410ebbbbea4?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center grayscale opacity-10 mix-blend-overlay z-0" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black/80 z-0" />
+                    <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_40px,rgba(255,255,255,0.05)_40px,rgba(255,255,255,0.05)_80px)] z-0 mix-blend-overlay" />
 
-                <div className="flex flex-col lg:flex-row gap-12">
-                    {/* Search Panel */}
-                    <aside className="lg:w-72 shrink-0 space-y-8">
-                        <div className="bg-zinc-900/50 border border-white/5 p-8 rounded-3xl space-y-8">
-                            <div>
-                                <h3 className="text-xs font-black text-badminton-yellow uppercase tracking-widest mb-6">Region</h3>
-                                <div className="space-y-3">
-                                    {["All", "東京都", "大阪府", "神奈川県", "愛知県", "福岡県"].map((p) => (
-                                        <label key={p} className="flex items-center gap-3 cursor-pointer group">
-                                            <input
-                                                type="radio"
-                                                name="prefecture"
-                                                className="hidden peer"
-                                                checked={prefecture === p}
-                                                onChange={() => setPrefecture(p)}
-                                            />
-                                            <div className="w-4 h-4 rounded-full border border-white/20 peer-checked:border-badminton-yellow peer-checked:bg-badminton-yellow transition-all" />
-                                            <span className="text-sm font-bold text-zinc-500 peer-checked:text-white group-hover:text-white transition-colors">{p === "All" ? "全国すべて" : p}</span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="pt-8 border-t border-white/5">
-                                <h3 className="text-xs font-black text-badminton-yellow uppercase tracking-widest mb-6">Expertise Level</h3>
-                                <div className="space-y-3">
-                                    {["All", "Beginner", "Intermediate", "Advanced", "All Levels"].map((l) => (
-                                        <label key={l} className="flex items-center gap-3 cursor-pointer group">
-                                            <input
-                                                type="radio"
-                                                name="level"
-                                                className="hidden peer"
-                                                checked={level === l}
-                                                onChange={() => setLevel(l)}
-                                            />
-                                            <div className="w-4 h-4 rounded-full border border-white/20 peer-checked:border-badminton-yellow peer-checked:bg-badminton-yellow transition-all" />
-                                            <span className="text-sm font-bold text-zinc-500 peer-checked:text-white group-hover:text-white transition-colors">
-                                                {l === "All" ? "すべてのレベル" : l}
-                                            </span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-
-                    {/* Results Grid */}
-                    <div className="flex-1 space-y-8">
-                        <div className="flex items-center justify-between border-b border-white/5 pb-6">
-                            <span className="text-xs font-black italic tracking-widest text-zinc-500">
-                                {filteredCircles.length} CIRCLES FOUND
-                            </span>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {filteredCircles.map((circle) => (
-                                <div key={circle.id} className="bg-zinc-900/30 border border-white/5 rounded-3xl overflow-hidden group hover:border-badminton-yellow/50 transition-all duration-300">
-                                    <div className="p-8 space-y-6">
-                                        <div className="flex items-start justify-between">
-                                            <div>
-                                                <span className="px-2 py-0.5 bg-badminton-yellow text-badminton-green text-[9px] font-black rounded-sm uppercase italic mb-2 inline-block">
-                                                    {circle.level}
-                                                </span>
-                                                <h2 className="text-2xl font-black italic tracking-tight group-hover:text-badminton-yellow transition-colors leading-none">
-                                                    {circle.name}
-                                                </h2>
-                                                <p className="text-zinc-500 text-[10px] font-black mt-2 uppercase tracking-widest">
-                                                    {circle.prefecture} / {circle.city}
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <p className="text-zinc-400 text-sm leading-relaxed line-clamp-2">
-                                            {circle.description}
-                                        </p>
-
-                                        <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
-                                            <div>
-                                                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Schedule</p>
-                                                <p className="text-[11px] font-bold text-white truncate">{circle.schedule}</p>
-                                            </div>
-                                            <div>
-                                                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest mb-1">Fee</p>
-                                                <p className="text-[11px] font-bold text-white uppercase">{circle.fee}</p>
-                                            </div>
-                                        </div>
-
-                                        <button className="w-full bg-white/5 border border-white/10 py-4 rounded-xl font-black italic text-xs tracking-tighter uppercase group-hover:bg-badminton-yellow group-hover:text-badminton-green group-hover:border-badminton-yellow transition-all">
-                                            参加希望・詳細を問い合わせ &rarr;
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                            {filteredCircles.length === 0 && (
-                                <div className="col-span-full py-32 text-center bg-zinc-900/10 rounded-[40px] border border-dashed border-white/10">
-                                    <p className="text-zinc-600 font-black italic text-2xl">該当するサークルが見つかりませんでした。</p>
-                                    <p className="text-zinc-700 text-sm mt-2">フィルター条件を変えて再検索してください。</p>
-                                </div>
-                            )}
-                        </div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-[15rem] md:text-[25rem] font-black italic text-[#d4ff00]/[0.02] whitespace-nowrap pointer-events-none tracking-tighter mix-blend-color-dodge z-0">
+                        COMMUNITY
                     </div>
-                </div>
+
+                    <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.9)_100%)]" />
+
+                    <div className="relative z-10 text-center space-y-4 px-6 mt-8">
+                        <span className="text-[#d4ff00] font-black tracking-[0.3em] uppercase text-xs md:text-sm drop-shadow-[0_0_10px_rgba(212,255,0,0.5)]">
+                            Local Hubs
+                        </span>
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter uppercase drop-shadow-2xl leading-none">
+                            FIND YOUR <br className="md:hidden" />
+                            <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">COURT.</span>
+                        </h1>
+                        <p className="max-w-xl mx-auto text-zinc-400 text-sm md:text-base font-medium leading-relaxed italic mt-4">
+                            全国各地で活動するバドミントンサークル・クラブチームを検索可能。
+                            レベルや目的に合った、最高のコミュニティを見つけよう。
+                        </p>
+                    </div>
+                </section>
+
+                <section className="max-w-7xl mx-auto px-6 py-20 min-h-[50vh]">
+                    {/* Region Filter Tabs */}
+                    <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16 relative z-20">
+                        {REGIONS.map((region) => (
+                            <button
+                                key={region.label}
+                                onClick={() => setSelectedRegion(region.label)}
+                                className={`px-5 py-2.5 md:px-6 md:py-3 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase transition-all duration-300 backdrop-blur-md border ${selectedRegion === region.label
+                                        ? "bg-[#d4ff00] text-black border-[#d4ff00] shadow-[0_0_20px_rgba(212,255,0,0.4)] scale-105"
+                                        : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white hover:border-white/30"
+                                    }`}
+                            >
+                                {region.label}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Circles Grid */}
+                    {filteredCircles.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 md:gap-10">
+                            {filteredCircles.map((circle) => (
+                                <CircleCard key={circle.id} circle={circle} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-20 flex flex-col items-center opacity-50">
+                            <span className="text-6xl mb-4 grayscale">🏸</span>
+                            <p className="text-zinc-500 font-black italic text-xl uppercase tracking-widest">
+                                No communities found in this region
+                            </p>
+                            <span className="text-zinc-600 text-sm font-medium mt-2">Try expanding your search parameters.</span>
+                        </div>
+                    )}
+                </section>
             </main>
 
             <Footer />

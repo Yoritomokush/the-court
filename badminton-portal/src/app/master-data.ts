@@ -96,12 +96,43 @@ export interface Column {
   relatedPlayerIds?: string[];
 }
 
-const AFFILIATE_ID = "yoritomo04-22";
+export interface Gear {
+  id: string;
+  name: string;
+  brand: string;
+  category: "RACKET" | "SHOES" | "STRINGS";
+  description: string;
+  price: string;
+  usedBy: string[]; // Player IDs
+  image: string;
+}
+
+export interface Tournament {
+  id: string;
+  name: string;
+  date: string;
+  location: string;
+  category: "BWF Super 1000" | "BWF Super 750" | "BWF Super 500" | "Domestic" | "Major Event";
+  status: "Upcoming" | "Ongoing" | "Finished";
+  description: string;
+}
+
+export interface Circle {
+  id: string;
+  name: string;
+  location: string;
+  level: "Beginner" | "Intermediate" | "Advanced" | "All";
+  schedule: string;
+  description: string;
+  recruiting: boolean;
+}
+
+export const AFFILIATE_ID = "yoritomo04-22";
 
 /**
  * Creates a localized Amazon Japan search link with affiliate ID.
  */
-const getAmazonLink = (query: string): string => {
+export const getAmazonLink = (query: string): string => {
   return `https://www.amazon.co.jp/s?k=${encodeURIComponent(query)}&tag=${AFFILIATE_ID}`;
 };
 
@@ -1384,3 +1415,259 @@ export const domesticRankings: CategoryRankings = {
     { rank: 5, name: "江藤 / 霜上", team: "Various", points: "JPN 5", change: "none", flag: "🇯🇵" },
   ],
 };
+
+export const gears: Gear[] = [
+  {
+    id: "astrox-88d-pro",
+    name: "YONEX ASTROX 88 D PRO (3rd Gen)",
+    brand: "YONEX",
+    category: "RACKET",
+    description: "破壊的な後衛からの連打を可能にする、ダブルス専用パワーモデルの最新第3世代。",
+    price: "¥25,000〜",
+    usedBy: ["liang-wang", "kanta-tsuneyama", "yuki-fukushima"],
+    image: "/images/gear/astrox-88d-pro.png"
+  },
+  {
+    id: "astrox-88s-pro",
+    name: "YONEX ASTROX 88 S PRO (3rd Gen)",
+    brand: "YONEX",
+    category: "RACKET",
+    description: "究極の前衛卓越モデル。球持ちと弾きを両立し、神速のタッチを生み出す。",
+    price: "¥25,000〜",
+    usedBy: ["kevin-sanjaya"],
+    image: "/images/gear/astrox-88s-pro.png"
+  },
+  {
+    id: "astrox-100zz",
+    name: "YONEX ASTROX 100 ZZ",
+    brand: "YONEX",
+    category: "RACKET",
+    description: "鋭い連続強打を生み出すハイエンドモデル。細径シャフトによる規格外のしなりが特徴。",
+    price: "¥28,000〜",
+    usedBy: ["viktor-axelsen", "akane-yamaguchi", "takuro-hoki"],
+    image: "/images/gear/astrox-100-zz.png"
+  },
+  {
+    id: "nanoflare-700-pro",
+    name: "YONEX NANOFLARE 700 PRO",
+    brand: "YONEX",
+    category: "RACKET",
+    description: "高次元の操作性とスピードを両立。コートを自在に飛び回るためのクリアな打球感。",
+    price: "¥24,000〜",
+    usedBy: ["nami-matsuyama", "dechapol-sapsiree", "arisa-higashino"],
+    image: "/images/gear/nanoflare-700-pro.png"
+  },
+  {
+    id: "nanoflare-1000z",
+    name: "YONEX NANOFLARE 1000Z",
+    brand: "YONEX",
+    category: "RACKET",
+    description: "最速の初速とパワーを誇る弾き系フラッグシップ。強烈な弾道でラリーを圧倒する。",
+    price: "¥29,000〜",
+    usedBy: [],
+    image: "/images/gear/nanoflare-700.png"
+  },
+  {
+    id: "arcsaber-11-pro",
+    name: "YONEX ARCSABER 11 PRO",
+    brand: "YONEX",
+    category: "RACKET",
+    description: "比類なき球持ちの良さ。緻密なコントロールでゲームを支配するプレーメイカー向け。",
+    price: "¥26,000〜",
+    usedBy: ["daigo-tanioka"],
+    image: "/images/gear/arcsaber-11-pro.png"
+  },
+  {
+    id: "thruster-ryuga-2",
+    name: "VICTOR THRUSTER RYUGA II PRO",
+    brand: "VICTOR",
+    category: "RACKET",
+    description: "極端なヘッドヘビーが放つ重砲。後衛から相手を制圧するための強烈なスマッシュをアシスト。",
+    price: "¥24,000〜",
+    usedBy: ["kenta-nishimoto", "tai-tzu-ying"],
+    image: "/images/gear/ryuga2.png"
+  },
+  {
+    id: "lining-aeronaut-9000c",
+    name: "LI-NING AERONAUT 9000C",
+    brand: "LI-NING",
+    category: "RACKET",
+    description: "風を切り裂くエアロフレーム。スピードと破壊力を併せ持つ、トップ選手特注モデル。",
+    price: "¥27,000〜",
+    usedBy: ["yuta-watanabe", "anthony-ginting"],
+    image: "/images/gear/racket-yuta.png"
+  },
+  {
+    id: "shb65z3",
+    name: "YONEX POWER CUSHION 65 Z3",
+    brand: "YONEX",
+    category: "SHOES",
+    description: "プロ選手から最も選ばれる完成されたオールラウンダー。高いグリップ力とクッション性。",
+    price: "¥15,000〜",
+    usedBy: ["viktor-axelsen", "kodai-naraoka", "akane-yamaguchi", "liang-wang"],
+    image: "/images/gear/shb65z3.png"
+  },
+  {
+    id: "aerus-z",
+    name: "YONEX POWER CUSHION AERUS Z",
+    brand: "YONEX",
+    category: "SHOES",
+    description: "ヨネックス史上最軽量。超機敏なステップを可能にするスピード重視のフットワークギア。",
+    price: "¥16,000〜",
+    usedBy: ["an-se-young", "tomoka-miyazaki", "takuro-hoki", "yuta-okimoto"],
+    image: "/images/gear/shoes-yuta.png"
+  },
+  {
+    id: "lining-bladed-2",
+    name: "LI-NING BLADED 2.0",
+    brand: "LI-NING",
+    category: "SHOES",
+    description: "異次元の瞬発力と爆発的な加速を支える。超軽量でいて安定したフィット感を提供。",
+    price: "¥18,000〜",
+    usedBy: ["yuta-watanabe", "anthony-ginting"],
+    image: "/images/gear/shoes-yuta.png"
+  },
+  {
+    id: "exobolt-63",
+    name: "YONEX EXBOLT 63",
+    brand: "YONEX",
+    category: "STRINGS",
+    description: "高反発「エクスボルト」の極細0.63mm。圧倒的な弾き音とスピードでシャトルを飛ばす。",
+    price: "¥1,300〜",
+    usedBy: [],
+    image: "/images/gear/placeholder.png"
+  },
+  {
+    id: "aerobite",
+    name: "YONEX AEROBITE",
+    brand: "YONEX",
+    category: "STRINGS",
+    description: "ハイブリッドストリングの王道。強烈なスピンと食いつきでヘアピンの精度が劇的に向上。",
+    price: "¥1,500〜",
+    usedBy: [],
+    image: "/images/gear/placeholder.png"
+  }
+];
+
+export const tournaments: Tournament[] = [
+  {
+    id: "all-england-2026",
+    name: "YONEX All England Open Badminton Championships 2026",
+    date: "2026.03.03 - 2026.03.08",
+    location: "Birmingham, UK",
+    category: "BWF Super 1000",
+    status: "Upcoming",
+    description: "世界最古・最も権威あるバドミントントーナメント。選ばれしトッププレーヤーのみが集う「聖地」での決戦。"
+  },
+  {
+    id: "thomas-uber-2026",
+    name: "TotalEnergies BWF Thomas & Uber Cup Finals 2026",
+    date: "2026.04.28 - 2026.05.05",
+    location: "Horsens, Denmark",
+    category: "Major Event",
+    status: "Upcoming",
+    description: "2年に1度開催される男女の国別対抗戦。各国のプライドをかけた熱き団体戦が幕を開ける。"
+  },
+  {
+    id: "malaysia-open-2026",
+    name: "PETRONAS Malaysia Open 2026",
+    date: "2026.01.06 - 2026.01.11",
+    location: "Kuala Lumpur, Malaysia",
+    category: "BWF Super 1000",
+    status: "Finished",
+    description: "シーズンの幕開けを告げるスーパー1000大会。熱狂的な地元ファンの大歓声の中で新年の初陣を飾る。"
+  },
+  {
+    id: "japan-open-2026",
+    name: "DAIHATSU Japan Open 2026",
+    date: "2026.08.18 - 2026.08.23",
+    location: "Yokohama, Japan",
+    category: "BWF Super 750",
+    status: "Upcoming",
+    description: "日本国内で開催される最大の国際大会。自国開催のプレッシャーの中、日本代表選手の活躍が期待される。"
+  },
+  {
+    id: "all-japan-2026",
+    name: "第80回 全日本総合バドミントン選手権大会",
+    date: "2026.12.22 - 2026.12.27",
+    location: "Tokyo, Japan",
+    category: "Domestic",
+    status: "Upcoming",
+    description: "日本一を決める国内最高峰の大会。国内外で活躍するトップ選手から新世代までが集結し、真の日本一を競う。"
+  },
+  {
+    id: "world-tour-finals-2026",
+    name: "HSBC BWF World Tour Finals 2026",
+    date: "2026.12.09 - 2026.12.13",
+    location: "Hangzhou, China",
+    category: "Major Event",
+    status: "Upcoming",
+    description: "年間ツアーランキング上位8名/ペアのみに出場権が与えられる、1年を締めくくる頂上決戦。"
+  }
+];
+
+export const circles: Circle[] = [
+  {
+    id: "tokyo-smashers",
+    name: "Tokyo Neo Smashers",
+    location: "Tokyo",
+    level: "Intermediate",
+    schedule: "毎週水曜・土曜 19:00 - 21:00",
+    description: "都内を中心に活動する20代〜30代の社会人サークル。基礎打ちからダブルスのゲーム練習まで幅広く行っています。基礎が打てる方、楽しく真剣に打ち合える方を募集中。",
+    recruiting: true
+  },
+  {
+    id: "osaka-advance",
+    name: "Osaka Advance BC",
+    location: "Osaka",
+    level: "Advanced",
+    schedule: "毎週日曜 13:00 - 17:00",
+    description: "市民大会の1部・2部出場者が中心のガチ勢サークル。高いレベルでバドミントンを追求したい競技思考の方大歓迎です。",
+    recruiting: false
+  },
+  {
+    id: "fukuoka-wings",
+    name: "Fukuoka Wings",
+    location: "Fukuoka",
+    level: "All",
+    schedule: "隔週木曜・毎週日曜 18:00 - 21:00",
+    description: "初心者から上級者まで一緒に楽しめるアットホームなサークル。ワイワイ楽しく羽を打つことをモットーにしており、ラケットの貸し出しもあります。",
+    recruiting: true
+  },
+  {
+    id: "yokohama-clear",
+    name: "Yokohama Clear Points",
+    location: "Kanagawa",
+    level: "Intermediate",
+    schedule: "毎週火曜・金曜 19:30 - 21:30",
+    description: "横浜市内の体育館を中心に活動中。基礎打ちの後、男女混合でダブルスの試合を回しています。運動不足解消にも最適です。",
+    recruiting: true
+  },
+  {
+    id: "nagoya-drop",
+    name: "Nagoya Drop Shots",
+    location: "Aichi",
+    level: "Beginner",
+    schedule: "毎週土曜 10:00 - 13:00",
+    description: "最近バドミントンを始めたばかりの方、もう一度基礎から習いたい方を対象にした練習メインのサークルです。コーチ経験者が優しく教えます。",
+    recruiting: true
+  },
+  {
+    id: "sapporo-snow",
+    name: "Sapporo Snow Shuttles",
+    location: "Hokkaido",
+    level: "Intermediate",
+    schedule: "毎週水曜 19:00 - 21:00",
+    description: "冬の寒さにも負けず毎週元気に活動中！学生から社会人まで幅広い年齢層が参加しています。たまに合宿や飲み会も開催します。",
+    recruiting: false
+  },
+  {
+    id: "sendai-drive",
+    name: "Sendai Drive Core",
+    location: "Miyagi",
+    level: "Advanced",
+    schedule: "毎週金曜・日曜 18:00 - 21:00",
+    description: "東北エリアの大会上位進出を目指す競技向けチーム。フットワークやパターン練習など実戦を想定したハードなメニューが中心です。",
+    recruiting: true
+  }
+];

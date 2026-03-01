@@ -13,7 +13,8 @@ import { notFound } from "next/navigation";
 export default function PlayerPage({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = use(params);
     const player = players.find((p) => p.id === resolvedParams.id);
-    const isTop5 = player && !isNaN(parseInt(player.worldRank)) && parseInt(player.worldRank) <= 5;
+    const isTop5 = player && ((!isNaN(parseInt(player.worldRank)) && parseInt(player.worldRank) <= 5) || player.worldRank === "Legacy" || player.worldRank === "Highest");
+    const initials = player ? player.id.split('-').map(part => part.charAt(0).toUpperCase()).join('.') + '.' : '';
 
     if (!player) {
         notFound();
@@ -26,14 +27,15 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
             <main>
                 {/* Cover / Hero Section */}
                 <section className="relative h-[85vh] w-full overflow-hidden">
-                    <div className="absolute inset-0 z-0 text-[15rem] md:text-[25rem] font-black italic text-zinc-900/10 select-none whitespace-nowrap -translate-y-1/2 top-1/2 left-0 pl-10">
-                        {player.name.split(' ')[0]}
-                    </div>
-
                     <div className="absolute inset-0 z-0 bg-zinc-950 overflow-hidden">
                         {/* Layer 1 & 2: Base Gradient and Angled Accent Stripe */}
                         <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-950 z-0" />
-                        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_40px,rgba(255,255,255,0.03)_40px,rgba(255,255,255,0.03)_80px)] z-0 mix-blend-overlay" />
+                        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_40px,rgba(255,255,255,0.1)_40px,rgba(255,255,255,0.1)_80px)] z-0 mix-blend-overlay" />
+
+                        {/* Giant Watermark Typography for ALL players */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-[20rem] md:text-[40rem] font-black italic text-white/[0.04] whitespace-nowrap pointer-events-none tracking-tighter mix-blend-overlay z-0">
+                            {initials}
+                        </div>
 
                         {player.image && !player.image.includes("placeholder") ? (
                             <Image
@@ -52,10 +54,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                 <div className="absolute inset-0 flex items-center justify-center scale-150 md:scale-[2.5] opacity-50">
                                     <PlayerSilhouette />
                                 </div>
-                                {/* Huge watermark text for fallback */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-[10rem] md:text-[20rem] font-black italic text-white/[0.03] whitespace-nowrap pointer-events-none tracking-tighter mix-blend-overlay">
-                                    {player.country.toUpperCase()}
-                                </div>
+                                {/* Huge watermark text for fallback omitted as it's now handled globally */}
                             </div>
                         )}
                         {/* Dynamic Gradients for Premium Look */}

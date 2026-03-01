@@ -20,12 +20,15 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
     onCompareToggle,
 }) => {
     const isFallback = !player.image || player.image.includes("placeholder");
-    const isTop5 = !isNaN(parseInt(player.worldRank)) && parseInt(player.worldRank) <= 5;
+    const isTop5 = (!isNaN(parseInt(player.worldRank)) && parseInt(player.worldRank) <= 5) || player.worldRank === "Legacy" || player.worldRank === "Highest";
+
+    // Premium v2 Design: Giant Watermark Initials
+    const initials = player.id.split('-').map(part => part.charAt(0).toUpperCase()).join('.') + '.';
 
     const CardContent = (
         <div className={`group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 ${isSelected ? "border-2 border-[#d4ff00] shadow-[0_0_30px_rgba(212,255,0,0.5)]"
-                : isTop5 ? "border border-[#d4ff00]/30 shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:border-[#d4ff00]/70 hover:shadow-[0_0_40px_rgba(212,255,0,0.3)]"
-                    : "border border-white/10 shadow-2xl hover:border-white/30"
+            : isTop5 ? "border border-[#d4ff00]/30 shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:border-[#d4ff00]/70 hover:shadow-[0_0_40px_rgba(212,255,0,0.3)]"
+                : "border border-white/10 shadow-2xl hover:border-white/30"
             }`}>
             {/* Inner Glow (Edge Light) */}
             <div className="absolute inset-0 rounded-[32px] ring-1 ring-inset ring-white/10 group-hover:ring-white/20 transition-all duration-700 z-30 pointer-events-none mix-blend-overlay" />
@@ -33,17 +36,22 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
 
             {/* Layer 1 & 2: Base Gradient and Angled Accent Stripe */}
             <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-950 z-0" />
-            <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,rgba(255,255,255,0.03)_20px,rgba(255,255,255,0.03)_40px)] z-0 mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,rgba(255,255,255,0.1)_20px,rgba(255,255,255,0.1)_40px)] z-0 mix-blend-overlay" />
+
+            {/* Giant Watermark Typography for ALL players */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-[6rem] sm:text-[8rem] font-black italic text-white/[0.04] whitespace-nowrap pointer-events-none tracking-tighter mix-blend-overlay z-0">
+                {initials}
+            </div>
 
             {/* Background/Image Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10 opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10 opacity-90 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none" />
 
             {!isFallback ? (
                 <Image
                     src={player.image}
                     alt={player.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                    className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out z-10"
                 />
             ) : (
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 overflow-hidden">
@@ -55,10 +63,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
                         <PlayerSilhouette />
                     </div>
 
-                    {/* Huge watermark text for fallback */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 text-[8rem] font-black italic text-white/[0.02] whitespace-nowrap pointer-events-none tracking-tighter">
-                        {player.country.toUpperCase()}
-                    </div>
+                    {/* Huge watermark text for fallback omitted as it's now handled globally */}
                 </div>
             )}
 

@@ -9,6 +9,8 @@ const navLinks = [
     { name: "Circles", href: "/circles" },
     { name: "Guide", href: "/guide" },
     { name: "Players", href: "/players" },
+    { name: "Gear", href: "/gear" },
+    { name: "Schedule", href: "/schedule" },
 ];
 
 export default function Header() {
