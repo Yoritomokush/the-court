@@ -21,7 +21,7 @@ const CircleCard: React.FC<CircleCardProps> = ({ circle }) => {
     const levelStyle = levelColors[circle.level] || levelColors["All"];
 
     return (
-        <div className="group relative w-full overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 border border-white/10 shadow-2xl hover:border-white/30 flex flex-col p-8 md:p-10 min-h-[400px]">
+        <div className="group relative w-full overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 border border-white/10 shadow-2xl hover:border-orange-500/50 flex flex-col p-8 md:p-10 min-h-[400px]">
             {/* Outline Glow if Recruiting */}
             {isRecruiting && (
                 <div className="absolute inset-0 rounded-[32px] ring-1 ring-[#d4ff00]/20 shadow-[0_0_20px_rgba(212,255,0,0.1)] group-hover:shadow-[0_0_40px_rgba(212,255,0,0.25)] transition-all duration-700 pointer-events-none z-30" />
@@ -47,7 +47,7 @@ const CircleCard: React.FC<CircleCardProps> = ({ circle }) => {
                         <span className="text-zinc-500 text-[10px] md:text-xs font-black tracking-widest uppercase italic mb-1">
                             {circle.location}
                         </span>
-                        <h3 className="text-2xl md:text-3xl font-black italic tracking-tighter uppercase leading-[1.1] text-white group-hover:text-[#d4ff00] transition-colors drop-shadow-lg">
+                        <h3 className="text-2xl md:text-3xl font-black italic tracking-tighter uppercase leading-[1.1] text-white group-hover:text-orange-500 transition-colors drop-shadow-lg">
                             {circle.name}
                         </h3>
                     </div>
@@ -77,7 +77,7 @@ const CircleCard: React.FC<CircleCardProps> = ({ circle }) => {
                         <span className="text-white text-xs md:text-sm font-bold tracking-wide">{circle.schedule}</span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-[#d4ff00] group-hover:translate-x-2 transition-transform cursor-pointer">
+                    <div className="flex items-center gap-2 text-orange-500 group-hover:translate-x-2 transition-transform cursor-pointer">
                         <span className="text-[10px] md:text-xs font-black tracking-widest uppercase hidden md:inline-block">Contact Info</span>
                         <span className="text-xl leading-none">&rarr;</span>
                     </div>

@@ -17,7 +17,7 @@ export default function GearPage() {
     });
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-[#d4ff00] selection:text-black">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-orange-500 selection:text-black">
             <Header />
 
             <main className="pt-20">
@@ -33,11 +33,12 @@ export default function GearPage() {
                     <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
 
                     <div className="relative z-10 text-center space-y-4 px-6">
-                        <span className="text-[#d4ff00] font-black tracking-[0.3em] uppercase text-sm drop-shadow-lg">
+                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase text-sm drop-shadow-[0_0_10px_rgba(234,88,12,0.5)]">
                             Professional Equipment
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase drop-shadow-2xl">
-                            Elite <span className="text-[#d4ff00]">Gear</span>
+                        <h1 className="text-5xl md:text-8xl font-black italic tracking-tighter drop-shadow-2xl">
+                            究極のギア <br className="md:hidden" />
+                            <span className="text-xl md:text-3xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-4 uppercase drop-shadow-[0_0_30px_rgba(234,88,12,0.2)]">ELITE GEAR.</span>
                         </h1>
                         <p className="max-w-xl mx-auto text-zinc-400 text-sm md:text-base font-medium leading-relaxed italic">
                             世界最高峰の闘いを支える、プロフェッショナル仕様のバドミントンギア。
@@ -54,7 +55,7 @@ export default function GearPage() {
                                 key={category}
                                 onClick={() => setSelectedCategory(category)}
                                 className={`px-6 py-3 rounded-full text-xs font-black tracking-widest uppercase transition-all duration-300 backdrop-blur-md border ${selectedCategory === category
-                                    ? "bg-[#d4ff00] text-black border-[#d4ff00] shadow-[0_0_20px_rgba(212,255,0,0.4)] scale-105"
+                                    ? "bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none shadow-[0_0_20px_rgba(234,88,12,0.4)] scale-105"
                                     : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white hover:border-white/30"
                                     }`}
                             >

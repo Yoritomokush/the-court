@@ -25,8 +25,10 @@ export default function RankingsSection() {
         <section className="relative space-y-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
                 <div>
-                    <span className="text-[#d4ff00] text-xs font-black tracking-[0.3em] uppercase mb-2 block">Performance Board</span>
-                    <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase">RANKINGS</h2>
+                    <span className="text-orange-500 text-xs font-black tracking-[0.3em] uppercase mb-2 block">Performance Board</span>
+                    <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter">
+                        世界ランキング <span className="text-lg md:text-2xl tracking-widest text-zinc-500 block mt-1 uppercase">WORLD RANKINGS</span>
+                    </h2>
                 </div>
 
                 {/* Region Tabs */}
@@ -36,7 +38,7 @@ export default function RankingsSection() {
                             key={r}
                             onClick={() => setRegion(r)}
                             className={`px-6 py-2 rounded-xl text-[10px] font-black tracking-widest uppercase transition-all ${region === r
-                                ? "bg-[#d4ff00] text-black shadow-[0_0_20px_rgba(212,255,0,0.2)]"
+                                ? "bg-gradient-to-r from-orange-600 to-amber-500 text-white shadow-[0_0_20px_rgba(234,88,12,0.2)] border-none"
                                 : "text-zinc-500 hover:text-white"
                                 }`}
                         >
@@ -79,7 +81,7 @@ export default function RankingsSection() {
                             {data.map((item: RankingEntry) => (
                                 <tr key={item.rank} className="group hover:bg-white/[0.02] transition-colors">
                                     <td className="py-6">
-                                        <div className={`w-8 h-8 rounded shrink-0 flex items-center justify-center text-sm font-black italic ${item.rank === 1 ? "bg-[#d4ff00] text-black" :
+                                        <div className={`w-8 h-8 rounded shrink-0 flex items-center justify-center text-sm font-black italic ${item.rank === 1 ? "bg-gradient-to-r from-orange-600 to-amber-500 text-white" :
                                             item.rank <= 3 ? "bg-zinc-800 text-zinc-300" : "text-zinc-600"
                                             }`}>
                                             {item.rank}
@@ -88,7 +90,7 @@ export default function RankingsSection() {
                                     <td className="py-6 pr-4">
                                         <div className="flex items-center gap-3">
                                             {item.flag && <span className="text-xl grayscale group-hover:grayscale-0 transition-all">{item.flag}</span>}
-                                            <div className="text-lg font-bold group-hover:text-[#d4ff00] transition-colors whitespace-nowrap">{item.name}</div>
+                                            <div className="text-lg font-bold group-hover:text-orange-500 transition-colors whitespace-nowrap">{item.name}</div>
                                         </div>
                                     </td>
                                     <td className="py-6 text-zinc-400 font-medium text-sm">

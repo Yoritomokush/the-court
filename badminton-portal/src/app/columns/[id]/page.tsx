@@ -118,7 +118,13 @@ export default function ColumnDetailPage() {
                                             className="group flex items-center gap-4 p-2 rounded-2xl hover:bg-white/5 transition-colors"
                                         >
                                             <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-zinc-800 border border-white/10">
-                                                <Image src={player.image} alt={player.name} fill className="object-cover group-hover:scale-110 transition-transform" />
+                                                {player.image ? (
+                                                    <Image src={player.image} alt={player.name} fill className="object-cover group-hover:scale-110 transition-transform" />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center text-zinc-500 font-black italic text-xl">
+                                                        {player.name.charAt(0)}
+                                                    </div>
+                                                )}
                                             </div>
                                             <div className="flex-1 min-w-0">
                                                 <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">{player.country}</p>

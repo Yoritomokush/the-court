@@ -12,7 +12,7 @@ const GearCard: React.FC<GearCardProps> = ({ gear }) => {
     const initials = gear.brand.charAt(0).toUpperCase() + gear.category.charAt(0).toUpperCase();
 
     return (
-        <div className="group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 border border-white/10 shadow-2xl hover:border-white/30 flex flex-col justify-end">
+        <div className="group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 border border-white/10 shadow-2xl hover:border-orange-500/50 flex flex-col justify-end">
             {/* Inner Glow (Edge Light) */}
             <div className="absolute inset-0 rounded-[32px] ring-1 ring-inset ring-white/10 group-hover:ring-white/20 transition-all duration-700 z-30 pointer-events-none mix-blend-overlay" />
             <div className="absolute inset-0 rounded-[32px] shadow-[inset_0_0_40px_rgba(255,255,255,0.05)] z-30 pointer-events-none" />
@@ -46,7 +46,7 @@ const GearCard: React.FC<GearCardProps> = ({ gear }) => {
             <div className="relative z-20 flex flex-col justify-between p-6 h-full">
                 {/* Top Section */}
                 <div className="flex justify-between items-start">
-                    <span className="px-3 py-1 bg-[#d4ff00] text-black text-[10px] font-black tracking-[0.2em] uppercase rounded-sm shadow-[0_0_15px_rgba(212,255,0,0.4)]">
+                    <span className="px-3 py-1 bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none text-[10px] font-black tracking-[0.2em] uppercase rounded-sm shadow-[0_0_15px_rgba(234,88,12,0.4)]">
                         {gear.category}
                     </span>
                     <span className="text-white text-[10px] font-black tracking-widest uppercase">
@@ -56,7 +56,7 @@ const GearCard: React.FC<GearCardProps> = ({ gear }) => {
 
                 {/* Bottom Section */}
                 <div className="flex flex-col w-full mt-auto">
-                    <h3 className="text-2xl font-black italic tracking-tighter leading-[1.1] mb-2 text-white group-hover:text-[#d4ff00] transition-colors uppercase drop-shadow-lg">
+                    <h3 className="text-2xl font-black italic tracking-tighter leading-[1.1] mb-2 text-white group-hover:text-orange-500 transition-colors uppercase drop-shadow-lg">
                         {gear.name}
                     </h3>
 
@@ -67,7 +67,7 @@ const GearCard: React.FC<GearCardProps> = ({ gear }) => {
                     {/* Used By Section */}
                     {gear.usedBy.length > 0 && (
                         <div className="mb-4">
-                            <p className="text-[#d4ff00] text-[9px] font-black tracking-[0.2em] uppercase mb-2 opacity-80">
+                            <p className="text-orange-500 text-[9px] font-black tracking-[0.2em] uppercase mb-2 opacity-80">
                                 Used By
                             </p>
                             <div className="flex flex-wrap gap-2">
@@ -78,12 +78,18 @@ const GearCard: React.FC<GearCardProps> = ({ gear }) => {
                                         <Link
                                             key={playerId}
                                             href={`/players/${playerId}`}
-                                            className="flex items-center gap-2 px-2 py-1 bg-white/10 rounded-full border border-white/10 hover:border-[#d4ff00]/50 hover:bg-white/20 transition-all z-30"
+                                            className="flex items-center gap-2 px-2 py-1 bg-white/10 rounded-full border border-white/10 hover:border-orange-500/50 hover:bg-white/20 transition-all z-30"
                                         >
                                             <div className="relative w-4 h-4 rounded-full overflow-hidden grayscale group-hover:grayscale-0 transition-all">
-                                                <Image src={player.image} alt={player.name} fill className="object-cover" />
+                                                {player.image ? (
+                                                    <Image src={player.image} alt={player.name} fill className="object-cover" />
+                                                ) : (
+                                                    <div className="w-full h-full bg-zinc-800 flex items-center justify-center font-black text-[6px] text-zinc-500">
+                                                        {player.name.charAt(0)}
+                                                    </div>
+                                                )}
                                             </div>
-                                            <span className="text-[9px] font-black text-white hover:text-[#d4ff00] uppercase tracking-tight">
+                                            <span className="text-[9px] font-black text-white hover:text-orange-500 uppercase tracking-tight">
                                                 {player.name.split(' ').pop()}
                                             </span>
                                         </Link>
@@ -105,7 +111,7 @@ const GearCard: React.FC<GearCardProps> = ({ gear }) => {
                         href={getAmazonLink(gear.name)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full py-3 bg-[#d4ff00] text-black text-center text-[12px] font-black uppercase tracking-widest rounded-xl hover:bg-white transition-colors relative z-30 shadow-[0_0_20px_rgba(212,255,0,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] flex items-center justify-center gap-2"
+                        className="w-full py-3 bg-gradient-to-r from-orange-600 to-amber-500 text-white text-center text-[12px] font-black uppercase tracking-widest rounded-xl transition-all relative z-30 shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] hover:scale-[1.02] flex items-center justify-center gap-2 border-none"
                     >
                         Check Price on Amazon
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -116,7 +122,7 @@ const GearCard: React.FC<GearCardProps> = ({ gear }) => {
             </div>
 
             {/* Accent Line */}
-            <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#d4ff00] transition-all duration-500 group-hover:w-full z-20" />
+            <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-orange-600 to-amber-500 transition-all duration-500 group-hover:w-full z-20" />
         </div>
     );
 };

@@ -21,7 +21,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
     }
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-[#d4ff00] selection:text-black">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-orange-500 selection:text-black">
             <Header />
 
             <main>
@@ -74,7 +74,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                         <div className="mb-8">
                             <Link
                                 href="/players"
-                                className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-zinc-400 hover:text-[#d4ff00] hover:border-[#d4ff00]/50 transition-all group"
+                                className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-zinc-400 hover:text-orange-500 hover:border-orange-500/50 transition-all group"
                             >
                                 <span className="group-hover:-translate-x-1 transition-transform text-lg">&larr;</span>
                                 <span className="text-[11px] font-black tracking-[0.2em] uppercase">Back to Directory</span>
@@ -130,11 +130,12 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                             {/* Analysis */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                                 <div className="space-y-8">
-                                    <h2 className="text-4xl font-black italic tracking-tighter uppercase">
-                                        Performance<br />Analysis
+                                    <h2 className="text-4xl font-black italic tracking-tighter drop-shadow-md">
+                                        パフォーマンス分析<br />
+                                        <span className="text-xl md:text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-2 uppercase">PERFORMANCE ANALYSIS</span>
                                     </h2>
                                     <div className="space-y-1">
-                                        <p className="text-zinc-500 text-sm font-medium leading-relaxed italic border-l-2 border-[#d4ff00]/30 pl-4 mb-6">
+                                        <p className="text-zinc-500 text-sm font-medium leading-relaxed italic border-l-2 border-orange-500/30 pl-4 mb-6">
                                             テクニカル・スタッツに基づいた、AIによるアスリート分析。
                                             強靭なフィジカルと卓越した戦術眼の相関を示す。
                                         </p>
@@ -155,8 +156,9 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
 
                             {/* Awards Section - New Professional Requirement */}
                             <div className="space-y-10">
-                                <h2 className="text-4xl font-black italic tracking-tighter uppercase border-[#d4ff00]">
-                                    Recent <span className="text-[#d4ff00]">Awards</span>
+                                <h2 className="text-4xl font-black italic tracking-tighter drop-shadow-md">
+                                    獲得タイトル<br />
+                                    <span className="text-xl md:text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-2 uppercase">RECENT AWARDS</span>
                                 </h2>
                                 <div className="grid gap-4">
                                     {player.awards.map((award, idx) => (
@@ -176,8 +178,9 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                             {/* Gallery / Media Section */}
                             {(player.youtubeId || player.instagramPostId || player.instagramPostUrl || player.sns) && (
                                 <div className="space-y-10">
-                                    <h2 className="text-4xl font-black italic tracking-tighter uppercase border-[#d4ff00]">
-                                        Gallery / <span className="text-[#d4ff00]">Media</span>
+                                    <h2 className="text-4xl font-black italic tracking-tighter drop-shadow-md">
+                                        メディア<br />
+                                        <span className="text-xl md:text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-2 uppercase">GALLERY / MEDIA</span>
                                     </h2>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         {player.youtubeId && (
@@ -219,7 +222,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                                         <Link
                                                             href={`https://instagram.com/${player.sns.instagram}`}
                                                             target="_blank"
-                                                            className="flex flex-col items-center justify-center gap-3 bg-zinc-900/60 border border-white/5 rounded-[32px] hover:border-[#d4ff00]/50 transition-all group/sns"
+                                                            className="flex flex-col items-center justify-center gap-3 bg-zinc-900/60 border border-white/5 rounded-[32px] hover:border-orange-500/50 transition-all group/sns"
                                                         >
                                                             <div className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-2xl group-hover/sns:scale-110 transition-transform">
                                                                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.247 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.061 1.365-.333 2.632-1.308 3.607-.975.975-2.242 1.246-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.247-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.061-1.365.333-2.632 1.308-3.607.975-.975 2.242-1.246 3.607-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.724.079-3.092.443-4.277 1.628-1.185 1.184-1.549 2.552-1.628 4.277-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.079 1.724.443 3.092 1.628 4.277 1.184 1.185 2.552 1.549 4.277 1.628 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.724-.079 3.092-.443 4.277-1.628 1.185-1.184 1.549-2.552 1.628-4.277.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.079-1.724-.443-3.092-1.628-4.277-1.184-1.185-2.552-1.549-4.277-1.628-1.28-.058-1.688-.072-4.947-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
@@ -231,7 +234,7 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                                         <Link
                                                             href={`https://x.com/${player.sns.x}`}
                                                             target="_blank"
-                                                            className="flex flex-col items-center justify-center gap-3 bg-zinc-900/60 border border-white/5 rounded-[32px] hover:border-[#d4ff00]/50 transition-all group/sns"
+                                                            className="flex flex-col items-center justify-center gap-3 bg-zinc-900/60 border border-white/5 rounded-[32px] hover:border-orange-500/50 transition-all group/sns"
                                                         >
                                                             <div className="w-12 h-12 flex items-center justify-center bg-white/5 rounded-2xl group-hover/sns:scale-110 transition-transform">
                                                                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
@@ -248,8 +251,9 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
 
                             {/* Biography */}
                             <div className="space-y-10">
-                                <h2 className="text-4xl font-black italic tracking-tighter uppercase border-l-8 border-[#d4ff00] pl-8">
-                                    Biography
+                                <h2 className="text-4xl font-black italic tracking-tighter drop-shadow-md border-l-8 border-orange-500 pl-8">
+                                    略歴<br />
+                                    <span className="text-xl md:text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-2 uppercase">BIOGRAPHY</span>
                                 </h2>
                                 <div className="prose prose-invert prose-2xl max-w-none">
                                     <p className="text-zinc-300 leading-[1.6] font-medium italic">
@@ -268,20 +272,20 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                             {/* Gear Section */}
                             <div className="bg-zinc-900/60 border border-white/10 rounded-[40px] p-10 sticky top-8 backdrop-blur-xl shadow-2xl">
                                 <h3 className="text-2xl font-black italic tracking-tighter uppercase mb-8 flex items-center gap-3">
-                                    <span className="w-2 h-8 bg-[#d4ff00]" />
+                                    <span className="w-2 h-8 bg-gradient-to-b from-orange-600 to-amber-500" />
                                     Exclusive Gear
                                 </h3>
 
                                 <div className="space-y-8">
                                     <div className="group">
                                         <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-3">Professional Racket</p>
-                                        <div className="bg-black/40 border border-white/5 rounded-2xl p-6 group-hover:border-[#d4ff00]/30 transition-all">
-                                            <p className="font-black text-lg mb-2 group-hover:text-[#d4ff00] transition-colors uppercase italic">{player.gear.racket.name}</p>
+                                        <div className="bg-black/40 border border-white/5 rounded-2xl p-6 group-hover:border-orange-500/30 transition-all">
+                                            <p className="font-black text-lg mb-2 group-hover:text-orange-500 transition-colors uppercase italic">{player.gear.racket.name}</p>
                                             <p className="text-zinc-500 text-xs leading-relaxed mb-4">{player.gear.racket.description}</p>
                                             <Link
                                                 href={player.gear.racket.link}
                                                 target="_blank"
-                                                className="inline-block w-full py-3 bg-[#d4ff00] text-black text-center text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-white transition-colors"
+                                                className="inline-block w-full py-3 bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none text-center text-[10px] font-black uppercase tracking-widest rounded-lg transition-colors shadow-[0_0_15px_rgba(234,88,12,0.3)] hover:shadow-[0_0_20px_rgba(234,88,12,0.5)]"
                                             >
                                                 View on Amazon
                                             </Link>
@@ -295,10 +299,16 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                                             <Link
                                                                 key={other.id}
                                                                 href={`/players/${other.id}`}
-                                                                className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded-full border border-white/5 hover:border-[#d4ff00]/50 transition-all group/user"
+                                                                className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded-full border border-white/5 hover:border-orange-500/50 transition-all group/user"
                                                             >
                                                                 <div className="relative w-4 h-4 rounded-full overflow-hidden grayscale group-hover/user:grayscale-0 transition-all">
-                                                                    <Image src={other.image} alt={other.name} fill className="object-cover" />
+                                                                    {other.image ? (
+                                                                        <Image src={other.image} alt={other.name} fill className="object-cover" />
+                                                                    ) : (
+                                                                        <div className="w-full h-full bg-zinc-800 flex items-center justify-center font-black text-[6px] text-zinc-500">
+                                                                            {other.name.charAt(0)}
+                                                                        </div>
+                                                                    )}
                                                                 </div>
                                                                 <span className="text-[8px] font-black text-zinc-400 group-hover/user:text-white uppercase tracking-tight">{other.name.split(' ').pop()}</span>
                                                             </Link>
@@ -311,13 +321,13 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
 
                                     <div className="group">
                                         <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-3">Power Shoes</p>
-                                        <div className="bg-black/40 border border-white/5 rounded-2xl p-6 group-hover:border-[#d4ff00]/30 transition-all">
-                                            <p className="font-black text-lg mb-2 group-hover:text-[#d4ff00] transition-colors uppercase italic">{player.gear.shoes.name}</p>
+                                        <div className="bg-black/40 border border-white/5 rounded-2xl p-6 group-hover:border-orange-500/30 transition-all">
+                                            <p className="font-black text-lg mb-2 group-hover:text-orange-500 transition-colors uppercase italic">{player.gear.shoes.name}</p>
                                             <p className="text-zinc-500 text-xs leading-relaxed mb-4">{player.gear.shoes.description}</p>
                                             <Link
                                                 href={player.gear.shoes.link}
                                                 target="_blank"
-                                                className="inline-block w-full py-3 bg-white/10 text-white text-center text-[10px] font-black uppercase tracking-widest rounded-lg border border-white/10 hover:bg-[#d4ff00] hover:text-black hover:border-transparent transition-all"
+                                                className="inline-block w-full py-3 bg-white/10 text-white text-center text-[10px] font-black uppercase tracking-widest rounded-lg border border-white/10 hover:bg-gradient-to-r hover:from-orange-600 hover:to-amber-500 hover:border-transparent transition-all"
                                             >
                                                 View on Amazon
                                             </Link>
@@ -331,10 +341,16 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                                             <Link
                                                                 key={other.id}
                                                                 href={`/players/${other.id}`}
-                                                                className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded-full border border-white/5 hover:border-[#d4ff00]/50 transition-all group/user"
+                                                                className="flex items-center gap-2 px-2 py-1 bg-white/5 rounded-full border border-white/5 hover:border-orange-500/50 transition-all group/user"
                                                             >
                                                                 <div className="relative w-4 h-4 rounded-full overflow-hidden grayscale group-hover/user:grayscale-0 transition-all">
-                                                                    <Image src={other.image} alt={other.name} fill className="object-cover" />
+                                                                    {other.image ? (
+                                                                        <Image src={other.image} alt={other.name} fill className="object-cover" />
+                                                                    ) : (
+                                                                        <div className="w-full h-full bg-zinc-800 flex items-center justify-center font-black text-[6px] text-zinc-500">
+                                                                            {other.name.charAt(0)}
+                                                                        </div>
+                                                                    )}
                                                                 </div>
                                                                 <span className="text-[8px] font-black text-zinc-400 group-hover/user:text-white uppercase tracking-tight">{other.name.split(' ').pop()}</span>
                                                             </Link>

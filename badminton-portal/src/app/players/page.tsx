@@ -51,7 +51,7 @@ export default function PlayersListPage() {
         <button
             onClick={() => onClick(value)}
             className={`px-3 py-1.5 rounded-lg text-[9px] font-black tracking-widest uppercase transition-all shrink-0 ${current === value
-                ? "bg-[#d4ff00] text-black shadow-[0_5px_10px_rgba(212,255,0,0.2)]"
+                ? "bg-gradient-to-r from-orange-600 to-amber-500 text-white shadow-[0_5px_10px_rgba(234,88,12,0.2)] border-none"
                 : "text-zinc-500 hover:text-white hover:bg-white/5 border border-white/5"
                 }`}
         >
@@ -60,19 +60,19 @@ export default function PlayersListPage() {
     );
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-[#d4ff00] selection:text-black">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-orange-500 selection:text-black">
             <Header />
 
             <main className="max-w-7xl mx-auto px-6 pt-32 pb-24">
                 <div className="mb-16">
                     <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
                         <div>
-                            <span className="text-[#d4ff00] text-xs font-black tracking-[0.3em] uppercase mb-2 block">
+                            <span className="text-orange-500 text-xs font-black tracking-[0.3em] uppercase mb-2 block">
                                 Elite Database
                             </span>
-                            <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter uppercase leading-[0.85]">
-                                PLAYER<br />
-                                <span className="text-[#d4ff00]">ARCHIVE.</span>
+                            <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter leading-[0.85]">
+                                選手名鑑<br />
+                                <span className="text-xl md:text-3xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-3 uppercase">PLAYER ARCHIVE.</span>
                             </h1>
                         </div>
 

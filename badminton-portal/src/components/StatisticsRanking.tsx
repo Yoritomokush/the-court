@@ -55,8 +55,10 @@ export default function StatisticsRanking() {
     return (
         <section className="relative overflow-hidden">
             <div className="flex flex-col mb-12">
-                <span className="text-[#d4ff00] text-xs font-black tracking-[0.3em] uppercase mb-2 block">Insights & Analytics</span>
-                <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter">THE COURT STATISTICS</h2>
+                <span className="text-orange-500 text-xs font-black tracking-[0.3em] uppercase mb-2 block">Insights & Analytics</span>
+                <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter">
+                    部門別リーダー <span className="text-lg md:text-2xl tracking-widest text-zinc-500 block mt-1 uppercase">STATISTICS LEADERS</span>
+                </h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -72,16 +74,16 @@ export default function StatisticsRanking() {
                             <div key={racket.name} className="group">
                                 <div className="flex justify-between items-end mb-2">
                                     <span className="text-sm font-bold text-zinc-300 group-hover:text-white transition-colors truncate pr-4">
-                                        <span className="text-[#d4ff00] mr-2">0{idx + 1}</span>
+                                        <span className="text-orange-500 mr-2">0{idx + 1}</span>
                                         {racket.name}
                                     </span>
-                                    <span className="text-xs font-black text-[#d4ff00] uppercase tracking-tighter shrink-0">
+                                    <span className="text-xs font-black text-orange-500 uppercase tracking-tighter shrink-0">
                                         {racket.count} Users
                                     </span>
                                 </div>
                                 <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
                                     <div
-                                        className="h-full bg-gradient-to-r from-[#d4ff00] to-[#b8dd00] rounded-full transition-all duration-1000 ease-out"
+                                        className="h-full bg-gradient-to-r from-orange-600 to-amber-500 rounded-full transition-all duration-1000 ease-out"
                                         style={{ width: `${(racket.count / players.length) * 100}%` }}
                                     />
                                 </div>
@@ -99,14 +101,14 @@ export default function StatisticsRanking() {
 
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                         {stats.brandShare.map((brand) => (
-                            <div key={brand.name} className="relative group p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-[#d4ff00]/30 transition-all">
+                            <div key={brand.name} className="relative group p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-orange-500/30 transition-all">
                                 <div className="text-[10px] font-black text-zinc-500 mb-1 uppercase tracking-tight">{brand.name}</div>
                                 <div className="flex items-baseline gap-1">
-                                    <span className="text-3xl font-black italic text-white group-hover:text-[#d4ff00] transition-colors">{brand.percentage}</span>
+                                    <span className="text-3xl font-black italic text-white group-hover:text-orange-500 transition-colors">{brand.percentage}</span>
                                     <span className="text-xs font-bold text-zinc-400">%</span>
                                 </div>
                                 {/* Minimal bar indicator */}
-                                <div className="absolute bottom-0 left-0 h-[2px] bg-[#d4ff00] transition-all duration-700 opacity-0 group-hover:opacity-100" style={{ width: `${brand.percentage}%` }} />
+                                <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-orange-600 to-amber-500 transition-all duration-700 opacity-0 group-hover:opacity-100" style={{ width: `${brand.percentage}%` }} />
                             </div>
                         ))}
                     </div>
@@ -114,7 +116,7 @@ export default function StatisticsRanking() {
             </div>
 
             {/* Background decoration */}
-            <div className="absolute -z-10 top-0 right-0 w-64 h-64 bg-[#d4ff00]/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -z-10 top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-[100px] pointer-events-none" />
         </section>
     );
 }

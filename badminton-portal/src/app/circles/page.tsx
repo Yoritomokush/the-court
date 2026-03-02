@@ -27,7 +27,7 @@ export default function CirclesPage() {
     });
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-[#d4ff00] selection:text-black">
+        <div className="min-h-screen bg-black text-white font-sans selection:bg-orange-500 selection:text-black">
             <Header />
 
             <main className="pt-20">
@@ -38,19 +38,19 @@ export default function CirclesPage() {
                     <div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-black/80 z-0" />
                     <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_40px,rgba(255,255,255,0.05)_40px,rgba(255,255,255,0.05)_80px)] z-0 mix-blend-overlay" />
 
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-[15rem] md:text-[25rem] font-black italic text-[#d4ff00]/[0.02] whitespace-nowrap pointer-events-none tracking-tighter mix-blend-color-dodge z-0">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-[15rem] md:text-[25rem] font-black italic text-orange-500/[0.02] whitespace-nowrap pointer-events-none tracking-tighter mix-blend-color-dodge z-0">
                         COMMUNITY
                     </div>
 
                     <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.9)_100%)]" />
 
                     <div className="relative z-10 text-center space-y-4 px-6 mt-8">
-                        <span className="text-[#d4ff00] font-black tracking-[0.3em] uppercase text-xs md:text-sm drop-shadow-[0_0_10px_rgba(212,255,0,0.5)]">
+                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase text-xs md:text-sm drop-shadow-[0_0_10px_rgba(234,88,12,0.5)]">
                             Local Hubs
                         </span>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter uppercase drop-shadow-2xl leading-none">
-                            FIND YOUR <br className="md:hidden" />
-                            <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">COURT.</span>
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter drop-shadow-2xl leading-none">
+                            コミュニティを探す <br className="md:hidden" />
+                            <span className="text-lg md:text-3xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-4 uppercase drop-shadow-[0_0_30px_rgba(234,88,12,0.2)]">FIND YOUR COURT.</span>
                         </h1>
                         <p className="max-w-xl mx-auto text-zinc-400 text-sm md:text-base font-medium leading-relaxed italic mt-4">
                             全国各地で活動するバドミントンサークル・クラブチームを検索可能。
@@ -67,8 +67,8 @@ export default function CirclesPage() {
                                 key={region.label}
                                 onClick={() => setSelectedRegion(region.label)}
                                 className={`px-5 py-2.5 md:px-6 md:py-3 rounded-full text-[10px] md:text-xs font-black tracking-widest uppercase transition-all duration-300 backdrop-blur-md border ${selectedRegion === region.label
-                                        ? "bg-[#d4ff00] text-black border-[#d4ff00] shadow-[0_0_20px_rgba(212,255,0,0.4)] scale-105"
-                                        : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white hover:border-white/30"
+                                    ? "bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none shadow-[0_0_20px_rgba(234,88,12,0.4)] scale-105"
+                                    : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white hover:border-white/30"
                                     }`}
                             >
                                 {region.label}

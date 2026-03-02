@@ -16,7 +16,7 @@ const EventCard: React.FC<EventCardProps> = ({ tournament }) => {
 
     return (
         <div className={`group relative w-full overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 border shadow-2xl flex flex-col justify-end p-8 md:p-12
-            ${isUpcoming ? "border-[#d4ff00]/50 hover:border-[#d4ff00]" : "border-white/10 hover:border-white/30"}`}>
+            ${isUpcoming ? "border-[#d4ff00]/50 hover:border-[#d4ff00]" : "border-white/10 hover:border-orange-500/50"}`}>
 
             {/* Outline Glow if Upcoming */}
             {isUpcoming && (
@@ -68,7 +68,7 @@ const EventCard: React.FC<EventCardProps> = ({ tournament }) => {
                             {tournament.date}
                         </p>
                         <h3 className={`text-3xl md:text-5xl font-black italic tracking-tighter uppercase leading-[1.1] transition-colors
-                            ${isUpcoming ? "text-white group-hover:text-[#d4ff00] drop-shadow-lg" : "text-zinc-300 group-hover:text-white"}`}>
+                            ${isUpcoming ? "text-white group-hover:text-[#d4ff00] drop-shadow-lg" : "text-zinc-300 group-hover:text-orange-500"}`}>
                             {tournament.name}
                         </h3>
                     </div>

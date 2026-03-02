@@ -1,7 +1,7 @@
 export interface Player {
   id: string;
   name: string;
-  image: string;
+  image?: string;
   rank: string;
   style: string;
   country: string;
@@ -90,7 +90,7 @@ export interface Column {
   date: string;
   category: "TACTICS" | "HISTORY" | "LEGEND";
   author: string;
-  image: string;
+  image?: string;
   excerpt: string;
   content: string;
   relatedPlayerIds?: string[];
@@ -104,7 +104,7 @@ export interface Gear {
   description: string;
   price: string;
   usedBy: string[]; // Player IDs
-  image: string;
+  image?: string;
 }
 
 export interface Tournament {
@@ -140,7 +140,7 @@ export const players: Player[] = [
   {
     id: "yuta-watanabe",
     name: "渡辺 勇大",
-    image: "/images/players/yuta-watanabe.png",
+
     rank: "Mixed Doubles World No.1",
     gender: "Male",
     team: "BIPROGY",
@@ -190,7 +190,7 @@ export const players: Player[] = [
   {
     id: "viktor-axelsen",
     name: "ビクター・アクセルセン",
-    image: "/images/players/placeholder.png",
+
     rank: "Men's Singles World No.1",
     gender: "Male",
     team: "Denmark National",
@@ -217,7 +217,7 @@ export const players: Player[] = [
   {
     id: "an-se-young",
     name: "アン・セヨン",
-    image: "/images/players/placeholder.png",
+
     rank: "Women's Singles World No.1",
     gender: "Female",
     team: "Samsung Life Insurance",
@@ -244,7 +244,7 @@ export const players: Player[] = [
   {
     id: "chen-yu-fei",
     name: "陳雨菲",
-    image: "/images/players/placeholder.png",
+
     rank: "Women's Singles World No.2",
     gender: "Female",
     team: "China National",
@@ -270,7 +270,7 @@ export const players: Player[] = [
   {
     id: "liang-wang",
     name: "リャン・ウェイカン / ワン・チャン",
-    image: "/images/players/placeholder.png",
+
     rank: "Men's Doubles World No.1",
     gender: "Male",
     team: "China National",
@@ -296,7 +296,7 @@ export const players: Player[] = [
   {
     id: "jeong-kim",
     name: "チョン・ナウン / キム・ヘジョン",
-    image: "/images/players/placeholder.png",
+
     rank: "Women's Doubles World No.5",
     gender: "Female",
     team: "Korea National",
@@ -322,7 +322,7 @@ export const players: Player[] = [
   {
     id: "dechapol-sapsiree",
     name: "デチャポル / サプシリー",
-    image: "/images/players/placeholder.png",
+
     rank: "Mixed Doubles World No.6",
     gender: "Female",
     team: "Thailand National",
@@ -348,7 +348,7 @@ export const players: Player[] = [
   {
     id: "anthony-ginting",
     name: "アンソニー・ギンティン",
-    image: "/images/players/placeholder.png",
+
     rank: "Men's Singles World No.4",
     gender: "Male",
     team: "SGS PLN Bandung",
@@ -374,7 +374,7 @@ export const players: Player[] = [
   {
     id: "tai-tzu-ying",
     name: "タイ・ツーイン",
-    image: "/images/players/placeholder.png",
+
     rank: "Women's Singles World No.3",
     gender: "Female",
     team: "Cooperative Bank",
@@ -400,7 +400,7 @@ export const players: Player[] = [
   {
     id: "kodai-naraoka",
     name: "奈良岡 功大",
-    image: "/images/players/kodai-naraoka.png",
+
     rank: "Men's Singles World No.3",
     gender: "Male",
     team: "FWD日本",
@@ -444,7 +444,7 @@ export const players: Player[] = [
   {
     id: "akane-yamaguchi",
     name: "山口 茜",
-    image: "/images/players/akane-yamaguchi.png",
+
     rank: "Women's Singles World No.2",
     gender: "Female",
     team: "再春館製薬所",
@@ -490,7 +490,7 @@ export const players: Player[] = [
   {
     id: "kento-momota",
     name: "桃田 賢斗",
-    image: "/images/players/kento-momota.png",
+
     rank: "World No.1 (Highest)",
     gender: "Male",
     team: "NTT東日本",
@@ -536,7 +536,7 @@ export const players: Player[] = [
   {
     id: "tomoka-miyazaki",
     name: "宮崎 友花",
-    image: "/images/players/tomoka-miyazaki.png",
+
     rank: "World Junior Champion",
     gender: "Female",
     team: "柳井商工高校",
@@ -580,7 +580,7 @@ export const players: Player[] = [
   {
     id: "kanta-tsuneyama",
     name: "常山 幹太",
-    image: "/images/players/kanta-tsuneyama.png",
+
     rank: "Men's Singles Pro",
     gender: "Male",
     team: "トナミ運輸",
@@ -620,7 +620,7 @@ export const players: Player[] = [
   {
     id: "hinata-takano",
     name: "髙野 日向",
-    image: "/images/players/hinata-takano.png",
+
     rank: "Rising Star",
     gender: "Male",
     team: "明治大学",
@@ -660,7 +660,7 @@ export const players: Player[] = [
   {
     id: "chiharu-shida",
     name: "志田 千陽",
-    image: "/images/players/chiharu-shida.jpg",
+
     rank: "Women's Doubles World No.4",
     gender: "Female",
     team: "再春館製薬所",
@@ -708,7 +708,7 @@ export const players: Player[] = [
   {
     id: "nami-matsuyama",
     name: "松山 奈未",
-    image: "/images/players/nami-matsuyama.jpg",
+
     rank: "Women's Doubles World No.4",
     gender: "Female",
     team: "再春館製薬所",
@@ -753,7 +753,7 @@ export const players: Player[] = [
   {
     id: "takuro-hoki",
     name: "保木 卓朗",
-    image: "/images/players/takuro-hoki.jpg",
+
     rank: "Men's Doubles World No.6",
     gender: "Male",
     team: "トナミ運輸",
@@ -798,7 +798,7 @@ export const players: Player[] = [
   {
     id: "yugo-kobayashi",
     name: "小林 優吾",
-    image: "/images/players/yugo-kobayashi.jpg",
+
     rank: "Men's Doubles World No.6",
     gender: "Male",
     team: "トナミ運輸",
@@ -842,7 +842,7 @@ export const players: Player[] = [
   {
     id: "kenta-nishimoto",
     name: "西本 拳太",
-    image: "/images/players/kenta-nishimoto.jpg",
+
     rank: "Men's Singles World No.12",
     gender: "Male",
     team: "ジェイテクト",
@@ -887,7 +887,7 @@ export const players: Player[] = [
   {
     id: "aya-ohori",
     name: "大堀 彩",
-    image: "/images/players/aya-ohori.jpg",
+
     rank: "Women's Singles World No.9",
     gender: "Female",
     team: "トナミ運輸",
@@ -931,7 +931,7 @@ export const players: Player[] = [
   {
     id: "nozomi-okuhara",
     name: "奥原 希望",
-    image: "/images/players/nozomi-okuhara.jpg",
+
     rank: "Former World Champion",
     gender: "Female",
     team: "太陽ホールディングス",
@@ -978,7 +978,7 @@ export const players: Player[] = [
   {
     id: "arisa-higashino",
     name: "東野 有紗",
-    image: "/images/players/arisa-higashino.jpg",
+
     rank: "Mixed Doubles World No.1",
     gender: "Female",
     team: "BIPROGY",
@@ -1024,7 +1024,7 @@ export const players: Player[] = [
   {
     id: "yuki-fukushima",
     name: "福島 由紀",
-    image: "/images/players/yuki-fukushima.jpg",
+
     rank: "Women's Doubles Leader",
     gender: "Female",
     team: "岐阜Bluvic",
@@ -1069,7 +1069,7 @@ export const players: Player[] = [
   {
     id: "daigo-tanioka",
     name: "谷岡 大后",
-    image: "/images/players/daigo-tanioka.jpg",
+
     rank: "Junior National Star",
     gender: "Male",
     team: "ふたば未来学園高校",
@@ -1109,7 +1109,7 @@ export const players: Player[] = [
   {
     id: "yuta-okimoto",
     name: "沖本 優大",
-    image: "/images/players/yuta-okimoto.jpg",
+
     rank: "Rising Youth Talent",
     gender: "Male",
     team: "BIPROGY",
@@ -1149,7 +1149,7 @@ export const players: Player[] = [
   {
     id: "kevin-sanjaya",
     name: "ケビン・サンジャヤ・スカムルジョ",
-    image: "/images/players/kevin-sanjaya.jpg",
+
     rank: "Former Men's Doubles No.1",
     gender: "Male",
     team: "PB Djarum",
@@ -1197,7 +1197,7 @@ export const columns: Column[] = [
     date: "2026.02.26",
     category: "LEGEND",
     author: "Badminton Portal Editorial",
-    image: "/images/columns/kevin-sanjaya.jpg",
+
     excerpt: "「ミニオンズ」の爆誕から黄金時代へ。相手の精神を削り、観客を狂喜させた稀代の天才が残したもの。",
     content: `
 ## 「最速」を超えた「神速」の前衛
@@ -1225,7 +1225,7 @@ export const columns: Column[] = [
     date: "2026.02.26",
     category: "HISTORY",
     author: "Badminton Portal Editorial",
-    image: "/images/columns/indonesia-gold.jpg",
+
     excerpt: "1992年バルセロナ。あの時、島国は揺れた。バドミントンが単なるスポーツを超え、民族の誇りとなった歴史的背景を紐解く。",
     content: `
 ## バルセロナに降り立った一対の「神」
@@ -1253,7 +1253,7 @@ export const columns: Column[] = [
     date: "2026.02.26",
     category: "TACTICS",
     author: "Badminton Portal Editorial",
-    image: "/images/columns/indonesia-netplay.jpg",
+
     excerpt: "手首を殺し、相手を欺く。教科書にはない「創造性」を土壌にするインドネシアンスタイルの正体とは。",
     content: `
 ## 理屈を超えた「リストワーク」の魔法

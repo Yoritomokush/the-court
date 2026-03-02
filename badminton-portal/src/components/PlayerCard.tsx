@@ -28,7 +28,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
     const CardContent = (
         <div className={`group relative aspect-[3/4] overflow-hidden rounded-[32px] bg-zinc-950 transition-all duration-700 ${isSelected ? "border-2 border-[#d4ff00] shadow-[0_0_30px_rgba(212,255,0,0.5)]"
             : isTop5 ? "border border-[#d4ff00]/30 shadow-[0_0_30px_rgba(212,255,0,0.15)] hover:border-[#d4ff00]/70 hover:shadow-[0_0_40px_rgba(212,255,0,0.3)]"
-                : "border border-white/10 shadow-2xl hover:border-white/30"
+                : "border border-white/10 shadow-2xl hover:border-orange-500/50"
             }`}>
             {/* Inner Glow (Edge Light) */}
             <div className="absolute inset-0 rounded-[32px] ring-1 ring-inset ring-white/10 group-hover:ring-white/20 transition-all duration-700 z-30 pointer-events-none mix-blend-overlay" />
@@ -48,7 +48,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
 
             {!isFallback ? (
                 <Image
-                    src={player.image}
+                    src={player.image as string}
                     alt={player.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out z-10"
@@ -93,7 +93,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
                         {player.country} // {player.team}
                     </div>
 
-                    <h3 className="text-3xl font-black italic tracking-tighter leading-[0.9] mb-2 group-hover:text-[#d4ff00] transition-colors uppercase drop-shadow-lg">
+                    <h3 className={`text-3xl font-black italic tracking-tighter leading-[0.9] mb-2 uppercase drop-shadow-lg transition-colors ${isTop5 ? "group-hover:text-[#d4ff00]" : "group-hover:text-orange-500"}`}>
                         {player.name}
                     </h3>
 
@@ -122,7 +122,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
             </div>
 
             {/* Accent Line */}
-            <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#d4ff00] transition-all duration-500 group-hover:w-full z-20" />
+            <div className={`absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full z-20 ${isTop5 ? "bg-[#d4ff00]" : "bg-gradient-to-r from-orange-600 to-amber-500"}`} />
         </div>
     );
 

@@ -7,7 +7,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                     <div className="space-y-6">
                         <h3 className="text-2xl font-black italic tracking-tighter">
-                            THE<span className="text-badminton-yellow">COURT</span>
+                            THE<span className="text-orange-500">COURT</span>
                         </h3>
                         <p className="text-zinc-500 text-sm leading-relaxed max-w-sm">
                             「バドミントンのすべてが集まる場所」をミッションに掲げた、日本最大級のバドミントン専門プラットフォーム。
@@ -16,22 +16,22 @@ export default function Footer() {
                     </div>
 
                     <div className="space-y-6">
-                        <h4 className="text-xs font-black text-badminton-yellow uppercase tracking-[0.3em]">Contents</h4>
+                        <h4 className="text-xs font-black text-orange-500 uppercase tracking-[0.3em]">Contents</h4>
                         <div className="flex flex-col gap-4 text-xs font-black italic tracking-widest text-zinc-400">
-                            <Link href="/columns" className="hover:text-badminton-yellow transition-colors uppercase">COLUMNS</Link>
-                            <Link href="/circles" className="hover:text-badminton-yellow transition-colors uppercase">CIRCLES</Link>
-                            <Link href="/guide" className="hover:text-badminton-yellow transition-colors uppercase">BEGINNERS GUIDE</Link>
-                            <Link href="/players" className="hover:text-badminton-yellow transition-colors uppercase">PLAYERS</Link>
-                            <Link href="/#gear" className="hover:text-badminton-yellow transition-colors uppercase">GEAR HIGHLIGHT</Link>
+                            <Link href="/columns" className="hover:text-orange-500 transition-colors uppercase">COLUMNS</Link>
+                            <Link href="/circles" className="hover:text-orange-500 transition-colors uppercase">CIRCLES</Link>
+                            <Link href="/guide" className="hover:text-orange-500 transition-colors uppercase">BEGINNERS GUIDE</Link>
+                            <Link href="/players" className="hover:text-orange-500 transition-colors uppercase">PLAYERS</Link>
+                            <Link href="/#gear" className="hover:text-orange-500 transition-colors uppercase">GEAR HIGHLIGHT</Link>
                         </div>
                     </div>
 
                     <div className="space-y-6">
-                        <h4 className="text-xs font-black text-badminton-yellow uppercase tracking-[0.3em]">Contact</h4>
+                        <h4 className="text-xs font-black text-orange-500 uppercase tracking-[0.3em]">Contact</h4>
                         <p className="text-zinc-500 text-sm">
                             掲載に関するお問い合わせや、サークル情報の追加依頼はこちらから。
                         </p>
-                        <button className="bg-white/5 border border-white/10 px-8 py-4 rounded-xl font-black italic text-xs tracking-tighter uppercase hover:bg-badminton-yellow hover:text-badminton-green transition-all w-full text-center">
+                        <button className="bg-white/5 border border-white/10 px-8 py-4 rounded-xl font-black italic text-xs tracking-tighter uppercase hover:bg-gradient-to-r hover:from-orange-600 hover:to-amber-500 hover:text-white hover:border-transparent transition-all w-full text-center">
                             お問い合わせフォームを表示 &rarr;
                         </button>
                     </div>

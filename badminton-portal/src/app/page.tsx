@@ -37,23 +37,23 @@ export default function Home() {
   const latestColumn = columns[0];
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-[#d4ff00] selection:text-black">
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-orange-500 selection:text-black">
       <Header />
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#d4ff00]/5 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/5 rounded-full blur-[120px] animate-pulse" />
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-5xl mb-20">
-          <span className="inline-block px-4 py-1 bg-[#d4ff00]/10 border border-[#d4ff00]/20 text-[#d4ff00] text-[10px] font-black tracking-[0.3em] uppercase mb-8 rounded-full">
+          <span className="inline-block px-4 py-1 bg-gradient-to-r from-orange-600/10 to-amber-400/10 border border-orange-500/20 text-orange-400 text-[10px] font-black tracking-[0.3em] uppercase mb-8 rounded-full">
             Japan's Premium Badminton Hub
           </span>
           <h1 className="text-7xl md:text-9xl font-black italic tracking-tighter text-white mb-8 leading-[0.85] uppercase">
             WHERE EVERY<br />
-            <span className="text-[#d4ff00]">COURT MATTERS.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400">COURT MATTERS.</span>
           </h1>
           <p className="text-xl md:text-2xl font-medium tracking-tight text-zinc-400 max-w-3xl mx-auto leading-relaxed">
             バドミントンのすべてが集まる場所。
@@ -67,18 +67,18 @@ export default function Home() {
             { title: "PLAYERS", desc: "世界を戦う選手たちの詳細データ", link: "/players", icon: "👤", color: "bg-zinc-900" },
             { title: "COLUMN", desc: "専門家による技術・戦術解説", link: "/columns", icon: "✍️", color: "bg-zinc-900" },
             { title: "CIRCLES", desc: "地域の仲間と繋がる、サークル検索", link: "/circles", icon: "🏸", color: "bg-zinc-900" },
-            { title: "GUIDE", desc: "バドミントンを始める初心者の方へ", link: "/guide", icon: "✨", color: "bg-[#d4ff00]", text: "text-black" },
+            { title: "GUIDE", desc: "バドミントンを始める初心者の方へ", link: "/guide", icon: "✨", color: "bg-gradient-to-r from-orange-600 to-amber-500 border-none", text: "text-white" },
           ].map((item, idx) => (
             <Link
               key={idx}
               href={item.link}
-              className={`${item.color} ${item.text || "text-white"} p-8 rounded-[32px] border border-white/5 hover:border-[#d4ff00]/50 transition-all group relative overflow-hidden flex flex-col justify-between h-64 shadow-2xl`}
+              className={`${item.color} ${item.text || "text-white"} p-8 rounded-[32px] border border-white/5 hover:border-orange-500/50 transition-all group relative overflow-hidden flex flex-col justify-between h-64 shadow-2xl`}
             >
               <div className="absolute -right-4 -bottom-4 text-9xl opacity-[0.03] italic font-black grayscale">{item.title}</div>
               <div className="text-4xl mb-4">{item.icon}</div>
               <div>
                 <h3 className="text-2xl font-black italic tracking-tighter mb-2 group-hover:translate-x-1 transition-transform">{item.title}</h3>
-                <p className={`${item.text ? "opacity-80" : "text-zinc-500"} text-xs font-bold leading-relaxed`}>{item.desc}</p>
+                <p className={`${item.text ? "opacity-90" : "text-zinc-500"} text-xs font-bold leading-relaxed`}>{item.desc}</p>
               </div>
               <div className="mt-6 flex items-center gap-2 text-[10px] font-black tracking-widest uppercase">
                 Explore Now <span className="group-hover:translate-x-2 transition-transform">&rarr;</span>
@@ -100,10 +100,12 @@ export default function Home() {
         <section id="players">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <span className="text-[#d4ff00] text-xs font-black tracking-widest uppercase mb-2 block">Premium Selection</span>
-              <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase">FEATURED PLAYERS</h2>
+              <span className="text-orange-500 text-xs font-black tracking-widest uppercase mb-2 block">Premium Selection</span>
+              <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter">
+                注目の選手たち <span className="text-lg md:text-2xl tracking-widest text-zinc-500 block mt-1 uppercase">FEATURED PLAYERS</span>
+              </h2>
             </div>
-            <Link href="/players" className="group flex items-center gap-3 text-zinc-500 hover:text-[#d4ff00] transition-colors">
+            <Link href="/players" className="group flex items-center gap-3 text-zinc-500 hover:text-orange-500 transition-colors">
               <span className="text-xs font-black tracking-widest uppercase italic">Show All Players</span>
               <span>&rarr;</span>
             </Link>
@@ -126,8 +128,10 @@ export default function Home() {
         {latestColumn && (
           <section id="column">
             <div className="flex flex-col mb-12">
-              <span className="text-[#d4ff00] text-xs font-black tracking-[0.3em] uppercase mb-2 block">Deep Analysis</span>
-              <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase">RECENT COLUMN</h2>
+              <span className="text-orange-500 text-xs font-black tracking-[0.3em] uppercase mb-2 block">Deep Analysis</span>
+              <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter">
+                最新分析コラム <span className="text-lg md:text-2xl tracking-widest text-zinc-500 block mt-1 uppercase">RECENT COLUMN</span>
+              </h2>
             </div>
 
             <Link
@@ -142,12 +146,12 @@ export default function Home() {
               <div className="absolute inset-0 flex items-center p-12 md:p-20 z-20">
                 <div className="max-w-2xl space-y-6">
                   <div className="flex items-center gap-4">
-                    <span className="px-3 py-1 bg-[#d4ff00] text-black text-[10px] font-black rounded uppercase italic">
+                    <span className="px-3 py-1 bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none text-[10px] font-black rounded uppercase italic">
                       {latestColumn.category}
                     </span>
                     <span className="text-xs font-black text-zinc-500 tracking-widest">{latestColumn.date}</span>
                   </div>
-                  <h3 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none group-hover:text-[#d4ff00] transition-colors uppercase">
+                  <h3 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none group-hover:text-orange-500 transition-colors uppercase">
                     {latestColumn.title}
                   </h3>
                   <p className="text-zinc-400 text-lg font-medium line-clamp-2 md:line-clamp-3">
@@ -155,7 +159,7 @@ export default function Home() {
                   </p>
                   <div className="pt-4 flex items-center gap-4">
                     <span className="text-xs font-black tracking-widest uppercase italic group-hover:translate-x-2 transition-transform flex items-center gap-3">
-                      Read Full Analysis <span className="text-[#d4ff00] text-xl">&rarr;</span>
+                      Read Full Analysis <span className="text-orange-500 text-xl">&rarr;</span>
                     </span>
                   </div>
                 </div>
@@ -178,10 +182,10 @@ export default function Home() {
 
             <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-16 flex flex-col md:flex-row items-center justify-between gap-12">
               <div className="flex flex-col gap-4 text-center md:text-left">
-                <span className="text-[#d4ff00] text-xs font-black tracking-[0.4em] uppercase block">Join the Game</span>
-                <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter leading-none uppercase">
-                  FIND YOUR<br />
-                  <span className="text-zinc-600 group-hover:text-white transition-colors duration-500">COMMUNITY.</span>
+                <span className="text-orange-500 text-xs font-black tracking-[0.4em] uppercase block">Join the Game</span>
+                <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter leading-none">
+                  コミュニティを探す<br />
+                  <span className="text-lg md:text-2xl tracking-widest text-orange-500 block mt-3 uppercase group-hover:text-amber-400 transition-colors duration-500">FIND YOUR COMMUNITY.</span>
                 </h2>
                 <p className="text-zinc-400 text-lg font-medium tracking-tight">
                   あなたの街のバドミントンコミュニティを探す。
@@ -200,7 +204,7 @@ export default function Home() {
                   <span className="hidden lg:block text-zinc-500 text-xs font-black uppercase tracking-widest text-right">
                     100+ Clubs<br />Nationwide
                   </span>
-                  <div className="bg-[#d4ff00] text-black w-20 h-20 rounded-full flex items-center justify-center text-3xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-[0_0_30px_rgba(212,255,0,0.3)]">
+                  <div className="bg-gradient-to-r from-orange-600 to-amber-500 text-white w-20 h-20 rounded-full flex items-center justify-center text-3xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-[0_0_30px_rgba(234,88,12,0.3)]">
                     &rarr;
                   </div>
                 </div>
@@ -224,22 +228,22 @@ export default function Home() {
             </div>
 
             <div className="relative bg-zinc-900/50 rounded-[40px] p-8 md:p-12 overflow-hidden group border border-white/5 backdrop-blur-sm h-full flex flex-col justify-center">
-              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#d4ff00]/10 rounded-full blur-[100px] -mr-[150px] -mt-[150px] opacity-50 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-orange-500/10 rounded-full blur-[100px] -mr-[150px] -mt-[150px] opacity-50 group-hover:opacity-100 transition-opacity" />
 
               <div className="relative z-10 space-y-8">
-                <span className="inline-block px-4 py-1.5 bg-[#d4ff00] text-black text-[10px] font-black rounded-full uppercase tracking-widest">
+                <span className="inline-block px-4 py-1.5 bg-gradient-to-r from-orange-600 to-amber-500 text-white text-[10px] font-black rounded-full uppercase tracking-widest border-none">
                   Performance Gear
                 </span>
-                <h2 className="text-5xl font-black italic tracking-tighter leading-[0.9] uppercase">
-                  MASTER YOUR<br />
-                  <span className="text-[#d4ff00]">CRAFT.</span>
+                <h2 className="text-5xl font-black italic tracking-tighter leading-[0.9]">
+                  至高のギア<br />
+                  <span className="text-lg md:text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-3 uppercase">MASTER YOUR CRAFT.</span>
                 </h2>
                 <p className="text-zinc-400 text-lg leading-relaxed font-medium max-w-md">
                   プロが選ぶ、勝利のための最先端ギア。
                   統計データに基づいた最適な一本を提案。
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <button className="bg-[#d4ff00] text-black font-black italic px-8 py-4 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(212,255,0,0.3)] text-xs uppercase tracking-widest">
+                  <button className="bg-gradient-to-r from-orange-600 to-amber-500 text-white font-black italic px-8 py-4 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(234,88,12,0.3)] text-xs uppercase tracking-widest">
                     Browse Store &rarr;
                   </button>
                   <button className="bg-white/5 text-white border border-white/10 font-bold italic px-8 py-4 rounded-2xl hover:bg-white/10 transition-all text-xs uppercase tracking-widest">
@@ -261,7 +265,13 @@ export default function Home() {
           <div className="flex -space-x-4">
             {selectedPlayers.map(p => (
               <div key={p.id} className="w-12 h-12 rounded-full border-2 border-black overflow-hidden relative">
-                <Image src={p.image} alt={p.name} fill className="object-cover" />
+                {p.image ? (
+                  <Image src={p.image} alt={p.name} fill className="object-cover" />
+                ) : (
+                  <div className="w-full h-full bg-zinc-800 flex items-center justify-center font-black text-xs text-zinc-500">
+                    {p.name.charAt(0)}
+                  </div>
+                )}
               </div>
             ))}
             {selectedPlayers.length === 1 && (
@@ -278,7 +288,7 @@ export default function Home() {
             {selectedPlayers.length === 2 ? (
               <button
                 onClick={() => { }} // Actual Modal handled below
-                className="bg-[#d4ff00] text-black px-6 py-2 rounded-full text-xs font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-[0_5px_15px_rgba(212,255,0,0.3)]"
+                className="bg-gradient-to-r from-orange-600 to-amber-500 text-white px-6 py-2 rounded-full text-xs font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-[0_5px_15px_rgba(234,88,12,0.3)] border-none"
               >
                 Compare Now
               </button>
