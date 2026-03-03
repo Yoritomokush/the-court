@@ -97,6 +97,17 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
                         {player.name}
                     </h3>
 
+                    {/* Tags Section */}
+                    {player.tags && player.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-2">
+                            {player.tags.map(tag => (
+                                <span key={tag} className="text-xs tracking-tighter bg-zinc-800/80 text-orange-400 border border-orange-500/30 rounded-full px-2 py-0.5 font-black whitespace-nowrap shadow-md">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+
                     <div className="flex items-end justify-between w-full mt-2">
                         <div className="flex flex-col">
                             <span className="text-zinc-400 text-[10px] font-black tracking-widest uppercase italic">World Rank</span>

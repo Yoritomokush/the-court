@@ -90,12 +90,24 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                     <span className="text-lg">{player.flag}</span> {player.country} Official Athlete
                                 </span>
                             </div>
-                            <h1 className="text-7xl md:text-[10rem] font-black italic tracking-tighter leading-[0.85] uppercase drop-shadow-2xl">
+                            <h1 className="text-7xl md:text-[10rem] font-black italic tracking-tighter leading-[0.85] uppercase drop-shadow-2xl mb-4">
                                 {player.name.includes(' ') ? player.name.split(' ')[0] : player.name}<br />
                                 {player.name.includes(' ') && (
                                     <span className="text-[#d4ff00]">{player.name.split(' ')[1]}</span>
                                 )}
                             </h1>
+
+                            {/* Tags Section */}
+                            {player.tags && player.tags.length > 0 && (
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    {player.tags.map(tag => (
+                                        <span key={tag} className="text-sm md:text-base bg-zinc-800/80 text-orange-400 border border-orange-500/30 rounded-full px-4 py-1.5 font-black whitespace-nowrap shadow-[0_0_15px_rgba(234,88,12,0.2)]">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+
                             <div className="flex flex-wrap items-center gap-8 pt-4">
                                 <div>
                                     <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Affiliation</p>

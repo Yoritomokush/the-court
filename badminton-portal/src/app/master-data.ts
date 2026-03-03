@@ -20,6 +20,7 @@ export interface Player {
     x?: string;
     youtube?: string;
   };
+  tags?: string[];
   tier?: string;
   partnerName?: string;
   youtubeId?: string;
@@ -88,7 +89,7 @@ export interface Column {
   id: string;
   title: string;
   date: string;
-  category: "TACTICS" | "HISTORY" | "LEGEND";
+  category: "TACTICS" | "HISTORY" | "LEGEND" | "全英OP特集";
   author: string;
   image?: string;
   excerpt: string;
@@ -159,6 +160,7 @@ export const players: Player[] = [
     youtubeId: "o6u-vF_Iswc",
     instagramPostId: "C8P9z9RS9M9",
     style: "Deceptive & Creative",
+    tags: ["変幻自在", "コートの魔術師"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 混合ダブルス",
@@ -203,6 +205,7 @@ export const players: Player[] = [
     sns: { instagram: "viktoraxelsen" },
     instagramPostUrl: "https://www.instagram.com/p/DBY_mIBy_5y/",
     style: "Dominant & Precise",
+    tags: ["絶対王者", "精密機械"],
     country: "Denmark",
     flag: "🇩🇰",
     category: "プロ / 男子シングルス",
@@ -230,6 +233,7 @@ export const players: Player[] = [
     sns: { instagram: "a_sy_2225" },
     instagramPostUrl: "https://www.instagram.com/p/C-P9pPyS9Y9/",
     style: "Wall-like Defense",
+    tags: ["無尽蔵のスタミナ", "新世代の女王"],
     country: "Korea",
     flag: "🇰🇷",
     category: "プロ / 女子シングルス",
@@ -256,6 +260,7 @@ export const players: Player[] = [
     sns: { instagram: "chenyufeiii" },
     instagramPostUrl: "https://www.instagram.com/p/C8P9z9RS9M9/",
     style: "Stable & Tactical",
+    tags: ["百戦錬磨の巧者", "中国の司令塔"],
     country: "China",
     flag: "🇨🇳",
     category: "プロ / 女子シングルス",
@@ -282,6 +287,7 @@ export const players: Player[] = [
     sns: { instagram: "liangwekang" },
     instagramPostUrl: "https://www.instagram.com/p/C-P9pPyS9X8/",
     style: "Ultra Power Rush",
+    tags: ["爆撃の連打", "若き中国のエース"],
     country: "China",
     flag: "🇨🇳",
     category: "プロ / 男子ダブルス",
@@ -308,6 +314,7 @@ export const players: Player[] = [
     sns: { instagram: "jeong_na_eun" },
     instagramPostUrl: "https://www.instagram.com/p/C-A9Rtyy9X8/",
     style: "Persistent Rally",
+    tags: ["粘りの女帝", "鉄の結束"],
     country: "Korea",
     flag: "🇰🇷",
     category: "プロ / 女子ダブルス",
@@ -334,6 +341,7 @@ export const players: Player[] = [
     sns: { instagram: "popor_sapsiree" },
     instagramPostUrl: "https://www.instagram.com/p/C_W4WzYS8z-/",
     style: "Speed & Fluidity",
+    tags: ["閃光の連携", "タイの至宝"],
     country: "Thailand",
     flag: "🇹🇭",
     category: "プロ / 混合ダブルス",
@@ -360,6 +368,7 @@ export const players: Player[] = [
     sns: { instagram: "sinisukanthony" },
     instagramPostUrl: "https://www.instagram.com/p/C-P9pPyS8Y9/",
     style: "God-speed & Aggressive",
+    tags: ["神速の攻撃", "インドネシアの至宝"],
     country: "Indonesia",
     flag: "🇮🇩",
     category: "プロ / 男子シングルス",
@@ -386,6 +395,7 @@ export const players: Player[] = [
     sns: { instagram: "taitzuying" },
     instagramPostUrl: "https://www.instagram.com/p/C7X9z9RS9S9/",
     style: "Deceptive & Artistic",
+    tags: ["コートの魔術師", "台湾の至宝"],
     country: "Taiwan",
     flag: "🇹🇼",
     category: "プロ / 女子シングルス",
@@ -413,6 +423,7 @@ export const players: Player[] = [
       instagram: "kodai_.naraoka"
     },
     style: "Endless Rally",
+    tags: ["粘りの鉄壁", "新時代の守護神"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 男子シングルス",
@@ -459,6 +470,7 @@ export const players: Player[] = [
       x: "akane71066"
     },
     style: "Dynamic & Persistent",
+    tags: ["小さな巨人", "絶対的エース"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 女子シングルス",
@@ -505,6 +517,7 @@ export const players: Player[] = [
       youtube: "UC6u-vF_Iswc"
     },
     style: "Tactical & Defensive",
+    tags: ["不屈の天才", "ヘアピンマスター"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 男子シングルス",
@@ -549,6 +562,7 @@ export const players: Player[] = [
       instagram: "tomoka_miyazaki_"
     },
     style: "Aggressive & Technical",
+    tags: ["次世代のヒロイン", "天性のラケットワーク"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 女子シングルス",
@@ -589,6 +603,7 @@ export const players: Player[] = [
       { year: "2021", event: "フランスオープン", result: "優勝" }
     ],
     style: "Solid & Balanced",
+    tags: ["玄人好みの技巧派", "鉄壁のトナミ"],
     country: "Japan",
     flag: "🇯🇵",
     category: "実業団 / 男子シングルス",
@@ -629,6 +644,7 @@ export const players: Player[] = [
       { year: "2023", event: "インカレ", result: "ベスト4" }
     ],
     style: "Offensive Power",
+    tags: ["ライジングスター", "稲妻のスマッシュ"],
     country: "Japan",
     flag: "🇯🇵",
     category: "NEXT GEN / 男子シングルス",
@@ -677,6 +693,7 @@ export const players: Player[] = [
     youtubeId: "W1T0h8c1v9U",
     instagramPostId: "C_W4WzYS8z-",
     style: "Speed & Artistic",
+    tags: ["コートの妖精", "電光石火"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 女子ダブルス",
@@ -722,6 +739,7 @@ export const players: Player[] = [
     },
     partnerName: "志田 千陽",
     style: "Aggressive & Balanced",
+    tags: ["シダマツ", "超高速ドライブ"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 女子ダブルス",
@@ -767,6 +785,7 @@ export const players: Player[] = [
     },
     partnerName: "小林 優吾",
     style: "Power & Control",
+    tags: ["閃光のドライブ", "トナミのエース"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 男子ダブルス",
@@ -811,6 +830,7 @@ export const players: Player[] = [
     },
     partnerName: "保木 卓朗",
     style: "Extreme Smash",
+    tags: ["破壊の豪腕", "情熱のダイナモ"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 男子ダブルス",
@@ -856,6 +876,7 @@ export const players: Player[] = [
       x: "n_kenta0830"
     },
     style: "Relentless Persistence",
+    tags: ["魂のスマッシュ", "不屈の精神"],
     country: "Japan",
     flag: "🇯🇵",
     category: "実業団 / 男子シングルス",
@@ -900,6 +921,7 @@ export const players: Player[] = [
       instagram: "ayatoriiiii"
     },
     style: "Elegant Left-Hander",
+    tags: ["クール・ビューティー", "華麗なるサウスポー"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 女子シングルス",
@@ -947,6 +969,7 @@ export const players: Player[] = [
       youtube: "UC6u-vF_Iswc"
     },
     style: "Mobile Wall",
+    tags: ["不動の精神", "無敵のステップ"],
     country: "Japan",
     flag: "🇯🇵",
     category: "実業団 / 女子シングルス",
@@ -993,6 +1016,7 @@ export const players: Player[] = [
     },
     partnerName: "渡辺 勇大",
     style: "Jumping Smash & Reflex",
+    tags: ["跳躍の豪腕", "超反応の狩人"],
     country: "Japan",
     flag: "🇯🇵",
     category: "国内代表 / 混合ダブルス",
@@ -1038,6 +1062,7 @@ export const players: Player[] = [
     },
     partnerName: "廣田 彩花",
     style: "Solid Iron Wall",
+    tags: ["絶対防壁", "頼れる大黒柱"],
     country: "Japan",
     flag: "🇯🇵",
     category: "実業団 / 女子ダブルス",
@@ -1078,6 +1103,7 @@ export const players: Player[] = [
       { year: "2023", event: "世界ジュニア選手権", result: "ベスト8" }
     ],
     style: "Balanced Tech",
+    tags: ["次世代の旗手", "天才の系譜"],
     country: "Japan",
     flag: "🇯🇵",
     category: "NEXT GEN / 男子シングルス",
@@ -1118,6 +1144,7 @@ export const players: Player[] = [
       { year: "2023", event: "全日本総合選手権", result: "準優勝" }
     ],
     style: "Smart Aggression",
+    tags: ["新風の若武者", "変幻の頭脳"],
     country: "Japan",
     flag: "🇯🇵",
     category: "NEXT GEN / 男子シングルス",
@@ -1160,6 +1187,7 @@ export const players: Player[] = [
       { year: "2019", event: "全英オープン", result: "準優勝" }
     ],
     style: "God-like Reflexes",
+    tags: ["煽る天才", "神殺しの前衛"],
     country: "Indonesia",
     flag: "🇮🇩",
     category: "プロ / 男子ダブルス",
@@ -1275,6 +1303,15 @@ export const columns: Column[] = [
 この「感覚ファースト」の教育が、後にヘンドラ・セティアワンのような「コートの囲碁師」や、渡辺勇大選手も憧れたという変幻自在なプレーを生み出している。バドミントンは計算ではなく、表現なのだ。彼らのプレーがこれほどまでに観客を魅了するのは、それが単なるスポーツの枠を超えた「芸術」だからに他ならない。
     `,
   },
+  {
+    id: "all-england-2026-vol1",
+    title: "【全英OP特集 Vol.1】100年を超える歴史と伝統。バドミントン界の「聖地」を知る",
+    date: "2026.03.03",
+    category: "全英OP特集",
+    author: "THE COURT Editorial Team",
+    excerpt: "今週から4週にわたり、この格式高き大会の魅力と、2026年大会の熱狂をお届けします。",
+    content: "バドミントン競技において、世界選手権やオリンピックと同等、あるいはそれ以上の権威を持つと言われるのが「全英オープン（YONEX All England Open Badminton Championships）」です。1899年に第1回大会が開催されて以来、100年以上の歴史を誇るこの大会は、まさにバドミントン界の「聖地」。BWFワールドツアー最高峰のSuper 1000に位置づけられ、選ばれしトッププレイヤーのみがそのグレーとグリーンの伝統的なコートに立つことを許されます。今週から4週にわたり、この格式高き大会の魅力と、2026年大会の熱狂をお届けします。",
+  }
 ];
 
 export const news: News[] = [

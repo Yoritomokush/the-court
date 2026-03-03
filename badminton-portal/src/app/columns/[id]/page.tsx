@@ -94,10 +94,11 @@ export default function ColumnDetailPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                     <div className="lg:col-span-8">
                         <div className="prose prose-invert max-w-none 
-              prose-h2:text-4xl prose-h2:font-black prose-h2:italic prose-h2:tracking-tighter prose-h2:text-[#d4ff00] prose-h2:mt-20 prose-h2:mb-10 prose-h2:uppercase
+              prose-h2:text-4xl prose-h2:font-black prose-h2:italic prose-h2:tracking-tighter prose-h2:text-white prose-h2:mt-20 prose-h2:mb-10 prose-h2:uppercase prose-h2:border-l-8 prose-h2:border-[#d4ff00] prose-h2:pl-6
+              prose-h3:text-2xl prose-h3:font-black prose-h3:italic prose-h3:tracking-tighter prose-h3:text-white prose-h3:mt-12 prose-h3:mb-6 prose-h3:uppercase prose-h3:border-l-4 prose-h3:border-orange-500 prose-h3:pl-4
               prose-p:text-zinc-300 prose-p:text-xl prose-p:leading-relaxed prose-p:mb-10 prose-p:font-medium
-              prose-strong:text-white prose-strong:font-black
-              prose-blockquote:border-l-4 prose-blockquote:border-[#d4ff00] prose-blockquote:pl-8 prose-blockquote:italic prose-blockquote:text-2xl prose-blockquote:text-white prose-blockquote:my-16
+              prose-strong:text-transparent prose-strong:bg-clip-text prose-strong:bg-gradient-to-r prose-strong:from-orange-500 prose-strong:to-amber-400 prose-strong:font-black
+              prose-blockquote:border-l-[6px] prose-blockquote:border-orange-500 prose-blockquote:bg-zinc-900/80 prose-blockquote:p-8 prose-blockquote:rounded-r-2xl prose-blockquote:italic prose-blockquote:text-2xl prose-blockquote:text-white prose-blockquote:my-16 prose-blockquote:shadow-lg
             ">
                             <div className="whitespace-pre-wrap leading-[1.8]">
                                 {column.content}

@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   },
 };
 
+import LiveTicker from "@/components/LiveTicker";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,6 +46,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <LiveTicker />
         {children}
       </body>
     </html>

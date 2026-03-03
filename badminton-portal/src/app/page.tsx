@@ -136,30 +136,51 @@ export default function Home() {
 
             <Link
               href={`/columns/${latestColumn.id}`}
-              className="group relative block aspect-[21/9] rounded-[40px] overflow-hidden border border-white/5 shadow-2xl"
+              className={`group relative block aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl transition-all duration-300 ${latestColumn.category === "全英OP特集" ? "border-[3px] border-yellow-600 hover:border-yellow-400" : "border border-white/5"
+                }`}
             >
-              <div className="absolute inset-0 bg-zinc-900 flex items-center justify-center">
-                <span className="text-zinc-800 font-black italic text-[12vw] opacity-10 uppercase tracking-tighter leading-none">ANALYSIS</span>
-              </div>
+              {latestColumn.category === "全英OP特集" ? (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 to-green-800 z-0 flex items-center justify-center overflow-hidden">
+                    <span className="text-[12vw] font-black italic opacity-5 text-white whitespace-nowrap select-none tracking-tighter mix-blend-overlay">ALL ENGLAND</span>
+                  </div>
+                  <div className="absolute top-8 right-8 z-30">
+                    <span className="px-4 py-2 bg-gradient-to-r from-yellow-600 to-yellow-400 text-black border-none text-xs font-black rounded uppercase italic shadow-lg">
+                      SPECIAL FEATURE
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <div className="absolute inset-0 bg-zinc-900 flex items-center justify-center z-0">
+                  <span className="text-zinc-800 font-black italic text-[12vw] opacity-10 uppercase tracking-tighter leading-none">ANALYSIS</span>
+                </div>
+              )}
+
               <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent z-10" />
 
               <div className="absolute inset-0 flex items-center p-12 md:p-20 z-20">
                 <div className="max-w-2xl space-y-6">
                   <div className="flex items-center gap-4">
-                    <span className="px-3 py-1 bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none text-[10px] font-black rounded uppercase italic">
+                    <span className={`px-3 py-1 text-white border-none text-[10px] font-black rounded uppercase italic ${latestColumn.category === "全英OP特集" ? "bg-gradient-to-r from-emerald-600 to-green-500" : "bg-gradient-to-r from-orange-600 to-amber-500"
+                      }`}>
                       {latestColumn.category}
                     </span>
-                    <span className="text-xs font-black text-zinc-500 tracking-widest">{latestColumn.date}</span>
+                    <span className={`text-xs font-black tracking-widest ${latestColumn.category === "全英OP特集" ? "text-green-300" : "text-zinc-500"
+                      }`}>{latestColumn.date}</span>
                   </div>
-                  <h3 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none group-hover:text-orange-500 transition-colors uppercase">
+                  <h3 className={`text-4xl md:text-6xl font-black italic tracking-tighter leading-none transition-colors uppercase ${latestColumn.category === "全英OP特集" ? "group-hover:text-yellow-500" : "group-hover:text-orange-500"
+                    }`}>
                     {latestColumn.title}
                   </h3>
-                  <p className="text-zinc-400 text-lg font-medium line-clamp-2 md:line-clamp-3">
+                  <p className={`text-lg font-medium line-clamp-2 md:line-clamp-3 ${latestColumn.category === "全英OP特集" ? "text-green-100/80" : "text-zinc-400"
+                    }`}>
                     {latestColumn.excerpt}
                   </p>
                   <div className="pt-4 flex items-center gap-4">
-                    <span className="text-xs font-black tracking-widest uppercase italic group-hover:translate-x-2 transition-transform flex items-center gap-3">
-                      Read Full Analysis <span className="text-orange-500 text-xl">&rarr;</span>
+                    <span className={`text-xs font-black tracking-widest uppercase italic group-hover:translate-x-2 transition-transform flex items-center gap-3 ${latestColumn.category === "全英OP特集" ? "text-white" : ""
+                      }`}>
+                      Read Full Analysis <span className={`text-xl ${latestColumn.category === "全英OP特集" ? "text-yellow-500" : "text-orange-500"
+                        }`}>&rarr;</span>
                     </span>
                   </div>
                 </div>
