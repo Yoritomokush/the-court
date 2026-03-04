@@ -73,7 +73,8 @@ export default function VideoGallery() {
                             <iframe
                                 className="w-full h-full"
                                 // using standard youtube embed for shorts format
-                                src={`https://www.youtube.com/embed/${selectedVideo.embedId}?autoplay=1&loop=1&playlist=${selectedVideo.embedId}`}
+                                // Added origin parameter for Vercel deployment stability
+                                src={`https://www.youtube.com/embed/${selectedVideo.embedId}?autoplay=1&loop=1&playlist=${selectedVideo.embedId}&origin=https://the-court-eight.vercel.app`}
                                 title={selectedVideo.title}
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -82,7 +83,8 @@ export default function VideoGallery() {
                         ) : (
                             <iframe
                                 className="w-full h-full"
-                                src={`https://clips.twitch.tv/embed?clip=${selectedVideo.embedId}&parent=${window.location.hostname}&autoplay=true`}
+                                // Hardcoding parent to Vercel domain for production as well as localhost for local testing
+                                src={`https://clips.twitch.tv/embed?clip=${selectedVideo.embedId}&parent=the-court-eight.vercel.app&parent=localhost&autoplay=true`}
                                 title={selectedVideo.title}
                                 frameBorder="0"
                                 allowFullScreen

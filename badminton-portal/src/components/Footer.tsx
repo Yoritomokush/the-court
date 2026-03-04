@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Youtube, Twitch, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -34,17 +34,12 @@ export default function Footer() {
                     <div className="space-y-6 md:col-span-1">
                         <h4 className="text-[10px] font-black text-orange-500 uppercase tracking-widest">Connect</h4>
                         <div className="flex flex-col gap-4">
-                            <a href="https://youtube.com/@yoritomokush" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 w-fit">
-                                <div className="p-2 border border-zinc-800 rounded-full group-hover:border-orange-500 group-hover:bg-orange-500/10 transition-colors">
-                                    <Youtube className="w-4 h-4 text-zinc-500 group-hover:text-orange-500 transition-colors" />
+                            <a href="https://x.com/yoritomo05" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 w-fit">
+                                <div className="p-2 border border-zinc-800 rounded-full group-hover:border-white group-hover:bg-white transition-colors flex items-center justify-center">
+                                    {/* X Logo SVG */}
+                                    <svg className="w-4 h-4 fill-zinc-500 group-hover:fill-black transition-colors" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
                                 </div>
-                                <span className="text-sm font-black italic text-zinc-500 group-hover:text-white transition-colors">@yoritomokush</span>
-                            </a>
-                            <a href="https://twitch.tv/yoritomokush" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 w-fit">
-                                <div className="p-2 border border-zinc-800 rounded-full group-hover:border-purple-500 group-hover:bg-purple-500/10 transition-colors">
-                                    <Twitch className="w-4 h-4 text-zinc-500 group-hover:text-purple-500 transition-colors" />
-                                </div>
-                                <span className="text-sm font-black italic text-zinc-500 group-hover:text-white transition-colors">yoritomokush</span>
+                                <span className="text-sm font-black italic text-zinc-500 group-hover:text-white transition-colors">@yoritomo05</span>
                             </a>
                         </div>
                     </div>

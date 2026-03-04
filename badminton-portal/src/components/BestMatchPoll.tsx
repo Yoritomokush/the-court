@@ -91,8 +91,8 @@ export default function BestMatchPoll() {
             : `【全英オープン2026】私のベストマッチは「${match.player1.name} VS ${match.player2.name}」！🔥 リアルタイム結果をチェック 🏸 @yoritomo05`;
 
         const hashtags = "全英オープン,THECOURT,バドミントン";
-        // Replace with the actual URL when deploying
-        const url = "https://the-court.example.com";
+        // Use the live production URL
+        const url = "https://the-court-eight.vercel.app/";
 
         return `https://twitter.com/intent/tweet?text=${encodeURIComponent(customText)}&hashtags=${encodeURIComponent(hashtags)}&url=${encodeURIComponent(url)}`;
     };

@@ -132,9 +132,9 @@ export default function NewsDetailPage() {
                             <h3 className="text-xl font-black italic mb-2">Want more updates?</h3>
                             <p className="text-zinc-500 text-sm font-medium">Follow us on official channels for real-time alerts.</p>
                         </div>
-                        <button className="bg-[#d4ff00] text-black px-8 py-3 rounded-full text-xs font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-[0_5px_15px_rgba(212,255,0,0.3)]">
-                            Follow @TheCourt
-                        </button>
+                        <a href="https://x.com/yoritomo05" target="_blank" rel="noopener noreferrer" className="bg-[#d4ff00] text-black px-8 py-3 rounded-full text-xs font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-[0_5px_15px_rgba(212,255,0,0.3)] inline-block text-center">
+                            Follow @yoritomo05
+                        </a>
                     </div>
                 </div>
             </main>

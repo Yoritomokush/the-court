@@ -1510,14 +1510,14 @@ export const allEnglandHighlights: VideoClip[] = [
     id: "clip-1",
     title: "渡邉航貴 変幻自在のレシーブ",
     platform: "youtube",
-    embedId: "dummy-youtube-1", // Will use a placeholder or actual shorts ID
+    embedId: "Qp4x9n2r-zM", // Generic short ID placeholder format
     thumbnailUrl: "https://images.unsplash.com/photo-1622359556847-160a221f736f?q=80&w=400&h=600&fit=crop",
   },
   {
     id: "clip-2",
     title: "スーパーラリー！保木小林ペア",
     platform: "twitch",
-    embedId: "BeautifulMagnificentAlpacaPeanutButterBelly", // Twitch clip ID format
+    embedId: "AmazingBrightDragonfruitBCWarrior", // generic twitch clip id
     thumbnailUrl: "https://images.unsplash.com/photo-1606812161109-17cefe6fba4c?q=80&w=400&h=600&fit=crop",
   },
   {
