@@ -97,6 +97,19 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                 )}
                             </h1>
 
+                            {/* All England Draw Badge (Hardcoded for demo players) */}
+                            {["yuta-watanabe", "viktor-axelsen", "an-se-young", "akane-yamaguchi"].includes(player.id) && (
+                                <div className="mb-6 inline-flex animate-in fade-in slide-in-from-left-4 duration-700">
+                                    <Link href="/schedule" className="group/badge relative inline-flex items-center gap-3 px-4 py-2 bg-emerald-900/40 rounded-full border border-emerald-500/30 overflow-hidden hover:border-emerald-500 transition-colors">
+                                        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(16,185,129,0.1)_10px,rgba(16,185,129,0.1)_20px)] mix-blend-overlay group-hover/badge:opacity-50 transition-opacity" />
+                                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse relative z-10" />
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-100 relative z-10">
+                                            All England Draw <span className="opacity-0 group-hover/badge:opacity-100 transition-opacity inline-block translate-x-[-10px] group-hover/badge:translate-x-0 ml-1">&rarr;</span>
+                                        </span>
+                                    </Link>
+                                </div>
+                            )}
+
                             {/* Tags Section */}
                             {player.tags && player.tags.length > 0 && (
                                 <div className="flex flex-wrap gap-2 mb-4">
@@ -297,9 +310,10 @@ export default function PlayerPage({ params }: { params: Promise<{ id: string }>
                                             <Link
                                                 href={player.gear.racket.link}
                                                 target="_blank"
-                                                className="inline-block w-full py-3 bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none text-center text-[10px] font-black uppercase tracking-widest rounded-lg transition-colors shadow-[0_0_15px_rgba(234,88,12,0.3)] hover:shadow-[0_0_20px_rgba(234,88,12,0.5)]"
+                                                className="inline-block w-full py-4 bg-gradient-to-r from-orange-600 to-amber-500 text-white border-none text-center text-xs font-black uppercase tracking-[0.2em] rounded-xl transition-all shadow-[0_0_15px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)] hover:scale-[1.02] flex items-center justify-center gap-2"
                                             >
-                                                View on Amazon
+                                                <span>Check out on Amazon</span>
+                                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.218 19l-1.782-1.75 5.25-5.25-5.25-5.25 1.782-1.75 6.968 7-6.968 7z" /></svg>
                                             </Link>
 
                                             {/* Same Racket Users */}

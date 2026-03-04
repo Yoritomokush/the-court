@@ -5,11 +5,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { tournaments, Tournament } from "@/app/master-data";
 import EventCard from "@/components/EventCard";
+import Scoreboard from "@/components/Scoreboard";
 
 const CATEGORIES = ["ALL", "BWF", "DOMESTIC"];
 
 export default function SchedulePage() {
     const [selectedCategory, setSelectedCategory] = useState("ALL");
+    const [expandedTournamentId, setExpandedTournamentId] = useState<string | null>(null);
 
     const filteredTournaments = tournaments.filter((tournament) => {
         if (selectedCategory === "ALL") return true;
@@ -86,7 +88,37 @@ export default function SchedulePage() {
                                         <div className={`absolute -left-16 md:-left-28 top-8 w-4 h-4 rounded-full border-4 border-black z-20 ${tournament.status === "Upcoming" ? "bg-[#d4ff00] shadow-[0_0_15px_rgba(212,255,0,0.8)]" : "bg-zinc-600"
                                             }`} />
 
-                                        <EventCard tournament={tournament} />
+                                        <div
+                                            className="cursor-pointer"
+                                            onClick={() => {
+                                                if (tournament.id === "all-england-2026") {
+                                                    setExpandedTournamentId(expandedTournamentId === tournament.id ? null : tournament.id);
+                                                }
+                                            }}
+                                        >
+                                            <EventCard tournament={tournament} />
+                                        </div>
+
+                                        {/* Expanded Scoreboard for All England */}
+                                        {tournament.id === "all-england-2026" && expandedTournamentId === tournament.id && (
+                                            <div className="mt-8 animate-in slide-in-from-top-4 fade-in duration-500 overflow-hidden">
+                                                <div className="mb-4 text-orange-500 text-xs font-black tracking-widest uppercase flex items-center gap-2">
+                                                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                                                    Live Results Detail
+                                                </div>
+                                                <Scoreboard />
+                                            </div>
+                                        )}
+
+                                        {/* Expand hint */}
+                                        {tournament.id === "all-england-2026" && expandedTournamentId !== tournament.id && (
+                                            <button
+                                                className="mt-4 text-xs font-black text-zinc-500 tracking-widest uppercase hover:text-white transition-colors"
+                                                onClick={() => setExpandedTournamentId(tournament.id)}
+                                            >
+                                                View Live Results &darr;
+                                            </button>
+                                        )}
                                     </div>
                                 ))
                             ) : (

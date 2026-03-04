@@ -26,6 +26,7 @@ export interface Player {
   youtubeId?: string;
   instagramPostId?: string;
   instagramPostUrl?: string; // New: Full Instagram URL for embedding
+  racketId?: string; // New: Direct link to Gear ID
   stats: {
     power: number;
     speed: number;
@@ -66,6 +67,14 @@ export interface MatchResult {
   opponent: string;
   score: string;
   isWin: boolean;
+}
+
+export interface LiveMatchResult {
+  id: string;
+  category: string;
+  player1: { name: string; isWin: boolean; sets: number };
+  player2: { name: string; isWin: boolean; sets: number };
+  scores: string[];
 }
 
 export interface RankingEntry {
@@ -136,6 +145,37 @@ export const AFFILIATE_ID = "yoritomo04-22";
 export const getAmazonLink = (query: string): string => {
   return `https://www.amazon.co.jp/s?k=${encodeURIComponent(query)}&tag=${AFFILIATE_ID}`;
 };
+
+export const allEnglandResults: LiveMatchResult[] = [
+  {
+    id: "ae-2026-m1",
+    category: "MS",
+    player1: { name: "渡邉 航貴", isWin: true, sets: 2 },
+    player2: { name: "A.アントンセン", isWin: false, sets: 0 },
+    scores: ["21-8", "21-12"]
+  },
+  {
+    id: "ae-2026-m2",
+    category: "MS",
+    player1: { name: "西本 拳太", isWin: false, sets: 1 },
+    player2: { name: "レオン・ジュンハオ", isWin: true, sets: 2 },
+    scores: ["17-21", "21-13", "18-21"]
+  },
+  {
+    id: "ae-2026-m3",
+    category: "MD",
+    player1: { name: "保木/小林", isWin: true, sets: 2 },
+    player2: { name: "陳/林", isWin: false, sets: 0 },
+    scores: ["21-12", "21-14"]
+  },
+  {
+    id: "ae-2026-m4",
+    category: "WS",
+    player1: { name: "山口 茜", isWin: true, sets: 2 },
+    player2: { name: "宋碩芸", isWin: false, sets: 0 },
+    scores: ["21-18", "21-10"]
+  }
+];
 
 export const players: Player[] = [
   {
@@ -210,6 +250,7 @@ export const players: Player[] = [
     flag: "🇩🇰",
     category: "プロ / 男子シングルス",
     tier: "S",
+    racketId: "astrox-100zz",
     stats: { power: 100, speed: 88, technique: 95, stamina: 92, mentality: 96, defense: 90 },
     gear: {
       racket: { name: "YONEX ASTROX 100 ZZ", image: "/images/gear/astrox-100-zz.png", description: "世界王者のパワーを支える、極細シャフトの最高峰。", link: getAmazonLink("YONEX ASTROX 100 ZZ") },
@@ -238,6 +279,7 @@ export const players: Player[] = [
     flag: "🇰🇷",
     category: "プロ / 女子シングルス",
     tier: "S",
+    racketId: "astrox-77-pro",
     stats: { power: 85, speed: 92, technique: 94, stamina: 100, mentality: 98, defense: 100 },
     gear: {
       racket: { name: "YONEX ASTROX 77 PRO", image: "/images/gear/astrox-77-pro.png", description: "しなりでシャトルを捉える、新世代のコントロールモデル。", link: getAmazonLink("YONEX ASTROX 77 PRO") },
@@ -475,6 +517,7 @@ export const players: Player[] = [
     flag: "🇯🇵",
     category: "国内代表 / 女子シングルス",
     tier: "S",
+    racketId: "astrox-100zz",
     stats: {
       power: 88,
       speed: 96,
@@ -926,6 +969,7 @@ export const players: Player[] = [
     flag: "🇯🇵",
     category: "国内代表 / 女子シングルス",
     tier: "S",
+    racketId: "astrox-100zz",
     stats: {
       power: 84,
       speed: 88,
@@ -1452,6 +1496,45 @@ export const domesticRankings: CategoryRankings = {
     { rank: 5, name: "江藤 / 霜上", team: "Various", points: "JPN 5", change: "none", flag: "🇯🇵" },
   ],
 };
+
+export interface VideoClip {
+  id: string;
+  title: string;
+  platform: 'youtube' | 'twitch';
+  embedId: string;
+  thumbnailUrl: string;
+}
+
+export const allEnglandHighlights: VideoClip[] = [
+  {
+    id: "clip-1",
+    title: "渡邉航貴 変幻自在のレシーブ",
+    platform: "youtube",
+    embedId: "dummy-youtube-1", // Will use a placeholder or actual shorts ID
+    thumbnailUrl: "https://images.unsplash.com/photo-1622359556847-160a221f736f?q=80&w=400&h=600&fit=crop",
+  },
+  {
+    id: "clip-2",
+    title: "スーパーラリー！保木小林ペア",
+    platform: "twitch",
+    embedId: "BeautifulMagnificentAlpacaPeanutButterBelly", // Twitch clip ID format
+    thumbnailUrl: "https://images.unsplash.com/photo-1606812161109-17cefe6fba4c?q=80&w=400&h=600&fit=crop",
+  },
+  {
+    id: "clip-3",
+    title: "山口茜 驚異のコートカバー",
+    platform: "youtube",
+    embedId: "dummy-youtube-2",
+    thumbnailUrl: "https://images.unsplash.com/photo-1599475458145-8fe0b1a0e5d0?q=80&w=400&h=600&fit=crop",
+  },
+  {
+    id: "clip-4",
+    title: "渡辺・田口 鮮やかな連携",
+    platform: "youtube",
+    embedId: "dummy-youtube-3",
+    thumbnailUrl: "https://images.unsplash.com/photo-1622359556847-160a221f736f?q=80&w=400&h=600&fit=crop",
+  }
+];
 
 export const gears: Gear[] = [
   {
