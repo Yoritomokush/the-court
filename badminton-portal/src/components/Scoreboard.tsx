@@ -142,7 +142,7 @@ export default function Scoreboard() {
                     <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                     <h2 className="text-white font-black italic tracking-wider text-sm md:text-base uppercase flex items-center gap-2 drop-shadow-md">
                         全英オープン 2026
-                        <span className="text-green-300 font-medium tracking-normal hidden md:inline">- Day 1/2 結果速報</span>
+                        <span className="text-green-300 font-medium tracking-normal hidden md:inline">- 準々決勝 (Quarter Finals)</span>
                     </h2>
                 </div>
                 <div className="relative z-10 text-emerald-200/50 text-[10px] md:text-xs font-black tracking-widest uppercase">

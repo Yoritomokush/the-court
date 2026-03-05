@@ -13,7 +13,7 @@ export default function BestMatchPoll() {
 
     // Initialize fake results data
     useEffect(() => {
-        const savedVote = localStorage.getItem("best_match_vote");
+        const savedVote = localStorage.getItem("best_match_vote_qf");
         if (savedVote) {
             setHasVoted(true);
             setSelectedMatch(savedVote);
@@ -22,13 +22,13 @@ export default function BestMatchPoll() {
         const mockResults: { [key: string]: number } = {};
         allEnglandResults.forEach((match, index) => {
             // Seed the initial votes (deterministically for matching IDs)
-            const savedCount = localStorage.getItem(`best_match_count_${match.id}`);
+            const savedCount = localStorage.getItem(`best_match_count_qf_${match.id}`);
             if (savedCount) {
                 mockResults[match.id] = parseInt(savedCount, 10);
             } else {
                 const initialCount = 1000 - (index * 200) + Math.floor(Math.random() * 50);
                 mockResults[match.id] = initialCount;
-                localStorage.setItem(`best_match_count_${match.id}`, initialCount.toString());
+                localStorage.setItem(`best_match_count_qf_${match.id}`, initialCount.toString());
             }
         });
         setResults(mockResults);
@@ -47,8 +47,8 @@ export default function BestMatchPoll() {
         setSelectedMatch(matchId);
 
         // Save to localStorage
-        localStorage.setItem("best_match_vote", matchId);
-        localStorage.setItem(`best_match_count_${matchId}`, newResults[matchId].toString());
+        localStorage.setItem("best_match_vote_qf", matchId);
+        localStorage.setItem(`best_match_count_qf_${matchId}`, newResults[matchId].toString());
 
         // Fire Confetti
         triggerConfetti();
@@ -129,10 +129,10 @@ export default function BestMatchPoll() {
                 <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center justify-between mb-8">
                     <div>
                         <h2 className="text-3xl md:text-4xl font-black italic tracking-tighter drop-shadow-md">
-                            ベストマッチ投票<br />
-                            <span className="text-xl md:text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-2 uppercase">BEST MATCH POLL</span>
+                            準々決勝 勝敗予想<br />
+                            <span className="text-xl md:text-2xl tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-400 block mt-2 uppercase">BEST MATCH POLL (QF)</span>
                         </h2>
-                        <p className="text-zinc-400 mt-2 text-sm md:text-base font-medium">全英オープン2026 Day 1、あなたが最も心を打たれた試合は？</p>
+                        <p className="text-zinc-400 mt-2 text-sm md:text-base font-medium">全英オープン2026 準々決勝、あなたの注目カードは？</p>
                     </div>
                     <div className="flex items-center gap-2 bg-black/50 px-4 py-2 rounded-full border border-white/5">
                         <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />

@@ -148,32 +148,32 @@ export const getAmazonLink = (query: string): string => {
 
 export const allEnglandResults: LiveMatchResult[] = [
   {
-    id: "ae-2026-m1",
+    id: "ae-2026-qf-m1",
     category: "MS",
-    player1: { name: "渡邉 航貴", isWin: true, sets: 2 },
-    player2: { name: "A.アントンセン", isWin: false, sets: 0 },
-    scores: ["21-8", "21-12"]
+    player1: { name: "渡邉 航貴", isWin: false, sets: 0 },
+    player2: { name: "L.セン", isWin: false, sets: 0 },
+    scores: []
   },
   {
-    id: "ae-2026-m2",
+    id: "ae-2026-qf-m2",
     category: "MS",
-    player1: { name: "西本 拳太", isWin: false, sets: 1 },
-    player2: { name: "レオン・ジュンハオ", isWin: true, sets: 2 },
-    scores: ["17-21", "21-13", "18-21"]
+    player1: { name: "奈良岡 功大", isWin: false, sets: 0 },
+    player2: { name: "C.A.ドゥイ・ワルドヨ", isWin: false, sets: 0 },
+    scores: []
   },
   {
-    id: "ae-2026-m3",
-    category: "MD",
-    player1: { name: "保木/小林", isWin: true, sets: 2 },
-    player2: { name: "陳/林", isWin: false, sets: 0 },
-    scores: ["21-12", "21-14"]
-  },
-  {
-    id: "ae-2026-m4",
+    id: "ae-2026-qf-m3",
     category: "WS",
-    player1: { name: "山口 茜", isWin: true, sets: 2 },
-    player2: { name: "宋碩芸", isWin: false, sets: 0 },
-    scores: ["21-18", "21-10"]
+    player1: { name: "山口 茜", isWin: false, sets: 0 },
+    player2: { name: "グレゴリア・M・トゥンジュン", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
+    id: "ae-2026-qf-m4",
+    category: "WD",
+    player1: { name: "志田/松山", isWin: false, sets: 0 },
+    player2: { name: "タン/ティナー", isWin: false, sets: 0 },
+    scores: []
   }
 ];
 
@@ -1497,44 +1497,7 @@ export const domesticRankings: CategoryRankings = {
   ],
 };
 
-export interface VideoClip {
-  id: string;
-  title: string;
-  platform: 'youtube' | 'twitch';
-  embedId: string;
-  thumbnailUrl: string;
-}
 
-export const allEnglandHighlights: VideoClip[] = [
-  {
-    id: "clip-1",
-    title: "渡邉航貴 変幻自在のレシーブ",
-    platform: "youtube",
-    embedId: "Qp4x9n2r-zM", // Generic short ID placeholder format
-    thumbnailUrl: "https://images.unsplash.com/photo-1622359556847-160a221f736f?q=80&w=400&h=600&fit=crop",
-  },
-  {
-    id: "clip-2",
-    title: "スーパーラリー！保木小林ペア",
-    platform: "twitch",
-    embedId: "AmazingBrightDragonfruitBCWarrior", // generic twitch clip id
-    thumbnailUrl: "https://images.unsplash.com/photo-1606812161109-17cefe6fba4c?q=80&w=400&h=600&fit=crop",
-  },
-  {
-    id: "clip-3",
-    title: "山口茜 驚異のコートカバー",
-    platform: "youtube",
-    embedId: "dummy-youtube-2",
-    thumbnailUrl: "https://images.unsplash.com/photo-1599475458145-8fe0b1a0e5d0?q=80&w=400&h=600&fit=crop",
-  },
-  {
-    id: "clip-4",
-    title: "渡辺・田口 鮮やかな連携",
-    platform: "youtube",
-    embedId: "dummy-youtube-3",
-    thumbnailUrl: "https://images.unsplash.com/photo-1622359556847-160a221f736f?q=80&w=400&h=600&fit=crop",
-  }
-];
 
 export const gears: Gear[] = [
   {

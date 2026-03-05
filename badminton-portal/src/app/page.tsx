@@ -14,7 +14,6 @@ import PlayerCard from "@/components/PlayerCard";
 import Scoreboard from "@/components/Scoreboard";
 import TournamentDraw from "@/components/TournamentDraw";
 import BestMatchPoll from "@/components/BestMatchPoll";
-import VideoGallery from "@/components/VideoGallery";
 
 const CATEGORIES = ["すべて", "男子シングルス", "女子シングルス", "男子ダブルス", "女子ダブルス", "混合ダブルス"] as const;
 type Category = (typeof CATEGORIES)[number];
@@ -95,11 +94,10 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-6 py-24 space-y-40">
 
         {/* 0. LIVE SCOREBOARD & DRAW */}
-        <section className="w-full animate-in fade-in slide-in-from-bottom-10 duration-1000 space-y-16">
+        <section className="w-full animate-in fade-in slide-in-from-bottom-10 duration-1000 space-y-16 pb-8">
           <Scoreboard />
           <TournamentDraw />
           <BestMatchPoll />
-          <VideoGallery />
         </section>
 
         {/* 1. LATEST NEWS */}
