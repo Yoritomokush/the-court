@@ -143,7 +143,7 @@ export interface Circle {
 export const AFFILIATE_ID = "yoritomo04-22";
 
 export const isBreaking: boolean = true;
-export const BREAKING_NEWS_TEXT: string = "【速報】渡邉 航貴、全英OP決勝進出！日本人男子シングルス〇年ぶりの快挙！";
+export const BREAKING_NEWS_TEXT: string = "【速報】全英オープン準決勝進出者決定！渡邉・山口・フクマツ・ヒロサクがベスト4進出の快挙！";
 
 /**
  * Creates a localized Amazon Japan search link with affiliate ID.
@@ -153,135 +153,189 @@ export const getAmazonLink = (query: string): string => {
 };
 
 export const allEnglandResults: LiveMatchResult[] = [
-  // Mock R1
+  // --- MS ---
   {
-    id: "ae-2026-r1-m1",
-    category: "MS",
-    stage: "1回戦",
-    date: "03/03",
-    player1: { name: "奈良岡 功大", isWin: true, sets: 2 },
-    player2: { name: "リー・ジージャ", isWin: false, sets: 0 },
-    scores: ["21-15", "21-18"]
-  },
-  {
-    id: "ae-2026-r1-m2",
-    category: "WS",
-    stage: "1回戦",
-    date: "03/03",
-    player1: { name: "山口 茜", isWin: true, sets: 2 },
-    player2: { name: "P.V.シンドゥ", isWin: false, sets: 1 },
-    scores: ["18-21", "21-12", "21-14"]
-  },
-  // Mock R16
-  {
-    id: "ae-2026-r16-m1",
-    category: "MS",
-    stage: "2回戦",
-    date: "03/05",
-    player1: { name: "奈良岡 功大", isWin: true, sets: 2 },
-    player2: { name: "アンダース・アントンセン", isWin: false, sets: 1 },
-    scores: ["19-21", "21-18", "21-15"]
-  },
-  {
-    id: "ae-2026-r16-m2",
-    category: "MS",
-    stage: "2回戦",
-    date: "03/05",
-    player1: { name: "渡邉 航貴", isWin: true, sets: 2 },
-    player2: { name: "ビクター・アクセルセン", isWin: false, sets: 0 },
-    scores: ["21-19", "21-17"]
-  },
-  {
-    id: "ae-2026-r16-m3",
-    category: "WS",
-    stage: "2回戦",
-    date: "03/05",
-    player1: { name: "山口 茜", isWin: true, sets: 2 },
-    player2: { name: "王祉怡", isWin: false, sets: 0 },
-    scores: ["21-15", "21-16"]
-  },
-  {
-    id: "ae-2026-r16-m4",
-    category: "WD",
-    stage: "2回戦",
-    date: "03/05",
-    player1: { name: "志田/松山", isWin: true, sets: 2 },
-    player2: { name: "ジョン・ナウン/キム・ヘジョン", isWin: false, sets: 1 },
-    scores: ["21-19", "18-21", "21-16"]
-  },
-  // Actual QF from Prompt
-  {
-    id: "ae-2026-qf-m1",
-    category: "MS",
-    stage: "準々決勝",
-    date: "03/06",
-    player1: { name: "渡邉 航貴", isWin: true, sets: 2 },
-    player2: { name: "L.セン", isWin: false, sets: 1 },
-    scores: ["21-18", "16-21", "21-17"]
-  },
-  {
-    id: "ae-2026-qf-m2",
-    category: "MS",
-    stage: "準々決勝",
-    date: "03/06",
-    player1: { name: "奈良岡 功大", isWin: true, sets: 2 },
-    player2: { name: "C.A.ドゥイ・ワルドヨ", isWin: false, sets: 0 },
-    scores: ["21-14", "21-16"]
-  },
-  {
-    id: "ae-2026-qf-m3",
-    category: "WS",
-    stage: "準々決勝",
-    date: "03/06",
-    player1: { name: "山口 茜", isWin: true, sets: 2 },
-    player2: { name: "グレゴリア・M・トゥンジュン", isWin: false, sets: 0 },
-    scores: ["21-15", "21-19"]
-  },
-  {
-    id: "ae-2026-qf-m4",
-    category: "WD",
-    stage: "準々決勝",
-    date: "03/06",
-    player1: { name: "志田/松山", isWin: true, sets: 2 },
-    player2: { name: "タン/ティナー", isWin: false, sets: 1 },
-    scores: ["21-19", "18-21", "21-15"]
-  },
-  // Upcoming SF
-  {
-    id: "ae-2026-sf-m1",
-    category: "MS",
-    stage: "準決勝",
-    date: "03/07",
+    id: "ae-2026-ms-sf-1",
+    category: "MS", stage: "準決勝", date: "03/07",
     player1: { name: "渡邉 航貴", isWin: false, sets: 0 },
     player2: { name: "TBD", isWin: false, sets: 0 },
     scores: []
   },
   {
-    id: "ae-2026-sf-m2",
-    category: "MS",
-    stage: "準決勝",
-    date: "03/07",
-    player1: { name: "奈良岡 功大", isWin: false, sets: 0 },
-    player2: { name: "TBD", isWin: false, sets: 0 },
-    scores: []
+    id: "ae-2026-ms-qf-1",
+    category: "MS", stage: "準々決勝", date: "03/06",
+    player1: { name: "渡邉 航貴", isWin: true, sets: 2 },
+    player2: { name: "L.セン", isWin: false, sets: 1 },
+    scores: ["21-18", "16-21", "21-17"]
   },
   {
-    id: "ae-2026-sf-m3",
-    category: "WS",
-    stage: "準決勝",
-    date: "03/07",
+    id: "ae-2026-ms-r1-1",
+    category: "MS", stage: "1回戦", date: "03/03",
+    player1: { name: "奈良岡 功大", isWin: false, sets: 1 },
+    player2: { name: "アンダース・アントンセン", isWin: true, sets: 2 },
+    scores: ["21-19", "18-21", "15-21"]
+  },
+  {
+    id: "ae-2026-ms-r1-2",
+    category: "MS", stage: "1回戦", date: "03/03",
+    player1: { name: "西本 拳太", isWin: false, sets: 0 },
+    player2: { name: "リー・ジージャ", isWin: true, sets: 2 },
+    scores: ["15-21", "18-21"]
+  },
+  {
+    id: "ae-2026-ms-r1-3",
+    category: "MS", stage: "1回戦", date: "03/03",
+    player1: { name: "田中 湧士", isWin: false, sets: 0 },
+    player2: { name: "C.A.ドゥイ・ワルドヨ", isWin: true, sets: 2 },
+    scores: ["14-21", "16-21"]
+  },
+
+  // --- WS ---
+  {
+    id: "ae-2026-ws-sf-1",
+    category: "WS", stage: "準決勝", date: "03/07",
     player1: { name: "山口 茜", isWin: false, sets: 0 },
     player2: { name: "TBD", isWin: false, sets: 0 },
     scores: []
   },
   {
-    id: "ae-2026-sf-m4",
-    category: "WD",
-    stage: "準決勝",
-    date: "03/07",
-    player1: { name: "志田/松山", isWin: false, sets: 0 },
+    id: "ae-2026-ws-qf-1",
+    category: "WS", stage: "準々決勝", date: "03/06",
+    player1: { name: "山口 茜", isWin: true, sets: 2 },
+    player2: { name: "王祉怡", isWin: false, sets: 0 },
+    scores: ["21-15", "21-19"]
+  },
+  {
+    id: "ae-2026-ws-qf-2",
+    category: "WS", stage: "準々決勝", date: "03/06",
+    player1: { name: "宮崎 友花", isWin: false, sets: 1 },
+    player2: { name: "アン・セヨン", isWin: true, sets: 2 },
+    scores: ["18-21", "21-17", "12-21"]
+  },
+  {
+    id: "ae-2026-ws-r2-1",
+    category: "WS", stage: "2回戦", date: "03/05",
+    player1: { name: "仁平 菜月", isWin: false, sets: 0 },
+    player2: { name: "グレゴリア・M・トゥンジュン", isWin: true, sets: 2 },
+    scores: ["14-21", "16-21"]
+  },
+  {
+    id: "ae-2026-ws-r2-2",
+    category: "WS", stage: "2回戦", date: "03/05",
+    player1: { name: "郡司 莉子", isWin: false, sets: 0 },
+    player2: { name: "ハン・ユエ", isWin: true, sets: 2 },
+    scores: ["19-21", "15-21"]
+  },
+  {
+    id: "ae-2026-ws-r1-1",
+    category: "WS", stage: "1回戦", date: "03/03",
+    player1: { name: "奥原 希望", isWin: false, sets: 0 },
+    player2: { name: "P.V.シンドゥ", isWin: true, sets: 2 },
+    scores: ["12-21", "14-21"]
+  },
+  {
+    id: "ae-2026-ws-r1-2",
+    category: "WS", stage: "1回戦", date: "03/03",
+    player1: { name: "明地 陽菜", isWin: false, sets: 0 },
+    player2: { name: "戴資穎", isWin: true, sets: 2 },
+    scores: ["16-21", "11-21"]
+  },
+
+  // --- MD ---
+  {
+    id: "ae-2026-md-r2-1",
+    category: "MD", stage: "2回戦", date: "03/05",
+    player1: { name: "保木/小林", isWin: false, sets: 1 },
+    player2: { name: "リャン/ワン", isWin: true, sets: 2 },
+    scores: ["21-19", "18-21", "16-21"]
+  },
+  {
+    id: "ae-2026-md-r1-1",
+    category: "MD", stage: "1回戦", date: "03/03",
+    player1: { name: "熊谷/西", isWin: false, sets: 0 },
+    player2: { name: "アルフィアン/アルディアント", isWin: true, sets: 2 },
+    scores: ["18-21", "16-21"]
+  },
+  {
+    id: "ae-2026-md-r1-2",
+    category: "MD", stage: "1回戦", date: "03/03",
+    player1: { name: "霜上/野村", isWin: false, sets: 0 },
+    player2: { name: "チア/ソー", isWin: true, sets: 2 },
+    scores: ["14-21", "15-21"]
+  },
+
+  // --- WD ---
+  {
+    id: "ae-2026-wd-sf-1",
+    category: "WD", stage: "準決勝", date: "03/07",
+    player1: { name: "福島/松本", isWin: false, sets: 0 },
     player2: { name: "TBD", isWin: false, sets: 0 },
     scores: []
+  },
+  {
+    id: "ae-2026-wd-sf-2",
+    category: "WD", stage: "準決勝", date: "03/07",
+    player1: { name: "櫻本/廣田", isWin: false, sets: 0 },
+    player2: { name: "TBD", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
+    id: "ae-2026-wd-qf-1",
+    category: "WD", stage: "準々決勝", date: "03/06",
+    player1: { name: "福島/松本", isWin: true, sets: 2 },
+    player2: { name: "タン/ティナー", isWin: false, sets: 1 },
+    scores: ["21-19", "18-21", "21-15"]
+  },
+  {
+    id: "ae-2026-wd-qf-2",
+    category: "WD", stage: "準々決勝", date: "03/06",
+    player1: { name: "櫻本/廣田", isWin: true, sets: 2 },
+    player2: { name: "キム/コン", isWin: false, sets: 0 },
+    scores: ["21-18", "21-16"]
+  },
+  {
+    id: "ae-2026-wd-r2-1",
+    category: "WD", stage: "2回戦", date: "03/05",
+    player1: { name: "中西/岩永", isWin: false, sets: 0 },
+    player2: { name: "陳/賈", isWin: true, sets: 2 },
+    scores: ["15-21", "14-21"]
+  },
+  {
+    id: "ae-2026-wd-r2-2",
+    category: "WD", stage: "2回戦", date: "03/05",
+    player1: { name: "保原/廣上", isWin: false, sets: 1 },
+    player2: { name: "ジョン/キム", isWin: true, sets: 2 },
+    scores: ["21-19", "16-21", "17-21"]
+  },
+  {
+    id: "ae-2026-wd-r2-3",
+    category: "WD", stage: "2回戦", date: "03/05",
+    player1: { name: "大澤/田部", isWin: false, sets: 0 },
+    player2: { name: "李/白", isWin: true, sets: 2 },
+    scores: ["12-21", "11-21"]
+  },
+  {
+    id: "ae-2026-wd-r1-1",
+    category: "WD", stage: "1回戦", date: "03/03",
+    player1: { name: "石川/平本", isWin: false, sets: 0 },
+    player2: { name: "ポリイ/ラハユ", isWin: true, sets: 2 },
+    scores: ["15-21", "14-21"]
+  },
+  {
+    id: "ae-2026-wd-r1-2",
+    category: "WD", stage: "1回戦", date: "03/03",
+    player1: { name: "志田/五十嵐", isWin: false, sets: 0 },
+    player2: { name: "鄭/金", isWin: true, sets: 2 },
+    scores: ["18-21", "20-22"]
+  },
+
+  // --- MIX ---
+  {
+    id: "ae-2026-mix-r2-1",
+    category: "MIX", stage: "2回戦", date: "03/05",
+    player1: { name: "霜上/保原", isWin: false, sets: 0 },
+    player2: { name: "鄭/黄", isWin: true, sets: 2 },
+    scores: ["13-21", "10-21"]
   }
 ];
 

@@ -128,7 +128,15 @@ const MatchRow: React.FC<{ match: LiveMatchResult }> = ({ match }) => {
 };
 
 export default function Scoreboard() {
+    const [activeTab, setActiveTab] = useState<string>("ALL");
+
     if (!allEnglandResults || allEnglandResults.length === 0) return null;
+
+    const tabs = ["ALL", "MS", "WS", "MD", "WD", "MIX"];
+
+    const filteredResults = activeTab === "ALL"
+        ? allEnglandResults
+        : allEnglandResults.filter(match => match.category === activeTab);
 
     return (
         <div className="w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden border border-white/10 shadow-2xl bg-zinc-900 group">
@@ -150,11 +158,35 @@ export default function Scoreboard() {
                 </div>
             </div>
 
+            {/* Category Tabs */}
+            <div className="bg-zinc-950 flex flex-nowrap overflow-x-auto hide-scrollbar border-b border-white/5 px-2 md:px-6 py-2">
+                <div className="flex w-full items-center gap-2">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab)}
+                            className={`flex-1 min-h-[44px] flex items-center justify-center px-4 py-2 rounded-xl text-xs sm:text-sm font-black tracking-widest uppercase transition-all whitespace-nowrap ${activeTab === tab
+                                    ? "bg-gradient-to-r from-emerald-600 to-green-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)] border border-green-400/30"
+                                    : "bg-transparent text-zinc-500 hover:text-white hover:bg-white/5 border border-transparent"
+                                }`}
+                        >
+                            {tab}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
             {/* Matches List */}
             <div className="flex flex-col bg-zinc-900">
-                {allEnglandResults.map((match) => (
-                    <MatchRow key={match.id} match={match} />
-                ))}
+                {filteredResults.length === 0 ? (
+                    <div className="p-8 text-center text-zinc-500 font-bold italic tracking-wider">
+                        No matches found for {activeTab}.
+                    </div>
+                ) : (
+                    filteredResults.map((match) => (
+                        <MatchRow key={match.id} match={match} />
+                    ))
+                )}
             </div>
 
             {/* Footer / More Link */}
