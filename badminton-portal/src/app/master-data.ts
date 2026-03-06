@@ -142,6 +142,9 @@ export interface Circle {
 
 export const AFFILIATE_ID = "yoritomo04-22";
 
+export const isBreaking: boolean = true;
+export const BREAKING_NEWS_TEXT: string = "【速報】渡邉 航貴、全英OP決勝進出！日本人男子シングルス〇年ぶりの快挙！";
+
 /**
  * Creates a localized Amazon Japan search link with affiliate ID.
  */
