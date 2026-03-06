@@ -23,6 +23,7 @@ export default function Footer() {
                         <h4 className="text-[10px] font-black text-orange-500 uppercase tracking-widest">Quick Links</h4>
                         <div className="flex flex-col gap-3 text-sm font-black italic tracking-wider text-zinc-500">
                             <Link href="/players" className="hover:text-orange-500 hover:translate-x-1 transition-all">PLAYERS / 選手名鑑</Link>
+                            <Link href="/archive" className="hover:text-amber-500 hover:translate-x-1 transition-all">ARCHIVE / 試合結果一覧</Link>
                             <Link href="/#rankings" className="hover:text-orange-500 hover:translate-x-1 transition-all">RANKINGS / 世界ランキング</Link>
                             <Link href="/schedule" className="hover:text-orange-500 hover:translate-x-1 transition-all">SCHEDULE / 大会スケジュール</Link>
                             <Link href="/gear" className="hover:text-orange-500 hover:translate-x-1 transition-all">GEAR / ギアレビュー</Link>

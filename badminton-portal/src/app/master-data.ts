@@ -50,6 +50,7 @@ export interface Player {
     };
   };
   bio: string;
+  status?: string; // New: Tournament Status
 }
 
 export interface News {
@@ -72,6 +73,8 @@ export interface MatchResult {
 export interface LiveMatchResult {
   id: string;
   category: string;
+  stage: string;
+  date?: string;
   player1: { name: string; isWin: boolean; sets: number };
   player2: { name: string; isWin: boolean; sets: number };
   scores: string[];
@@ -147,37 +150,183 @@ export const getAmazonLink = (query: string): string => {
 };
 
 export const allEnglandResults: LiveMatchResult[] = [
+  // Mock R1
+  {
+    id: "ae-2026-r1-m1",
+    category: "MS",
+    stage: "1回戦",
+    date: "03/03",
+    player1: { name: "奈良岡 功大", isWin: true, sets: 2 },
+    player2: { name: "リー・ジージャ", isWin: false, sets: 0 },
+    scores: ["21-15", "21-18"]
+  },
+  {
+    id: "ae-2026-r1-m2",
+    category: "WS",
+    stage: "1回戦",
+    date: "03/03",
+    player1: { name: "山口 茜", isWin: true, sets: 2 },
+    player2: { name: "P.V.シンドゥ", isWin: false, sets: 1 },
+    scores: ["18-21", "21-12", "21-14"]
+  },
+  // Mock R16
+  {
+    id: "ae-2026-r16-m1",
+    category: "MS",
+    stage: "2回戦",
+    date: "03/05",
+    player1: { name: "奈良岡 功大", isWin: true, sets: 2 },
+    player2: { name: "アンダース・アントンセン", isWin: false, sets: 1 },
+    scores: ["19-21", "21-18", "21-15"]
+  },
+  {
+    id: "ae-2026-r16-m2",
+    category: "MS",
+    stage: "2回戦",
+    date: "03/05",
+    player1: { name: "渡邉 航貴", isWin: true, sets: 2 },
+    player2: { name: "ビクター・アクセルセン", isWin: false, sets: 0 },
+    scores: ["21-19", "21-17"]
+  },
+  {
+    id: "ae-2026-r16-m3",
+    category: "WS",
+    stage: "2回戦",
+    date: "03/05",
+    player1: { name: "山口 茜", isWin: true, sets: 2 },
+    player2: { name: "王祉怡", isWin: false, sets: 0 },
+    scores: ["21-15", "21-16"]
+  },
+  {
+    id: "ae-2026-r16-m4",
+    category: "WD",
+    stage: "2回戦",
+    date: "03/05",
+    player1: { name: "志田/松山", isWin: true, sets: 2 },
+    player2: { name: "ジョン・ナウン/キム・ヘジョン", isWin: false, sets: 1 },
+    scores: ["21-19", "18-21", "21-16"]
+  },
+  // Actual QF from Prompt
   {
     id: "ae-2026-qf-m1",
     category: "MS",
-    player1: { name: "渡邉 航貴", isWin: false, sets: 0 },
-    player2: { name: "L.セン", isWin: false, sets: 0 },
-    scores: []
+    stage: "準々決勝",
+    date: "03/06",
+    player1: { name: "渡邉 航貴", isWin: true, sets: 2 },
+    player2: { name: "L.セン", isWin: false, sets: 1 },
+    scores: ["21-18", "16-21", "21-17"]
   },
   {
     id: "ae-2026-qf-m2",
     category: "MS",
-    player1: { name: "奈良岡 功大", isWin: false, sets: 0 },
+    stage: "準々決勝",
+    date: "03/06",
+    player1: { name: "奈良岡 功大", isWin: true, sets: 2 },
     player2: { name: "C.A.ドゥイ・ワルドヨ", isWin: false, sets: 0 },
-    scores: []
+    scores: ["21-14", "21-16"]
   },
   {
     id: "ae-2026-qf-m3",
     category: "WS",
-    player1: { name: "山口 茜", isWin: false, sets: 0 },
+    stage: "準々決勝",
+    date: "03/06",
+    player1: { name: "山口 茜", isWin: true, sets: 2 },
     player2: { name: "グレゴリア・M・トゥンジュン", isWin: false, sets: 0 },
-    scores: []
+    scores: ["21-15", "21-19"]
   },
   {
     id: "ae-2026-qf-m4",
     category: "WD",
+    stage: "準々決勝",
+    date: "03/06",
+    player1: { name: "志田/松山", isWin: true, sets: 2 },
+    player2: { name: "タン/ティナー", isWin: false, sets: 1 },
+    scores: ["21-19", "18-21", "21-15"]
+  },
+  // Upcoming SF
+  {
+    id: "ae-2026-sf-m1",
+    category: "MS",
+    stage: "準決勝",
+    date: "03/07",
+    player1: { name: "渡邉 航貴", isWin: false, sets: 0 },
+    player2: { name: "TBD", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
+    id: "ae-2026-sf-m2",
+    category: "MS",
+    stage: "準決勝",
+    date: "03/07",
+    player1: { name: "奈良岡 功大", isWin: false, sets: 0 },
+    player2: { name: "TBD", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
+    id: "ae-2026-sf-m3",
+    category: "WS",
+    stage: "準決勝",
+    date: "03/07",
+    player1: { name: "山口 茜", isWin: false, sets: 0 },
+    player2: { name: "TBD", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
+    id: "ae-2026-sf-m4",
+    category: "WD",
+    stage: "準決勝",
+    date: "03/07",
     player1: { name: "志田/松山", isWin: false, sets: 0 },
-    player2: { name: "タン/ティナー", isWin: false, sets: 0 },
+    player2: { name: "TBD", isWin: false, sets: 0 },
     scores: []
   }
 ];
 
 export const players: Player[] = [
+  {
+    id: "koki-watanabe",
+    name: "渡邉 航貴",
+    rank: "Men's Singles Pro",
+    gender: "Male",
+    team: "BIPROGY",
+    worldRank: "11",
+    awards: [
+      { year: "2024", event: "スイスオープン", result: "優勝" }
+    ],
+    sns: {
+      instagram: "watanabe.koki"
+    },
+    style: "Speed & Fluid Rallies",
+    tags: ["新世代の疾風", "オールラウンダー"],
+    country: "Japan",
+    flag: "🇯🇵",
+    category: "国内代表 / 男子シングルス",
+    tier: "Tier 1",
+    status: "🔥 SF進出（ベスト4）",
+    stats: {
+      power: 84,
+      speed: 94,
+      technique: 90,
+      stamina: 92,
+      mentality: 88,
+      defense: 90,
+    },
+    gear: {
+      racket: {
+        name: "YONEX ASTROX 88 D PRO",
+        image: "/images/gear/astrox-88d-pro.png",
+        description: "バランスの取れた軽快なスイングと重いスマッシュを両立。",
+        link: getAmazonLink("YONEX ASTROX 88 D PRO"),
+      },
+      shoes: {
+        name: "YONEX POWER CUSHION 65 Z 3",
+        image: "/images/gear/shb65z3.png",
+        description: "スピーディなフットワークを支える定番シューズ。",
+        link: getAmazonLink("YONEX POWER CUSHION 65 Z 3"),
+      },
+    },
+    bio: "世界トップクラスのスピードとスタミナでラリーを制する、日本の若きエース。美しいフォームから繰り出される多彩なショットで格上選手を次々と撃破する。",
+  },
   {
     id: "yuta-watanabe",
     name: "渡辺 勇大",
@@ -478,6 +627,7 @@ export const players: Player[] = [
       mentality: 98,
       defense: 96,
     },
+    status: "🔥 SF進出（ベスト4）",
     gear: {
       racket: {
         name: "YONEX ASTROX 99 PRO",
@@ -526,6 +676,7 @@ export const players: Player[] = [
       mentality: 95,
       defense: 92,
     },
+    status: "🔥 SF進出（ベスト4）",
     gear: {
       racket: {
         name: "YONEX ASTROX 100 ZZ",
@@ -749,6 +900,7 @@ export const players: Player[] = [
       mentality: 94,
       defense: 92,
     },
+    status: "🔥 SF進出（ベスト4）",
     gear: {
       racket: {
         name: "YONEX NANOFLARE 800 PRO",
@@ -795,6 +947,7 @@ export const players: Player[] = [
       mentality: 95,
       defense: 96,
     },
+    status: "🔥 SF進出（ベスト4）",
     gear: {
       racket: {
         name: "YONEX NANOFLARE 700 PRO",
