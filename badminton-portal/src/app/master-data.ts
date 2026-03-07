@@ -143,7 +143,7 @@ export interface Circle {
 export const AFFILIATE_ID = "yoritomo04-22";
 
 export const isBreaking: boolean = true;
-export const BREAKING_NEWS_TEXT: string = "【全英オープン速報】渡邉・山口・宮崎・フクマツ・ヒロサクが準々決勝(ベスト8)進出！";
+export const BREAKING_NEWS_TEXT: string = "【全英オープン速報】山口茜が準決勝進出！渡邉・宮崎・フクマツ・ヒロサクは堂々のベスト8";
 
 /**
  * Creates a localized Amazon Japan search link with affiliate ID.
@@ -157,9 +157,9 @@ export const allEnglandResults: LiveMatchResult[] = [
   {
     id: "ae-2026-ms-qf-1",
     category: "MS", stage: "準々決勝", date: "03/06",
-    player1: { name: "渡邉 航貴", isWin: false, sets: 0 },
-    player2: { name: "ビクター・ライ", isWin: false, sets: 0 },
-    scores: []
+    player1: { name: "渡邉 航貴", isWin: false, sets: 1 },
+    player2: { name: "ビクター・ライ", isWin: true, sets: 2 },
+    scores: ["21-18", "17-21", "15-21"]
   },
   {
     id: "ae-2026-ms-r2-1",
@@ -192,18 +192,25 @@ export const allEnglandResults: LiveMatchResult[] = [
 
   // --- WS ---
   {
+    id: "ae-2026-ws-sf-1",
+    category: "WS", stage: "準決勝", date: "03/07",
+    player1: { name: "山口 茜", isWin: false, sets: 0 },
+    player2: { name: "王祉怡", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
     id: "ae-2026-ws-qf-1",
     category: "WS", stage: "準々決勝", date: "03/06",
-    player1: { name: "山口 茜", isWin: false, sets: 0 },
-    player2: { name: "L.クリストフェルセン", isWin: false, sets: 0 },
-    scores: []
+    player1: { name: "山口 茜", isWin: true, sets: 2 },
+    player2: { name: "L.クリストフェルセン", isWin: false, sets: 1 },
+    scores: ["13-21", "21-17", "21-10"]
   },
   {
     id: "ae-2026-ws-qf-2",
     category: "WS", stage: "準々決勝", date: "03/06",
-    player1: { name: "宮崎 友花", isWin: false, sets: 0 },
-    player2: { name: "王祉怡", isWin: false, sets: 0 },
-    scores: []
+    player1: { name: "宮崎 友花", isWin: false, sets: 1 },
+    player2: { name: "王祉怡", isWin: true, sets: 2 },
+    scores: ["13-21", "21-8", "16-21"]
   },
   {
     id: "ae-2026-ws-r2-1",
@@ -262,15 +269,15 @@ export const allEnglandResults: LiveMatchResult[] = [
     id: "ae-2026-wd-qf-1",
     category: "WD", stage: "準々決勝", date: "03/06",
     player1: { name: "福島/松本", isWin: false, sets: 0 },
-    player2: { name: "イ/ペク", isWin: false, sets: 0 },
-    scores: []
+    player2: { name: "イ/ペク", isWin: true, sets: 2 },
+    scores: ["18-21", "7-21"]
   },
   {
     id: "ae-2026-wd-qf-2",
     category: "WD", stage: "準々決勝", date: "03/06",
     player1: { name: "櫻本/廣田", isWin: false, sets: 0 },
-    player2: { name: "賈/張", isWin: false, sets: 0 },
-    scores: []
+    player2: { name: "賈/張", isWin: true, sets: 2 },
+    scores: ["17-21", "20-22"]
   },
   {
     id: "ae-2026-wd-r2-1",
@@ -324,7 +331,7 @@ export const players: Player[] = [
     flag: "🇯🇵",
     category: "国内代表 / 男子シングルス",
     tier: "Tier 1",
-    status: "🔥 QF進出（ベスト8）",
+    status: "ベスト8",
     stats: {
       power: 84,
       speed: 94,
@@ -697,7 +704,7 @@ export const players: Player[] = [
       mentality: 95,
       defense: 92,
     },
-    status: "🔥 QF進出（ベスト8）",
+    status: "🔥 SF進出（ベスト4）",
     gear: {
       racket: {
         name: "YONEX ASTROX 100 ZZ",
