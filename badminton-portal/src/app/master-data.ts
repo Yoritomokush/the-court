@@ -143,7 +143,7 @@ export interface Circle {
 export const AFFILIATE_ID = "yoritomo04-22";
 
 export const isBreaking: boolean = true;
-export const BREAKING_NEWS_TEXT: string = "【全英オープン速報】山口茜が準決勝進出！渡邉・宮崎・フクマツ・ヒロサクは堂々のベスト8";
+export const BREAKING_NEWS_TEXT: string = "【閉幕】全英OP2026終了。山口・渡邉らがベスト4。日本勢の全結果はアーカイブをチェック！";
 
 /**
  * Creates a localized Amazon Japan search link with affiliate ID.
@@ -154,6 +154,20 @@ export const getAmazonLink = (query: string): string => {
 
 export const allEnglandResults: LiveMatchResult[] = [
   // --- MS ---
+  {
+    id: "ae-2026-ms-f-1",
+    category: "MS", stage: "決勝", date: "03/08",
+    player1: { name: "ラクシャ・セン", isWin: false, sets: 0 },
+    player2: { name: "林俊易", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
+    id: "ae-2026-ms-sf-1",
+    category: "MS", stage: "準決勝", date: "03/07",
+    player1: { name: "渡邉 航貴", isWin: false, sets: 1 },
+    player2: { name: "ビクター・ライ", isWin: true, sets: 2 },
+    scores: ["21-18", "17-21", "15-21"]
+  },
   {
     id: "ae-2026-ms-qf-1",
     category: "MS", stage: "準々決勝", date: "03/06",
@@ -192,11 +206,18 @@ export const allEnglandResults: LiveMatchResult[] = [
 
   // --- WS ---
   {
+    id: "ae-2026-ws-f-1",
+    category: "WS", stage: "決勝", date: "03/08",
+    player1: { name: "アン・セヨン", isWin: false, sets: 0 },
+    player2: { name: "王祉怡", isWin: false, sets: 0 },
+    scores: []
+  },
+  {
     id: "ae-2026-ws-sf-1",
     category: "WS", stage: "準決勝", date: "03/07",
     player1: { name: "山口 茜", isWin: false, sets: 0 },
-    player2: { name: "王祉怡", isWin: false, sets: 0 },
-    scores: []
+    player2: { name: "王祉怡", isWin: true, sets: 2 },
+    scores: ["15-21", "19-21"]
   },
   {
     id: "ae-2026-ws-qf-1",
@@ -265,6 +286,20 @@ export const allEnglandResults: LiveMatchResult[] = [
   },
 
   // --- WD ---
+  {
+    id: "ae-2026-wd-sf-1",
+    category: "WD", stage: "準決勝", date: "03/07",
+    player1: { name: "福島/松本", isWin: false, sets: 0 },
+    player2: { name: "イ/ペク", isWin: true, sets: 2 },
+    scores: []
+  },
+  {
+    id: "ae-2026-wd-sf-2",
+    category: "WD", stage: "準決勝", date: "03/07",
+    player1: { name: "櫻本/廣田", isWin: false, sets: 0 },
+    player2: { name: "賈/張", isWin: true, sets: 2 },
+    scores: []
+  },
   {
     id: "ae-2026-wd-qf-1",
     category: "WD", stage: "準々決勝", date: "03/06",
@@ -1444,6 +1479,15 @@ export const players: Player[] = [
 ];
 
 export const columns: Column[] = [
+  {
+    id: "all-england-2026-vol2",
+    title: "【全英OP特集 Vol.2】全英オープン2026閉幕：渡邉航貴の覚醒と日本勢の現在地",
+    date: "2026.03.08",
+    category: "全英OP特集",
+    author: "THE COURT Editorial Team",
+    excerpt: "渡邉選手のアントンセン・リージジャ撃破という衝撃、山口茜選手の安定感、そして決勝進出を阻んだ世界の壁について総括。",
+    content: "歴史と伝統の全英オープン2026が幕を閉じた。日本勢としては惜しくも決勝進出を逃す結果となったが、その中で最も強い輝きを放ったのは、間違いなく渡邉航貴だろう。\n\n彼の今大会の快進撃は、単なるフロックではない。アンダース・アントンセン、リー・ジジャという並み居る強豪を連破したその戦いぶりは、彼の「スピードと流麗なラリー」という持ち味が、世界のトップ・オブ・トップに通じることを完全に証明した。準決勝のビクター・ライ戦こそフルセットの末に涙を飲んだが、第1ゲームを先取し、最後まで足が止まらなかった姿は、新たな日本のエースの覚醒を強く印象づけた。\n\n一方、女子シングルスの山口茜は、安定した試合運びでベスト4に進出。準決勝では絶好調の王祉怡にストレートで敗れたものの、その存在感の大きさは健在だ。「シダマツ」「フクマツ」といったダブルス陣も安定して上位に顔を出す中、日本バドミントン界が直面しているのは「いかにして頂点の壁を打ち破るか」という課題である。\n\n各国のレベルがかつてないほど均衡し、群雄割拠の時代を迎えている現代バドミントン界。この全英での経験を糧に、日本代表が次なるステージへどう進化していくのか。激闘の熱冷めやらぬ今、彼らの視線はすでに次の戦いへと向けられている。"
+  },
   {
     id: "legend-kevin-sanjaya",
     title: "煽る天才、愛される異端：ケビン・サンジャヤ・スカムルジョの軌跡",

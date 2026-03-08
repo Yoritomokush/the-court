@@ -134,9 +134,13 @@ export default function Scoreboard() {
 
     const tabs = ["ALL", "MS", "WS", "MD", "WD", "MIX"];
 
+    // 決勝と準決勝のみ表示する
+    const latestStages = ["決勝", "準決勝"];
+    const latestResults = allEnglandResults.filter(match => latestStages.includes(match.stage));
+
     const filteredResults = activeTab === "ALL"
-        ? allEnglandResults
-        : allEnglandResults.filter(match => match.category === activeTab);
+        ? latestResults
+        : latestResults.filter(match => match.category === activeTab);
 
     return (
         <div className="w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden border border-white/10 shadow-2xl bg-zinc-900 group">
@@ -150,7 +154,7 @@ export default function Scoreboard() {
                     <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                     <h2 className="text-white font-black italic tracking-wider text-sm md:text-base uppercase flex items-center gap-2 drop-shadow-md">
                         全英オープン 2026
-                        <span className="text-green-300 font-medium tracking-normal hidden md:inline">- 準々決勝 (Quarter Finals)</span>
+                        <span className="text-green-300 font-medium tracking-normal hidden md:inline">- 最新速報 (Finals & Semi-Finals)</span>
                     </h2>
                 </div>
                 <div className="relative z-10 text-emerald-200/50 text-[10px] md:text-xs font-black tracking-widest uppercase">
@@ -166,8 +170,8 @@ export default function Scoreboard() {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`flex-1 min-h-[44px] flex items-center justify-center px-4 py-2 rounded-xl text-xs sm:text-sm font-black tracking-widest uppercase transition-all whitespace-nowrap ${activeTab === tab
-                                    ? "bg-gradient-to-r from-emerald-600 to-green-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)] border border-green-400/30"
-                                    : "bg-transparent text-zinc-500 hover:text-white hover:bg-white/5 border border-transparent"
+                                ? "bg-gradient-to-r from-emerald-600 to-green-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)] border border-green-400/30"
+                                : "bg-transparent text-zinc-500 hover:text-white hover:bg-white/5 border border-transparent"
                                 }`}
                         >
                             {tab}
@@ -190,10 +194,11 @@ export default function Scoreboard() {
             </div>
 
             {/* Footer / More Link */}
-            <div className="bg-zinc-950/50 px-6 py-3 flex justify-center border-t border-white/5">
-                <button className="text-zinc-500 hover:text-orange-500 text-xs font-black tracking-widest uppercase transition-colors flex items-center gap-2">
-                    View Full Tournament Tree <span>&rarr;</span>
-                </button>
+            <div className="bg-zinc-950/50 p-6 flex justify-center border-t border-white/5">
+                <a href="/archive" className="w-full md:w-auto relative group flex items-center justify-center gap-4 px-12 py-5 bg-gradient-to-r from-orange-600 to-amber-500 rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_10px_30px_rgba(234,88,12,0.3)] no-underline">
+                    <span className="text-white font-black tracking-widest uppercase text-sm md:text-base">すべての試合結果をアーカイブで見る</span>
+                    <span className="text-white text-xl group-hover:translate-x-2 transition-transform">&rarr;</span>
+                </a>
             </div>
         </div>
     );

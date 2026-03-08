@@ -12,7 +12,6 @@ import RankinsSection from "@/components/RankingsSection";
 import PlayerComparison from "@/components/PlayerComparison";
 import PlayerCard from "@/components/PlayerCard";
 import Scoreboard from "@/components/Scoreboard";
-import TournamentDraw from "@/components/TournamentDraw";
 import BestMatchPoll from "@/components/BestMatchPoll";
 
 const CATEGORIES = ["すべて", "男子シングルス", "女子シングルス", "男子ダブルス", "女子ダブルス", "混合ダブルス"] as const;
@@ -93,18 +92,9 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto px-6 py-24 space-y-40">
 
-        {/* 0. LIVE SCOREBOARD & DRAW */}
+        {/* 0. LIVE SCOREBOARD */}
         <section className="w-full animate-in fade-in slide-in-from-bottom-10 duration-1000 space-y-16 pb-8">
           <Scoreboard />
-
-          <div className="flex justify-center -mt-8 mb-8 relative z-20">
-            <Link href="/archive" className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-zinc-900 to-black border border-white/10 rounded-full hover:border-orange-500/50 hover:bg-white/5 transition-all group shadow-xl">
-              <span className="text-zinc-400 group-hover:text-white transition-colors text-xs font-black tracking-widest uppercase">全試合結果記録を見る</span>
-              <span className="text-orange-500 group-hover:translate-x-1 transition-transform">&rarr;</span>
-            </Link>
-          </div>
-
-          <TournamentDraw />
           <BestMatchPoll />
         </section>
 
